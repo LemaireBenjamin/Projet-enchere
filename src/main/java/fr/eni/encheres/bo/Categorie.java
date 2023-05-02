@@ -60,7 +60,9 @@ public class Categorie {
 		this.articles = articles;
 	}
 
-	
+	/**
+	 * ToString
+	 */
 
 	@Override
 	public String toString() {
