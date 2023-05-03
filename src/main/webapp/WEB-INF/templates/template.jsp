@@ -2,13 +2,13 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<%@ include file="/meta.jsp"%>
+	<%@ include file="/WEB-INF/parts/meta.jsp"%>
 <title>Insert title here</title>
 </head>
 <body>
 	<div class="container-fluid">
 		<header>
-			<%@ include file="/header.jsp"%>
+			<%@ include file="/WEB-INF/parts/header-accueil.jsp"%>
 		</header>
 		
 		<main class="row mt-5">
@@ -20,7 +20,7 @@
 		</main>
 	
 		<footer>
-			<%@ include file="/footer.jsp"%>
+			<%@ include file="/WEB-INF/parts/footer.jsp"%>
 		</footer>
 	</div>
 </body>
