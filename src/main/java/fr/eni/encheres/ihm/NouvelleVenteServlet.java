@@ -7,7 +7,7 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-@WebServlet("/nouvelleBranche")
+@WebServlet("/nouvelleVente")
 public class NouvelleVenteServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
