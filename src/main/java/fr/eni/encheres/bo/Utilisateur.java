@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Utilisateur {
-	
+
 	/**
 	 * Attributes
 	 */
@@ -20,16 +20,24 @@ public class Utilisateur {
 	private String motDePasse;
 	private Integer credit;
 	private boolean administrateur;
-	
-	//association
-	private Enchere enchere;
-	private List<ArticleVendu> ventes = new ArrayList<>();	
+
+	// association
+	private List<Enchere> listEncheres = new ArrayList<>();
+	private List<ArticleVendu> listVentes = new ArrayList<>();
+	private List<ArticleVendu> listAchats = new ArrayList<>();
+
 	/**
 	 * Constructeurs
 	 */
-	
-	private Utilisateur () {}
-	
+
+	private Utilisateur() {
+	}
+
+	public Utilisateur(String pseudo, String email) {
+		this.pseudo = pseudo;
+		this.email = email;
+	}
+
 	public Utilisateur(Integer noUtilisateur, String pseudo, String nom, String prenom, String email, String telephone,
 			String rue, String codePostal, String ville, String motDePasse, Integer credit, boolean administrateur) {
 		this.noUtilisateur = noUtilisateur;
@@ -45,7 +53,7 @@ public class Utilisateur {
 		this.credit = credit;
 		this.administrateur = administrateur;
 	}
-	
+
 	public Utilisateur(String pseudo, String nom, String prenom, String email, String telephone, String rue,
 			String codePostal, String ville, String motDePasse, Integer credit, boolean administrateur) {
 		this.pseudo = pseudo;
@@ -113,6 +121,18 @@ public class Utilisateur {
 		return administrateur;
 	}
 
+	public List<Enchere> getListEncheres() {
+		return listEncheres;
+	}
+
+	public List<ArticleVendu> getListVentes() {
+		return listVentes;
+	}
+
+	public List<ArticleVendu> getListAchats() {
+		return listAchats;
+	}
+
 	public void setNoUtilisateur(Integer noUtilisateur) {
 		this.noUtilisateur = noUtilisateur;
 	}
@@ -160,6 +180,19 @@ public class Utilisateur {
 	public void setAdministrateur(boolean administrateur) {
 		this.administrateur = administrateur;
 	}
+
+	public void setListEncheres(List<Enchere> listEncheres) {
+		this.listEncheres = listEncheres;
+	}
+
+	public void setListVentes(List<ArticleVendu> listVentes) {
+		this.listVentes = listVentes;
+	}
+
+	public void setListAchats(List<ArticleVendu> listAchats) {
+		this.listAchats = listAchats;
+	}
+
 	/**
 	 * TOString
 	 */
@@ -171,4 +204,5 @@ public class Utilisateur {
 				+ codePostal + ", ville=" + ville + ", motDePasse=" + motDePasse + ", credit=" + credit
 				+ ", administrateur=" + administrateur + "]";
 	}
+
 }
