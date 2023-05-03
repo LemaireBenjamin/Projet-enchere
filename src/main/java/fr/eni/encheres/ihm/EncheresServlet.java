@@ -11,24 +11,23 @@ import java.util.List;
 
 
 /**
- * liste enchères => accueil
- * detail d'une enchère => /accueil/detail
- * ajouter une enchère => /accueil/ajouter
- * modifier une enchère => /accueil/modifier
- * supprimer une enchère => /accueil/supprimer
- * @
+ * Accueil liste enchères => encheres
+ * Detail d'une enchère => /encheres/detail
+ * Ajouter une enchère => /encheres/ajouter
+ * Modifier une enchère => /encheres/modifier
+ * Supprimer une enchère => /encheres/supprimer
+ * 
  * @author bmeunier2023
  */
-
-@WebServlet("/encheres")
+@WebServlet("")
 public class EncheresServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
  
-
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		List<Enchere> encheres = EnchereManager.getInstance().gettAllEncheres();
-		request.setAttribute("encheres", encheres);
-		request.getRequestDispatcher("/WEB-INF/jsp/accueil-encheres.jsp").forward(request, response);		
+		//List<Enchere> encheres = EnchereManager.getInstance().gettAllEncheres();
+		//request.setAttribute("encheres", encheres);
+		//request.getRequestDispatcher("/WEB-INF/jsp/encheres.jsp").forward(request, response);
+		response.getWriter().append("served at :").append(request.getContextPath());
 	}
 
 }
