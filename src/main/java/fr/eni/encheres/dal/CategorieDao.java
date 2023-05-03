@@ -1,6 +1,7 @@
 /**
  * Bertrand
- */package fr.eni.encheres.dal;
+ */
+package fr.eni.encheres.dal;
 
 import java.util.List;
 
