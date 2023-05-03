@@ -15,7 +15,9 @@
 			<div class="row text-center">
 				<h1>Liste des enchères</h1>
 			</div>
-			Filtres :
+			
+			<div class="pl-10">Filtres :</div>
+			
 			<div>
 			
 			

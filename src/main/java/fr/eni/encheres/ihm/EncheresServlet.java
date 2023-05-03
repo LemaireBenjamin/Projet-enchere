@@ -26,8 +26,8 @@ public class EncheresServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		//List<Enchere> encheres = EnchereManager.getInstance().gettAllEncheres();
 		//request.setAttribute("encheres", encheres);
-		//request.getRequestDispatcher("/WEB-INF/jsp/encheres.jsp").forward(request, response);
-		response.getWriter().append("served at :").append(request.getContextPath());
+		request.getRequestDispatcher("/WEB-INF/jsp/encheres.jsp").forward(request, response);
+	
 	}
 
 }
