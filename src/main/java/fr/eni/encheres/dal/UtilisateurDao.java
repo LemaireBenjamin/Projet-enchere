@@ -18,4 +18,6 @@ public interface UtilisateurDao {
 	public void update(Utilisateur utlisateur);
 
 	public void deleteUtilisateur(int id);
+
+	public Utilisateur selectByUsername(String nomUtilisateur);
 }

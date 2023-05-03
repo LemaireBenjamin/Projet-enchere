@@ -3,8 +3,9 @@ package fr.eni.encheres.helpers;
 import jakarta.servlet.http.HttpSession;
 
 public class Flash {
-	
-	public static void send (String label, String message, HttpSession session) {
+
+
+	public static void send(String label,String message, HttpSession session) {
 		session.setAttribute(label, message);
 	}
 	
