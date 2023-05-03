@@ -5,6 +5,7 @@ package fr.eni.encheres.dal.jdbc;
 
 import java.util.List;
 
+import fr.eni.encheres.bo.Utilisateur;
 import fr.eni.encheres.dal.UtilisateurDao;
 
 public class UtilisateurDaoImpl implements UtilisateurDao {
@@ -38,5 +39,6 @@ public class UtilisateurDaoImpl implements UtilisateurDao {
 		// TODO Auto-generated method stub
 		
 	}
+
 
 }
