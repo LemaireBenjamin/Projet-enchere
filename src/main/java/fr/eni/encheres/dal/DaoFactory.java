@@ -3,6 +3,11 @@
  */
 package fr.eni.encheres.dal;
 
+import fr.eni.encheres.dal.jdbc.ArticleVenduDaoImpl;
+import fr.eni.encheres.dal.jdbc.CategorieDaoImpl;
+import fr.eni.encheres.dal.jdbc.EnchereDaoImpl;
+import fr.eni.encheres.dal.jdbc.RetraitDaoImpl;
+import fr.eni.encheres.dal.jdbc.UtilisateurDaoImpl;
 
 public class DaoFactory {
 	
