@@ -5,6 +5,7 @@ package fr.eni.encheres.dal.jdbc;
 
 import java.util.List;
 
+import fr.eni.encheres.bo.Utilisateur;
 import fr.eni.encheres.dal.UtilisateurDao;
 
 public class UtilisateurDaoImpl implements UtilisateurDao {
@@ -37,6 +38,12 @@ public class UtilisateurDaoImpl implements UtilisateurDao {
 	public void deleteUtilisateur(int id) {
 		// TODO Auto-generated method stub
 		
+	}
+
+	@Override
+	public Utilisateur selectByUsername(String nomUtilisateur) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }
