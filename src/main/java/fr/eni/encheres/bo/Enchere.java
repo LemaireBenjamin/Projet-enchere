@@ -12,6 +12,7 @@ public class Enchere {
 
 	// Association
 	private ArticleVendu articleVendu;
+	private Utilisateur utilisateur;
 
 	/**
 	 * Constructeurs
@@ -20,9 +21,16 @@ public class Enchere {
 	}
 
 	public Enchere(LocalDate dateEnchere, Integer montantEnchere) {
-
-		this.dateEnchere = LocalDate.now();
+		super();
+		this.dateEnchere = dateEnchere;
 		this.montantEnchere = montantEnchere;
+	}
+
+	public Enchere(LocalDate dateEnchere, Integer montantEnchere, ArticleVendu articleVendu, Utilisateur utilisateur) {
+		this.dateEnchere = dateEnchere;
+		this.montantEnchere = montantEnchere;
+		this.articleVendu = articleVendu;
+		this.utilisateur = utilisateur;
 	}
 
 	/**
@@ -41,6 +49,10 @@ public class Enchere {
 		return articleVendu;
 	}
 
+	public Utilisateur getUtilisateur() {
+		return utilisateur;
+	}
+
 	public void setDateEnchere(LocalDate dateEnchere) {
 		this.dateEnchere = dateEnchere;
 	}
@@ -53,13 +65,18 @@ public class Enchere {
 		this.articleVendu = articleVendu;
 	}
 
+	public void setUtilisateur(Utilisateur utilisateur) {
+		this.utilisateur = utilisateur;
+	}
+
 	/**
 	 * ToString
 	 */
+
 	@Override
 	public String toString() {
 		return "Enchere [dateEnchere=" + dateEnchere + ", montantEnchere=" + montantEnchere + ", articleVendu="
-				+ articleVendu + "]";
+				+ articleVendu + ", utilisateur=" + utilisateur + "]";
 	}
 
 }

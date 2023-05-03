@@ -1,6 +1,8 @@
 package fr.eni.encheres.bo;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 
 public class ArticleVendu {
 
@@ -14,21 +16,23 @@ public class ArticleVendu {
 	private LocalDate dateFinEncheres;
 	private Integer prixInitial;
 	private Integer prixVente;
-	
-	//private String etatVente;
-		
-	//Association
-	private Categorie categorie;
+
+	private String etatVente;
+
+	// Association
+	private Categorie categorieArticle;
 	private Utilisateur utilisateur;
-	private Retrait retrait;
-	private Enchere enchere;
-	
+	private Retrait lieuRetrait;
+
+	private List<Enchere> listEncheres = new ArrayList<>();
+
 	/**
 	 * Constructeurs
 	 */
-	
-	public ArticleVendu() {}
-	
+
+	public ArticleVendu() {
+	}
+
 	public ArticleVendu(String nomArticle, String description, LocalDate dateDebutEncheres, LocalDate dateFinEncheres,
 			Integer prixInitial, Integer prixVente, Integer noUtilisateur, Integer noCategorie) {
 		this.nomArticle = nomArticle;
@@ -37,7 +41,7 @@ public class ArticleVendu {
 		this.dateFinEncheres = dateFinEncheres;
 		this.prixInitial = prixInitial;
 		this.prixVente = prixVente;
-		
+
 	}
 
 	public ArticleVendu(Integer noArticle, String nomArticle, String description, LocalDate dateDebutEncheres,
@@ -50,12 +54,29 @@ public class ArticleVendu {
 		this.dateFinEncheres = dateFinEncheres;
 		this.prixInitial = prixInitial;
 		this.prixVente = prixVente;
-	
+
+	}
+
+	public ArticleVendu(String nomArticle, String description, LocalDate dateDebutEncheres, LocalDate dateFinEncheres,
+			Integer prixInitial, Integer prixVente, String etatVente, Categorie categorieArticle,
+			Utilisateur utilisateur, Retrait lieuRetrait, List<Enchere> listEncheres) {
+		this.nomArticle = nomArticle;
+		this.description = description;
+		this.dateDebutEncheres = dateDebutEncheres;
+		this.dateFinEncheres = dateFinEncheres;
+		this.prixInitial = prixInitial;
+		this.prixVente = prixVente;
+		this.etatVente = etatVente;
+		this.categorieArticle = categorieArticle;
+		this.utilisateur = utilisateur;
+		this.lieuRetrait = lieuRetrait;
+		this.listEncheres = listEncheres;
 	}
 
 	/**
 	 * Getter and Setter
 	 */
+
 	public Integer getNoArticle() {
 		return noArticle;
 	}
@@ -84,12 +105,24 @@ public class ArticleVendu {
 		return prixVente;
 	}
 
-	public Integer getNoUtilisateur() {
-		return noUtilisateur;
+	public String getEtatVente() {
+		return etatVente;
 	}
 
-	public Integer getNoCategorie() {
-		return noCategorie;
+	public Categorie getCategorieArticle() {
+		return categorieArticle;
+	}
+
+	public Utilisateur getUtilisateur() {
+		return utilisateur;
+	}
+
+	public Retrait getLieuRetrait() {
+		return lieuRetrait;
+	}
+
+	public List<Enchere> getListEncheres() {
+		return listEncheres;
 	}
 
 	public void setNoArticle(Integer noArticle) {
@@ -120,24 +153,37 @@ public class ArticleVendu {
 		this.prixVente = prixVente;
 	}
 
-	public void setNoUtilisateur(Integer noUtilisateur) {
-		this.noUtilisateur = noUtilisateur;
+	public void setEtatVente(String etatVente) {
+		this.etatVente = etatVente;
 	}
 
-	public void setNoCategorie(Integer noCategorie) {
-		this.noCategorie = noCategorie;
+	public void setCategorieArticle(Categorie categorieArticle) {
+		this.categorieArticle = categorieArticle;
+	}
+
+	public void setUtilisateur(Utilisateur utilisateur) {
+		this.utilisateur = utilisateur;
+	}
+
+	public void setLieuRetrait(Retrait lieuRetrait) {
+		this.lieuRetrait = lieuRetrait;
+	}
+
+	public void setListEncheres(List<Enchere> listEncheres) {
+		this.listEncheres = listEncheres;
 	}
 
 	/**
 	 * ToString
 	 */
-	
+
 	@Override
 	public String toString() {
 		return "ArticleVendu [noArticle=" + noArticle + ", nomArticle=" + nomArticle + ", description=" + description
 				+ ", dateDebutEncheres=" + dateDebutEncheres + ", dateFinEncheres=" + dateFinEncheres + ", prixInitial="
-				+ prixInitial + ", prixVente=" + prixVente + ", noUtilisateur=" + noUtilisateur + ", noCategorie="
-				+ noCategorie + "]";
-	}	
-		
+				+ prixInitial + ", prixVente=" + prixVente + ", etatVente=" + etatVente + ", categorieArticle="
+				+ categorieArticle + ", utilisateur=" + utilisateur + ", lieuRetrait=" + lieuRetrait + ", listEncheres="
+				+ listEncheres + "]";
+	}
+
 }

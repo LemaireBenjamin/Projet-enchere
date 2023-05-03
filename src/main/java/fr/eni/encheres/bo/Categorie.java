@@ -11,7 +11,7 @@ public class Categorie {
 	private String libelle;
 
 	// association
-	private List<ArticleVendu> articles = new ArrayList<>();
+	private List<ArticleVendu> listArticleVendus = new ArrayList<>();
 
 	/**
 	 * Constructeurs
@@ -19,19 +19,20 @@ public class Categorie {
 
 	public Categorie() {
 	}
-
-	public Categorie(Integer noCategorie, String libelle, List<ArticleVendu> articles) {
+	
+	
+	public Categorie(Integer noCategorie, String libelle) {
+		super();
 		this.noCategorie = noCategorie;
 		this.libelle = libelle;
-		this.articles = articles;
 	}
 
-	public Categorie(String libelle, List<ArticleVendu> articles) {
-		super();
+	public Categorie(Integer noCategorie, String libelle, List<ArticleVendu> listArticleVendus) {
+		this.noCategorie = noCategorie;
 		this.libelle = libelle;
-		this.articles = articles;
+		this.listArticleVendus = listArticleVendus;
 	}
-
+	
 	/**
 	 * Getter et Setter
 	 */
@@ -44,8 +45,8 @@ public class Categorie {
 		return libelle;
 	}
 
-	public List<ArticleVendu> getArticles() {
-		return articles;
+	public List<ArticleVendu> getListArticleVendus() {
+		return listArticleVendus;
 	}
 
 	public void setNoCategorie(Integer noCategorie) {
@@ -56,8 +57,8 @@ public class Categorie {
 		this.libelle = libelle;
 	}
 
-	public void setArticles(List<ArticleVendu> articles) {
-		this.articles = articles;
+	public void setListArticleVendus(List<ArticleVendu> listArticleVendus) {
+		this.listArticleVendus = listArticleVendus;
 	}
 
 	/**
@@ -66,7 +67,8 @@ public class Categorie {
 
 	@Override
 	public String toString() {
-		return "Categorie [noCategorie=" + noCategorie + ", libelle=" + libelle + "]";
+		return "Categorie [noCategorie=" + noCategorie + ", libelle=" + libelle + ", listArticleVendus="
+				+ listArticleVendus + "]";
 	}
-
+	
 }
