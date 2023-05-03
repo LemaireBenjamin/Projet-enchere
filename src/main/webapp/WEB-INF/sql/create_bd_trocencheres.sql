@@ -1,15 +1,21 @@
 -- Script de création de la base de données ENCHERES
 --   type :      SQL Server 2012
 --
-
-
+--	Modifié par Benjamin LEMAIRE
+--
+-- DROP DATABASE ENCHERE_DB
+-- CREATE DATABASE ENCHERE_DB
+USE ENCHERE_DB;
+GO
 
 CREATE TABLE CATEGORIES (
     no_categorie   INTEGER IDENTITY(1,1) NOT NULL,
     libelle        VARCHAR(30) NOT NULL
 )
 
-ALTER TABLE CATEGORIES ADD constraint categorie_pk PRIMARY KEY (no_categorie)
+ALTER TABLE CATEGORIES 
+	ADD constraint categorie_pk 
+		PRIMARY KEY (no_categorie)
 
 CREATE TABLE ENCHERES (
     no_utilisateur   INTEGER NOT NULL,
@@ -19,10 +25,12 @@ CREATE TABLE ENCHERES (
 
 )
 
-ALTER TABLE ENCHERES ADD constraint enchere_pk PRIMARY KEY (no_utilisateur, no_article)
+ALTER TABLE ENCHERES 
+	ADD constraint enchere_pk 
+		PRIMARY KEY (no_utilisateur, no_article)
 
 CREATE TABLE RETRAITS (
-	no_article         INTEGER NOT NULL,
+	no_article       INTEGER NOT NULL,
     rue              VARCHAR(30) NOT NULL,
     code_postal      VARCHAR(15) NOT NULL,
     ville            VARCHAR(30) NOT NULL
@@ -35,7 +43,7 @@ CREATE TABLE UTILISATEURS (
     pseudo           VARCHAR(30) NOT NULL,
     nom              VARCHAR(30) NOT NULL,
     prenom           VARCHAR(30) NOT NULL,
-    email            VARCHAR(20) NOT NULL,
+    email            VARCHAR(150) NOT NULL,
     telephone        VARCHAR(15),
     rue              VARCHAR(30) NOT NULL,
     code_postal      VARCHAR(10) NOT NULL,
@@ -47,6 +55,15 @@ CREATE TABLE UTILISATEURS (
 
 ALTER TABLE UTILISATEURS ADD constraint utilisateur_pk PRIMARY KEY (no_utilisateur)
 
+-- Ajout de contraintes d'unicité pour le pseudo et l'email
+ALTER TABLE UTILISATEURS ADD CONSTRAINT utilisateur_pseudo_uq UNIQUE (pseudo)
+ALTER TABLE UTILISATEURS ADD CONSTRAINT utilisateur_email_uq UNIQUE (email)
+
+-- Ajout d'une valeur par défaut pour le crédit
+ALTER TABLE UTILISATEURS ADD CONSTRAINT utilisateur_credit_df DEFAULT 0 FOR credit
+
+-- Ajout d'une contrainte sur le pseudo qui n'accepte que des caractères alphanumériques
+ALTER TABLE UTILISATEURS ADD CONSTRAINT utilisateurs_login_ck CHECK (pseudo NOT LIKE '%[^0-9A-z]%')
 
 CREATE TABLE ARTICLES_VENDUS (
     no_article                    INTEGER IDENTITY(1,1) NOT NULL,
@@ -56,16 +73,22 @@ CREATE TABLE ARTICLES_VENDUS (
     date_fin_encheres             DATE NOT NULL,
     prix_initial                  INTEGER,
     prix_vente                    INTEGER,
+	etat_vente					  VARCHAR(30) NOT NULL,
     no_utilisateur                INTEGER NOT NULL,
     no_categorie                  INTEGER NOT NULL
 )
 
 ALTER TABLE ARTICLES_VENDUS ADD constraint articles_vendus_pk PRIMARY KEY (no_article)
 
-ALTER TABLE ARTICLES_VENDUS
-    ADD CONSTRAINT encheres_utilisateur_fk FOREIGN KEY ( no_utilisateur ) REFERENCES UTILISATEURS ( no_utilisateur )
+-- ALTER TABLE ARTICLE_VENDUS ADD CONSTRAINT etat_vente_ck CHECK (etat_vente IN('Créée','En cours','Enchères terminées','Retrait effectué'))
+
+
+
+ALTER TABLE ENCHERES
+    ADD CONSTRAINT encheres_utilisateur_fk FOREIGN KEY ( no_utilisateur ) 
+	REFERENCES UTILISATEURS ( no_utilisateur )
 ON DELETE NO ACTION 
-    ON UPDATE no action 
+    ON UPDATE no action
 
 ALTER TABLE ENCHERES
     ADD CONSTRAINT encheres_articles_vendus_fk FOREIGN KEY ( no_article )
@@ -79,6 +102,7 @@ ALTER TABLE RETRAITS
 ON DELETE NO ACTION 
     ON UPDATE no action 
 
+
 ALTER TABLE ARTICLES_VENDUS
     ADD CONSTRAINT articles_vendus_categories_fk FOREIGN KEY ( no_categorie )
         REFERENCES categories ( no_categorie )
@@ -87,7 +111,6 @@ ON DELETE NO ACTION
 
 ALTER TABLE ARTICLES_VENDUS
     ADD CONSTRAINT ventes_utilisateur_fk FOREIGN KEY ( no_utilisateur )
-        REFERENCES utilisateurs ( no_utilisateur )
+        REFERENCES UTILISATEURS ( no_utilisateur )
 ON DELETE NO ACTION 
     ON UPDATE no action 
-
