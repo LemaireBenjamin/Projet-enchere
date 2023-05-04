@@ -4,6 +4,11 @@ import at.favre.lib.crypto.bcrypt.BCrypt;
 import fr.eni.encheres.bo.Utilisateur;
 import fr.eni.encheres.dal.DaoFactory;
 
+/**
+ * 
+ * @author msonzia2023
+ *
+ */
 public class LoginManager {
 	
 	/** debut singleton **/
