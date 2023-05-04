@@ -5,7 +5,7 @@ package fr.eni.encheres.dal.jdbc;
 
 import java.util.List;
 
-
+import fr.eni.encheres.bo.Categorie;
 import fr.eni.encheres.dal.CategorieDao;
 
 public class CategorieDaoImpl implements CategorieDao {
@@ -39,9 +39,6 @@ public class CategorieDaoImpl implements CategorieDao {
 		// TODO Auto-generated method stub
 		
 	}
-	
-	
-	
 	
 
 }

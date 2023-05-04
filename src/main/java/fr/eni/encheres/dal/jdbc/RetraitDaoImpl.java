@@ -5,7 +5,7 @@ package fr.eni.encheres.dal.jdbc;
 
 import java.util.List;
 
-
+import fr.eni.encheres.bo.Retrait;
 import fr.eni.encheres.dal.RetraitDao;
 
 public class RetraitDaoImpl implements RetraitDao {
@@ -40,4 +40,5 @@ public class RetraitDaoImpl implements RetraitDao {
 		
 	}
 
+	
 }
