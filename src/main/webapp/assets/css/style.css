@@ -1,1 +1,11 @@
 @charset "UTF-8";
+
+body{
+	margin: 0px;
+	padding: 0px;
+}
+
+main{
+	min-height: 85vh;
+	display: block !important;
+}
