@@ -23,7 +23,7 @@ public class SecurityService {
 
 	public Utilisateur login(String login, String password) throws BllException {
 		//REVOIR selectByUserName
-		Utilisateur utilisateur = DaoFactory.getUtilisateurDao().selectByUsername(login);
+		Utilisateur utilisateur = DaoFactory.getUtilisateurDao().selectByLogin(login);
 		if(utilisateur == null) {
 			throw new BllException();
 		}
