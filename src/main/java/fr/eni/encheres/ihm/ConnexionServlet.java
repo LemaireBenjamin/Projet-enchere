@@ -26,5 +26,6 @@ public class ConnexionServlet extends HttpServlet {
 		String motDePasse = request.getParameter("motDePasse");
 
 		LoginManager.getInstance().Login(utilisateur, motDePasse);
+	}
 
 }
