@@ -13,7 +13,7 @@
 		
 		<main class="mt-5">
 			<div class="row text-center">
-				<h1>Mon profil</h1>
+				<h1>Mon profil de fou</h1>
 			</div>
 			<form action="" method="post">
 				<div class="row offset-3 mt-5">
