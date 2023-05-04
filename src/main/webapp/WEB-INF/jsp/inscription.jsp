@@ -52,8 +52,8 @@
 						<input name="postalCode" type="text">
 					</div>
 					<div class="col-4">
-						<label for="ville" >Ville :</label>
-						<input name="ville" type="text">
+						<label for="city" >Ville :</label>
+						<input name="city" type="text">
 					</div>
 				</div>
 				<div class="row offset-3 mt-4">
@@ -68,10 +68,10 @@
 				</div>
 				<div class="row offset-5 mt-4">
 					<div class="col-2">
-						<button type="button" class="btn btn-success">Confirmer</button>
+						<button type="submit" class="btn btn-success">Confirmer</button>
 					</div>
 					<div class="col-2">
-						<button type="button" class="btn btn-danger px-10">Annuler</button>
+						<button type="reset" class="btn btn-danger px-10">Annuler</button>
 					</div>
 				</div>
 		</form>

@@ -11,13 +11,19 @@ public interface UtilisateurDao {
 	//CRUD
 	public List <Utilisateur> selectAll();
 	
-	public Utilisateur selectOne(int id);
-	
-	public void insert(Utilisateur utlisateur);
-	
-	public void update(Utilisateur utlisateur);
+	public Utilisateur selectById(int id);
 
-	public void deleteUtilisateur(int id);
+	public Utilisateur selectByPseudo(String nomUtilisateur);
+	
+	public Utilisateur selectForConnexion(String identifiant, String motDePasse);
+	
+	public Utilisateur selectByLogin(String login);
 
-	public Utilisateur selectByUsername(String nomUtilisateur);
+	
+	public void insert(Utilisateur utilisateur);
+	
+	public void update(Utilisateur utilisateur);
+
+	public void delete(int id);
+	
 }
