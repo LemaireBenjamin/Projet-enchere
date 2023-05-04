@@ -4,6 +4,11 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * 
+ * @author msonzia2023
+ *
+ */
 public class ArticleVendu {
 
 	/**

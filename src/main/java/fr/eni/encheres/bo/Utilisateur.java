@@ -1,5 +1,8 @@
 package fr.eni.encheres.bo;
 
+/**
+ * @author msonzia2023
+ */
 import java.util.ArrayList;
 import java.util.List;
 

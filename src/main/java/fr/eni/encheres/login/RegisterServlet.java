@@ -1,37 +1,46 @@
 package fr.eni.encheres.login;
 
+import fr.eni.encheres.bll.SecurityService;
+import fr.eni.encheres.bo.Utilisateur;
+import fr.eni.encheres.helpers.Flash;
+
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.time.LocalDate;
 
-import fr.eni.encheres.bll.LoginManager;
-import fr.eni.encheres.bo.Utilisateur;
-import fr.eni.encheres.helpers.Flash;
+
 
 @WebServlet("/inscription")
 public class RegisterServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
-   
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		response.getWriter().append("Served at: ").append(request.getContextPath());
+		request.getRequestDispatcher("/WEB-INF/jsp/inscription.jsp").forward(request, response);
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String nomUtilisateur = request.getParameter("nomUtilisateur");
-		String motDePasse = request.getParameter("motDePasse");
 		
-		Utilisateur utilisateur = new Utilisateur(nomUtilisateur, motDePasse) ;	
+		String pseudo = request.getParameter("pseudo");
+		String nom = request.getParameter("lastname");
+		String prenom = request.getParameter("firstName");
+		String email = request.getParameter("email");
+		String telephone = request.getParameter("tel");
+		String rue = request.getParameter("road");
+		String codePostal = request.getParameter("postalCode");
+		String ville = request.getParameter("ville");
+		String motDePasse = request.getParameter("password");
+		String confirmeMotDePasse = request.getParameter("confirmpassword");
 		
-		//
-		LoginManager.getInstance().addUtilisateur(utilisateur);		
+		Utilisateur utilisateur = new Utilisateur(pseudo, nom, prenom, email, telephone, rue, codePostal, ville, motDePasse, 0,  false);
 		
-		Flash.send("success", "Votre compte a bien été créé", request.getSession());
+		SecurityService.getInstance().addUser(utilisateur);
+		
+		Flash.send("SUCCESS", "Votre compte à bien été crée", request.getSession());
 		response.sendRedirect(request.getContextPath()+"/connexion");
 	}
-	
 
 }

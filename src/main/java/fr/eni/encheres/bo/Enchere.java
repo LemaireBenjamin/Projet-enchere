@@ -2,6 +2,11 @@ package fr.eni.encheres.bo;
 
 import java.time.LocalDate;
 
+/**
+ * 
+ * @author msonzia2023
+ *
+ */
 public class Enchere {
 
 	/**

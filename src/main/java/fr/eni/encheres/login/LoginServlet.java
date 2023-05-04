@@ -9,20 +9,23 @@ import java.io.IOException;
 
 import fr.eni.encheres.bll.LoginManager;
 
-@WebServlet("")
+@WebServlet("/connexion")
 public class LoginServlet extends HttpServlet {
-	private static final long serialVersionUID = 1L;
-       
- 
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		response.getWriter().append("Served at: ").append(request.getContextPath());
-	}
 	
-	protected void doPost (HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	private static final long serialVersionUID = 1L;
+
+
+	protected void doGet(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+		request.getRequestDispatcher("/WEB-INF/jsp/connexion.jsp").forward(request, response);
+	}
+
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 		String utilisateur = request.getParameter("utilisateur");
 		String motDePasse = request.getParameter("motDePasse");
-		
+
 		LoginManager.getInstance().Login(utilisateur, motDePasse);
-	}	
+	}
 
 }

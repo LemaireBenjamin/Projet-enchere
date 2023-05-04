@@ -1,5 +1,10 @@
 package fr.eni.encheres.bo;
 
+/**
+ * 
+ * @author msonzia2023
+ *
+ */
 public class Retrait {
 	/**
 	 * Attributes

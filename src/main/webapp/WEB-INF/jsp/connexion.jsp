@@ -10,10 +10,11 @@
 
 	<div class="container-fluid">
 		<header class="row">
-			<%@ include file="/WEB-INF/parts/header-nav.jsp"%>
+			<%@ include file="/WEB-INF/parts/header-connexion.jsp"%>
 		</header>
 	</div>
 
+<div class= "row text-center"> 
 	<div class="container">
 		<h2 class="login-title">Se Connecter</h2>
 
@@ -28,7 +29,7 @@
 					type="password" placeholder="password" name="password" required />
 			</div>
 
-			<button class="btn btn--form" type="submit" value="Log in">
+			<button type="button" class="btn btn-Warning">
 				Se connecter</button>
 			<div>
 				<input type="checkbox" id="chk1" name="chk1" value="enrgMotDePasse">
@@ -38,10 +39,14 @@
 					<a href="#"> Mot de passe oublié </a>
 				</p>
 			</div>
-			<button class="btn btn--form" type="submit" value="Log in">
+			<button type="button" class="btn btn-success">
 				Creer un compte</button>
 		</form>
 	</div>
+</div>
 
+	<footer>
+		<%@ include file="/WEB-INF/parts/footer.jsp"%>
+	</footer>
 </body>
 </html>

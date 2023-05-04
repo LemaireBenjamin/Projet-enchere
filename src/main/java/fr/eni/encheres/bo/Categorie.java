@@ -3,6 +3,11 @@ package fr.eni.encheres.bo;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * 
+ * @author msonzia2023
+ *
+ */
 public class Categorie {
 	/**
 	 * Attributes
@@ -22,7 +27,6 @@ public class Categorie {
 	
 	
 	public Categorie(Integer noCategorie, String libelle) {
-		super();
 		this.noCategorie = noCategorie;
 		this.libelle = libelle;
 	}
