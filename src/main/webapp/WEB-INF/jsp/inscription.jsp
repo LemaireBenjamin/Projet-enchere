@@ -8,7 +8,7 @@
 <body>
 	<div class="container-fluid">
 		<header>
-			<%@ include file="/WEB-INF/parts/header-accueil.jsp"%>
+			<%@ include file="/WEB-INF/parts/header-connexion.jsp"%>
 		</header>
 		
 		<main class="mt-5">
@@ -71,7 +71,7 @@
 						<button type="submit" class="btn btn-success">Confirmer</button>
 					</div>
 					<div class="col-2">
-						<button type="reset" class="btn btn-danger px-10">Annuler</button>
+						<a href="<%= request.getContextPath() %>"><button type="button" class="btn btn-danger px-10">Annuler</button></a>
 					</div>
 				</div>
 		</form>

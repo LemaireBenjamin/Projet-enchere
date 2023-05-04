@@ -39,8 +39,7 @@
 					<a href="#"> Mot de passe oublié </a>
 				</p>
 			</div>
-			<button type="button" class="btn btn-success">
-				Creer un compte</button>
+			<a href="<%= request.getContextPath() %>/inscription"><button type="button" class="btn btn-success">Creer un compte</button></a>
 		</form>
 	</div>
 </div>

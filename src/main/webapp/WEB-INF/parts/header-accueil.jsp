@@ -7,7 +7,7 @@
     <div class="collapse navbar-collapse" id="navbarColor01">
       <ul class="navbar-nav ml-auto">
         <li class="nav-item">
-          <a class="nav-link" href="#">S'inscrire / se connecter</a>
+          <a class="nav-link" href="<%= request.getContextPath() %>/connexion">S'inscrire / se connecter</a>
         </li>
       </ul>
     </div>

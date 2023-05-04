@@ -10,7 +10,7 @@ import java.io.IOException;
 import fr.eni.encheres.bll.LoginManager;
 
 @WebServlet("/connexion")
-public class LoginServlet extends HttpServlet {
+public class ConnexionServlet extends HttpServlet {
 	
 	private static final long serialVersionUID = 1L;
 
