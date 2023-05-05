@@ -5,7 +5,7 @@ package fr.eni.encheres.dal.jdbc;
 
 import java.util.List;
 
-
+import fr.eni.encheres.bo.ArticleVendu;
 import fr.eni.encheres.dal.ArticleVenduDao;
 
 public class ArticleVenduDaoImpl implements ArticleVenduDao {
