@@ -35,6 +35,16 @@ public class Utilisateur {
 
 	private Utilisateur() {
 	}
+	
+	
+
+	public Utilisateur(Integer noUtilisateur, String pseudo) {
+		super();
+		this.noUtilisateur = noUtilisateur;
+		this.pseudo = pseudo;
+	}
+
+
 
 	public Utilisateur(String pseudo, String email) {
 		this.pseudo = pseudo;
