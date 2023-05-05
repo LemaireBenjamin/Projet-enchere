@@ -35,19 +35,13 @@ public class UtilisateurDaoImpl implements UtilisateurDao {
 	private final static String SELECT_BY_PSEUDO = "SELECT * FROM utilisateurs WHERE pseudo = ?";
 	private final static String SELECT_FOR_CONNEXION = "SELECT * FROM utilisateurs WHERE mot_de_passe = ? AND (pseudo = ? OR email = ?) ";	
 	private final static String SELECT_BY_LOGIN = "SELECT * FROM utilisateurs WHERE pseudo = ? OR email = ?";	
-	private final static String UPDATE = "UPDATE utilisateurs "
-										+ "SET pseudo = ?, "
-										+ "nom = ?,"
-										+ "prenom = ?,"
-										+ "email = ?,"
-										+ "telephone = ?,"
-										+ "rue = ?,"
-										+ "code_postal = ?,"
-										+ "ville = ?,"
-										+ "mot_de_passe = ?"
-										+ "credit = ?"
-										+ "administrateur = ?"
-										+ "WHERE no_utilisateur = ?";
+	
+	private final static String UPDATE = """
+				UPDATE utilisateurs 
+				SET pseudo = ?, nom = ?,prenom = ?, email = ?, telephone = ?,rue = ?,code_postal = ?,ville = ?,mot_de_passe = ?
+				WHERE no_utilisateur = ?;
+			""";
+	
 	private final static String DELETE = "DELETE FROM utilisateurs WHERE no_utilisateur = ?";
 	
 		
@@ -223,10 +217,7 @@ public class UtilisateurDaoImpl implements UtilisateurDao {
 			stmt.setString(6, utilisateur.getRue());	
 			stmt.setString(7, utilisateur.getCodePostal());	
 			stmt.setString(8, utilisateur.getVille());	
-			stmt.setString(9, utilisateur.getMotDePasse());	
-			stmt.setInt(10, utilisateur.getCredit());	
-			stmt.setBoolean(11, utilisateur.isAdministrateur());	
-			stmt.setInt(12, utilisateur.getNoUtilisateur());	
+			stmt.setString(9, utilisateur.getMotDePasse());		
 			stmt.executeUpdate();
 
 			} catch (SQLException e) {

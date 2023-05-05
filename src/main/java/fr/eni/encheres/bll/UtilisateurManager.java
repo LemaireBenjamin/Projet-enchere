@@ -4,6 +4,12 @@ import fr.eni.encheres.bll.exception.BllException;
 import fr.eni.encheres.bo.Utilisateur;
 import fr.eni.encheres.dal.DaoFactory;
 
+/**
+ * 
+ * @author Bertrand 
+ * Réécrit par Benjamin
+ * @version 1.1 
+ */
 public class UtilisateurManager {
 	//Singleton
 		/**START SINGLETON **/
@@ -29,6 +35,15 @@ public class UtilisateurManager {
 			DaoFactory.getUtilisateurDao().insert(utilisateur);
 		}
 		
+		public Utilisateur getUtilisateur(int noUtilisateur) {
+			return DaoFactory.getUtilisateurDao().selectById(noUtilisateur);
+		}
+		
+		public void updateUtilisateur(Utilisateur utilisateur) throws BllException{
+			checkUtilisateur(utilisateur);
+			DaoFactory.getUtilisateurDao().update(utilisateur);
+		}
+		
 		public void checkUtilisateur(Utilisateur utilisateur) throws BllException {
 			BllException bll = new BllException();
 			checkField(utilisateur.getPseudo(), "Pseudo", bll);
@@ -52,4 +67,5 @@ public class UtilisateurManager {
 			
 		}
 		
+
 }

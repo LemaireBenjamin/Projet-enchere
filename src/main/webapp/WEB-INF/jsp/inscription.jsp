@@ -68,7 +68,7 @@
 				</div>
 				<div class="row offset-5 mt-4">
 					<div class="col-2">
-						<button type="submit" class="btn btn-success">Confirmer</button>
+						<button type="submit" class="btn btn-success">Créer</button>
 					</div>
 					<div class="col-2">
 						<a href="<%= request.getContextPath() %>"><button type="button" class="btn btn-danger px-10">Annuler</button></a>
