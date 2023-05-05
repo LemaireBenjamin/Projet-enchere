@@ -28,29 +28,25 @@
 					</div>
 					<br>
 
-					<div>
-						<label for="password">Mot de passe </label> <input id="password"
-							type="password" placeholder=" mot de passe" name="password"
-							required />
-					</div>
 
-					<br>
-					<button type="button" class="btn btn-Danger">Se connecter</button>
-					<div>
-						<input type="checkbox" id="chk1" name="chk1"
-							value="enrgMotDePasse"> <label for="chk1"> Se
-							souvenir de moi</label><br>
 
-						<p>
-							<a href="#"> Mot de passe oublié </a>
-						</p>
-					</div>
-					<button type="button" class="btn btn-success">Creer un
-						compte</button>
-				</form>
-				<br>
+			<div>
+				<label for="password">Mot de passe </label> <input id="password"
+					type="password" placeholder="password" name="password" required />
 			</div>
-		</div>
+
+			<button type="button" class="btn btn-Warning">
+				Se connecter</button>
+			<div>
+				<input type="checkbox" id="chk1" name="chk1" value="enrgMotDePasse">
+				<label for="chk1"> Se souvenir de moi</label><br>
+
+				<p>
+					<a href="#"> Mot de passe oublié </a>
+				</p>
+			</div>
+			<a href="<%= request.getContextPath() %>/inscription"><button type="button" class="btn btn-success">Creer un compte</button></a>
+		</form>
 	</div>
 
 	<footer>

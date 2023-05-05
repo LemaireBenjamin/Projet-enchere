@@ -38,6 +38,16 @@ public class ArticleVendu {
 	public ArticleVendu() {
 	}
 
+	public ArticleVendu(Integer noArticle, String nomArticle, Integer prixVente) {
+		super();
+		this.noArticle = noArticle;
+		this.nomArticle = nomArticle;
+		this.prixVente = prixVente;
+	}
+
+
+
+
 	public ArticleVendu(String nomArticle, String description, LocalDate dateDebutEncheres, LocalDate dateFinEncheres,
 			Integer prixInitial, Integer prixVente, Integer noUtilisateur, Integer noCategorie) {
 		this.nomArticle = nomArticle;

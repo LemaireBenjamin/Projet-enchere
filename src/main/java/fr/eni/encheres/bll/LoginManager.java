@@ -36,8 +36,8 @@ public class LoginManager {
 			
 		}
 
-		public void Login(String nomUtilisateur,String motDePasse) {
-			Utilisateur utilisateur = DaoFactory.getUtilisateurDao().selectByUsername(nomUtilisateur);
+		public void Login(String pseudo,String motDePasse) {
+			Utilisateur utilisateur = DaoFactory.getUtilisateurDao().selectByPseudo(pseudo);
 			
 		}
 	

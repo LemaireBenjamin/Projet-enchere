@@ -11,6 +11,8 @@ public interface EnchereDao {
 	//CRUD
 	public List <Enchere> selectAll();
 	
+	public List<Enchere> selectEncheresEC(String etatEnchere);
+	
 	public Enchere selectOne(int id);
 	
 	public void insert(Enchere enchere);

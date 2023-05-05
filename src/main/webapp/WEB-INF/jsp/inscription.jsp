@@ -8,12 +8,12 @@
 <body>
 	<div class="container-fluid">
 		<header>
-			<%@ include file="/WEB-INF/parts/header-accueil.jsp"%>
+			<%@ include file="/WEB-INF/parts/header-connexion.jsp"%>
 		</header>
 		
 		<main class="mt-5">
 			<div class="row text-center">
-				<h1>Mon profil</h1>
+				<h1>Mon profil de fou</h1>
 			</div>
 			<form action="" method="post">
 				<div class="row offset-3 mt-5">
@@ -52,8 +52,8 @@
 						<input name="postalCode" type="text">
 					</div>
 					<div class="col-4">
-						<label for="ville" >Ville :</label>
-						<input name="ville" type="text">
+						<label for="city" >Ville :</label>
+						<input name="city" type="text">
 					</div>
 				</div>
 				<div class="row offset-3 mt-4">
@@ -68,10 +68,10 @@
 				</div>
 				<div class="row offset-5 mt-4">
 					<div class="col-2">
-						<button type="button" class="btn btn-success">Confirmer</button>
+						<button type="submit" class="btn btn-success">Confirmer</button>
 					</div>
 					<div class="col-2">
-						<button type="button" class="btn btn-danger px-10">Annuler</button>
+						<a href="<%= request.getContextPath() %>"><button type="button" class="btn btn-danger px-10">Annuler</button></a>
 					</div>
 				</div>
 		</form>

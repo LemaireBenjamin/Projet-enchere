@@ -21,16 +21,25 @@ public class Enchere {
 
 	/**
 	 * Constructeurs
+	 * @param localDate 
+	 * @param string3 
+	 * @param string2 
+	 * @param string 
+	 * @param i 
 	 */
-	public Enchere() {
-	}
+	
 
-	public Enchere(LocalDate dateEnchere, Integer montantEnchere) {
-		super();
+	public Enchere(LocalDate dateEnchere) {
 		this.dateEnchere = dateEnchere;
-		this.montantEnchere = montantEnchere;
 	}
 
+	public Enchere(LocalDate dateEnchere, ArticleVendu articleVendu, Utilisateur utilisateur) {
+		this.dateEnchere = dateEnchere;
+		this.articleVendu = articleVendu;
+		this.utilisateur = utilisateur;
+	}
+	
+	
 	public Enchere(LocalDate dateEnchere, Integer montantEnchere, ArticleVendu articleVendu, Utilisateur utilisateur) {
 		this.dateEnchere = dateEnchere;
 		this.montantEnchere = montantEnchere;

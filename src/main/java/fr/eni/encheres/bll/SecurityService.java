@@ -17,18 +17,18 @@ public class SecurityService {
 	}
 	
 	public void addUser(Utilisateur utilisateur) {
-		utilisateur.setPassword(BCrypt.withDefaults().hashToString(12, utilisateur.getPassword().toCharArray()));
+		utilisateur.setMotDePasse(BCrypt.withDefaults().hashToString(12, utilisateur.getMotDePasse().toCharArray()));
 		DaoFactory.getUtilisateurDao().insert(utilisateur);
 	}
 
-	public Utilisateur login(String username, String password) throws BllException {
+	public Utilisateur login(String login, String password) throws BllException {
 		//REVOIR selectByUserName
-		Utilisateur utilisateur = DaoFactory.getUtilisateurDao().selectByUsername(pseudo);
+		Utilisateur utilisateur = DaoFactory.getUtilisateurDao().selectByLogin(login);
 		if(utilisateur == null) {
 			throw new BllException();
 		}
 		
-		BCrypt.Result result = BCrypt.verifyer().verify(password.toCharArray(), utilisateur.getPassword());
+		BCrypt.Result result = BCrypt.verifyer().verify(password.toCharArray(), utilisateur.getMotDePasse());
 		if(!result.verified) {
 			throw new BllException("Le mot de passe est erroné !");	
 		}
