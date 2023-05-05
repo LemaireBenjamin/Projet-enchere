@@ -1992,6 +1992,9 @@ progress {
   color: #919aa1;
 }
 
+
+
+
 .form-control {
   display: block;
   width: 100%;
@@ -4185,6 +4188,11 @@ textarea.form-control-lg {
   background-color: var(--bs-card-cap-bg);
   border-bottom: var(--bs-card-border-width) solid var(--bs-card-border-color);
 }
+
+h3.card-header {
+    min-height: 75px;
+}
+
 .card-footer {
   padding: var(--bs-card-cap-padding-y) var(--bs-card-cap-padding-x);
   color: var(--bs-card-cap-color);

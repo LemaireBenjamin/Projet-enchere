@@ -21,11 +21,11 @@ import fr.eni.encheres.dal.EnchereDao;
 public class EnchereDaoImpl implements EnchereDao {
 	
 	private final static String SELECT_ENCHERES_EC = """
-			 SELECT UTILISATEURS.no_utilisateur, pseudo, ARTICLES_VENDUS.no_article, nom_article, date_fin_encheres, prix_vente FROM ARTICLES_VENDUS
+			 SELECT UTILISATEURS.no_utilisateur, pseudo, ARTICLES_VENDUS.no_article, nom_article, date_fin_encheres, MAX(montant_enchere) AS montant_max FROM ARTICLES_VENDUS
 			 INNER JOIN ENCHERES ON ARTICLES_VENDUS.no_utilisateur = ENCHERES.no_utilisateur
 			 INNER JOIN UTILISATEURS ON ARTICLES_VENDUS.no_utilisateur = UTILISATEURS.no_utilisateur 
-			 WHERE etat_vente = ?
-			 GROUP BY UTILISATEURS.no_utilisateur, pseudo,ARTICLES_VENDUS.no_article, nom_article, date_fin_encheres, prix_vente;
+			 WHERE etat_vente = ? 
+			 GROUP BY UTILISATEURS.no_utilisateur, pseudo, ARTICLES_VENDUS.no_article, nom_article, date_fin_encheres;
 		""";	
 	
 	@Override
@@ -40,7 +40,7 @@ public class EnchereDaoImpl implements EnchereDao {
 			
 			while(rs.next()) {
 				encheres.add(new Enchere (rs.getDate("date_fin_encheres").toLocalDate(),	
-						new ArticleVendu (rs.getInt("no_article"), rs.getString("nom_article"), rs.getInt("prix_vente")),
+						new ArticleVendu (rs.getInt("no_article"), rs.getString("nom_article"), rs.getInt("montant_max")),
 						new Utilisateur (rs.getInt("no_utilisateur"), rs.getString("pseudo"))));
 						
 			}
