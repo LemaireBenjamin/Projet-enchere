@@ -12,6 +12,7 @@
 	
 <%
 List<Enchere> encheres = (List<Enchere>) request.getAttribute("encheres");
+String [] categories = application.getInitParameter("CATEGORIES").split(";");
 %>	
 	
 	
@@ -28,25 +29,55 @@ List<Enchere> encheres = (List<Enchere>) request.getAttribute("encheres");
 		</header>
 
 		<main class="row mt-5">
+			<div class="col-10 offset-1">
 			<div class="row text-center">
-				<h1>Liste des enchères</h1>
+				<h1 class="mb-5">Liste des enchères</h1>
 			</div>
-
-			<div>Filtres :</div>
-				<div class="row form-group">
-					<label for="search" class="form-label mt-3">Catégories :</label>
-					<select class="form-select" id="search">
-						<option>Faire une boucle sur les catégories</option>
-					</select>
-  					<button class="btn btn-lg btn-primary" type="submit">Rechercher</button>
-			</div>
-
-
-
-
-				<div class="col-8 offset-2">
+			<form action="" method="POST">
+				<h4>Filtres :</h4>
+				<div class="form-group col-10 d-flex flex-row">	
+					<div class="d-flew flex-column col-5"> 
+						<div> 
+						<div class="form-group">
+							<input type="text" class="form-control" placeholder="Le nom de l'article contient" id="inputDefault">	
+						</div>
+						<div class="form-group">
+							<label for="search" class="form-label col-5 mt-3">Catégories :</label>
+							<select class="form-select" id="search">
+								<option value="">-- Choisir une catégorie --</option>
+								<% for( String categorie : categories ){ %>
+									<option><%= categorie %></option>
+								<% } %>
+							</select>
+						</div>
+					</div>
+					
+					<div class="d-flex flex-row mt-3">
+							<div class="form-check flex-column col-5">
+       							<input class="form-check-input" type="radio" name="optionsRadios" id="optionsRadios1" value="option1" checked="">
+        							<label class="form-check-label" for="optionsRadios1">
+         								Achat
+        							</label>
+        					</div>
+        					
+        					
+        					<div class="form-check flex-column col-5">	
+        						<input class="form-check-input" type="radio" name="optionsRadios" id="optionsRadios2" value="option2">
+									<label class="form-check-label" for="optionsRadios2">
+										Mes ventes
+									</label>
+      						</div>
+					</div>
+					
+					
+							
+					</div>
+					<div class="d-flex flex-column col-5  justify-content-center align-items-center">
+						<button class="btn btn-lg btn-success col-10" type="submit">Rechercher</button>	
+					</div>		
+				</div>
+			</form>
 					<div class="row mt-5">
-
 					<%
 					for (Enchere enchere : encheres){
 					%>
@@ -68,6 +99,7 @@ List<Enchere> encheres = (List<Enchere>) request.getAttribute("encheres");
 	  						</svg>
 							<div class="card-body">
 								<p class="card-text">Vendeur : <%= enchere.getUtilisateur().getPseudo() %></p>
+								<p class="card-text">No Article : <%= enchere.getArticleVendu().getNoArticle() %></p>
 							</div>
 						</div>
 						

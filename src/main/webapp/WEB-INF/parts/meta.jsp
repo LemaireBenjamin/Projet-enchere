@@ -5,5 +5,5 @@
 <meta name="author" content="Benjamin LEMAIRE, Bertrand MEUNIER, Marie-Audrey SONZIA TEUTSONG">
 
 <link rel="stylesheet" type="text/css" href="<%= request.getContextPath() %>/assets/css/style.css">
-<link rel="stylesheet" type="text/css" href="<%= request.getContextPath() %>/assets/css/bootstrap.min.css">
+<link rel="stylesheet" type="text/css" href="<%= request.getContextPath() %>/assets/css/bootstrap.css">
 
