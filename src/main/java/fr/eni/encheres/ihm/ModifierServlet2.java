@@ -14,7 +14,7 @@ public class ModifierServlet2 extends HttpServlet {
   
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		request.getRequestDispatcher("/WEB-INF/jsp/nouvelleVente.jsp").forward(request, response);
+		request.getRequestDispatcher("/WEB-INF/jsp/nouvelle-vente.jsp").forward(request, response);
 	}
 
 }
