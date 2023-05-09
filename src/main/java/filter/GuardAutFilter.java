@@ -2,8 +2,8 @@ package filter;
 import jakarta.servlet.DispatcherType;
 
 
-import jakarta.servlet.Filter;
 
+import jakarta.servlet.Filter;
 
 import jakarta.servlet.FilterChain;
 
@@ -41,18 +41,26 @@ import fr.eni.encheres.bo.Utilisateur;
 
 */
 
-@WebFilter(dispatcherTypes = { DispatcherType.REQUEST },
-
-urlPatterns = { "/encheres/ajouter", "/encheres/modifier","/encheres/supprimer","/mon-compte" })
-
-
+/**
+ * 
+ * @author msonzia2023
+ *
+ */
+@WebFilter(dispatcherTypes = { DispatcherType.REQUEST }, 
+urlPatterns = { 
+		"/encheres/ajouter", 
+		"/encheres/modifier",
+		"/encheres/supprimer", 
+		"/mon-compte" })
 
 public class GuardAutFilter extends HttpServlet implements Filter {
-
-
 	private static final long serialVersionUID = 1L;
 
-	public void destroy() {}
+	@Override
+		public void destroy() {
+			super.destroy();
+		}
+
 
 	public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
 
@@ -86,6 +94,7 @@ public class GuardAutFilter extends HttpServlet implements Filter {
 public void init(FilterConfig fConfig) throws ServletException {
 
 System.out.println("****Stating Filtre Guard");
-	}
+
+}
 
 }
