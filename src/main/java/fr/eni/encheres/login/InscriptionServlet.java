@@ -1,5 +1,6 @@
 package fr.eni.encheres.login;
 
+import fr.eni.encheres.bll.LoginManager;
 import fr.eni.encheres.bll.SecurityService;
 import fr.eni.encheres.bll.UtilisateurManager;
 import fr.eni.encheres.bll.exception.BllException;
@@ -28,6 +29,7 @@ public class InscriptionServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		try {
+			
 			String pseudo = request.getParameter("pseudo");
 			String nom = request.getParameter("lastname");
 			String prenom = request.getParameter("firstName");
@@ -41,15 +43,16 @@ public class InscriptionServlet extends HttpServlet {
 			
 			Utilisateur utilisateur = new Utilisateur(pseudo, nom, prenom, email, telephone, rue, codePostal, ville, motDePasse, 0,  false);
 			UtilisateurManager.getInstance().addUtilisateur(utilisateur);
-			
+
+			Flash.send("SUCCESS", "Votre compte à bien été crée", request.getSession());
+			response.sendRedirect(request.getContextPath()+"/connexion");
+		
 		} catch (BllException e) {
 			// TODO Auto-generated catch block
 			System.err.println(e.getMessage());
 			e.printStackTrace();
 		}
 		
-		Flash.send("SUCCESS", "Votre compte à bien été crée", request.getSession());
-		response.sendRedirect(request.getContextPath()+"/connexion");
 	}
 
 }

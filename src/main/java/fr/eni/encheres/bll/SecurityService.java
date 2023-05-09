@@ -16,6 +16,7 @@ public class SecurityService {
 		return instance;
 	}
 	
+	
 	public void addUser(Utilisateur utilisateur) {
 		utilisateur.setMotDePasse(BCrypt.withDefaults().hashToString(12, utilisateur.getMotDePasse().toCharArray()));
 		DaoFactory.getUtilisateurDao().insert(utilisateur);

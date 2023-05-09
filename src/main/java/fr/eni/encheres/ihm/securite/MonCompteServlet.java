@@ -22,7 +22,7 @@ public class MonCompteServlet extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		//
+		//on recupere la session
 		HttpSession session= request.getSession();
 		Utilisateur utilisateur= (Utilisateur) session.getAttribute("utilisateur");
 		if (utilisateur==null) {
