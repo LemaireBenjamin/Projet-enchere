@@ -62,7 +62,7 @@ public class ConnexionServlet extends HttpServlet {
 		
 			// Creation session
 			HttpSession session = request.getSession();
-			session.setAttribute("utilisateur", session);
+			session.setAttribute("utilisateur", utilisateur);
 			response.sendRedirect(request.getContextPath());
 		} catch (Exception e) { // Ici BLLEXCEPTion? Mais creee une erreur et je ne peux pas propager)
 			e.printStackTrace();

@@ -42,6 +42,7 @@ public class InscriptionServlet extends HttpServlet {
 			String confirmeMotDePasse = request.getParameter("confirmPassword");
 			
 			Utilisateur utilisateur = new Utilisateur(pseudo, nom, prenom, email, telephone, rue, codePostal, ville, motDePasse, 0,  false);
+			System.out.println(utilisateur);
 			UtilisateurManager.getInstance().addUtilisateur(utilisateur);
 
 			Flash.send("SUCCESS", "Votre compte à bien été crée", request.getSession());

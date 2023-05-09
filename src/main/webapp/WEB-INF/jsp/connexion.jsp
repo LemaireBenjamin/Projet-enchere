@@ -68,9 +68,8 @@ String erreurCnx = (String) request.getAttribute("erreur");
 							<div class="d-flex justify-content-center bg-secondary mb-3">
 								<div class="p-2">
 								
-								<a href="<%=request.getContextPath()%>">
 									<button type="submit" class="btn btn-warning">
-										Connexion</button></a>
+										Connexion</button>
 								</div>
 								<div class="p-2 ">
 									<input type="checkbox" id="chk1" name="chk1"
