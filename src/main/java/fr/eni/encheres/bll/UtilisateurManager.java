@@ -35,8 +35,13 @@ public class UtilisateurManager {
 			DaoFactory.getUtilisateurDao().insert(utilisateur);
 		}
 		
-		public Utilisateur getUtilisateur(int noUtilisateur) {
+		public Utilisateur getUtilisateurById(int noUtilisateur) {
 			return DaoFactory.getUtilisateurDao().selectById(noUtilisateur);
+		}
+		
+		public Utilisateur getUtilisateurByConnexion(String nomUtilisateur, String motDePasse) {
+			return DaoFactory.getUtilisateurDao().selectByConnexion(nomUtilisateur, motDePasse);
+
 		}
 		
 		public void updateUtilisateur(Utilisateur utilisateur) throws BllException{
