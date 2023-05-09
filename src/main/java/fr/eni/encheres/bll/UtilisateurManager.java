@@ -44,6 +44,10 @@ public class UtilisateurManager {
 			DaoFactory.getUtilisateurDao().update(utilisateur);
 		}
 		
+		public void deleteUtilisateur(int noUtilisateur) {
+			DaoFactory.getUtilisateurDao().delete(noUtilisateur);	
+		}
+		
 		public void checkUtilisateur(Utilisateur utilisateur) throws BllException {
 			BllException bll = new BllException();
 			checkField(utilisateur.getPseudo(), "Pseudo", bll);
@@ -66,6 +70,4 @@ public class UtilisateurManager {
 			}
 			
 		}
-		
-
 }
