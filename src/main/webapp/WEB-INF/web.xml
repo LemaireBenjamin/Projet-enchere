@@ -5,5 +5,13 @@
 		<param-name>CATEGORIES</param-name>
 		<param-value>Informatique;Ameublement;Vêtements;Sport et Loisirs</param-value>
 	</context-param>
-
+<filter>
+    <display-name>GuardAutFilter</display-name>
+    <filter-name>GuardAutFilter</filter-name>
+    <filter-class>filter.GuardAutFilter</filter-class>
+  </filter>
+  <filter-mapping>
+    <filter-name>GuardAutFilter</filter-name>
+    <url-pattern>/GuardAutFilter</url-pattern>
+  </filter-mapping>
 </web-app>

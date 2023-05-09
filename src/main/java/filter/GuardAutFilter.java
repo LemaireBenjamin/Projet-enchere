@@ -1,6 +1,7 @@
 package filter;
 
 import jakarta.servlet.DispatcherType;
+import jakarta.servlet.Filter;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.FilterConfig;
 import jakarta.servlet.ServletException;
@@ -27,12 +28,10 @@ urlPatterns = { "/encheres/ajouter",
 		"/encheres/supprimer", 
 		"/mon-compte" })
 
-public class GuardAutFilter extends HttpServlet {
+public class GuardAutFilter extends HttpServlet implements Filter {
 	private static final long serialVersionUID = 1L;
 
-	public GuardAutFilter() {
-		super();
-	}
+	public void destroy() {}
 
 	public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
 		// place your code here
