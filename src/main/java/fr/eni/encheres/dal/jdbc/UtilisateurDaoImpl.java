@@ -30,17 +30,13 @@ public class UtilisateurDaoImpl implements UtilisateurDao {
 											+ "administrateur)"
 											+ "VALUES (?,?,?,?,?,?,?,?,?,?,?)";
 	
-	private final static String SELECT_ALL = "SELECT * FROM utilisateurs";
-	private final static String SELECT_BY_ID = "SELECT * FROM utilisateurs WHERE no_utilisateur = ?";
-	private final static String SELECT_BY_PSEUDO = "SELECT * FROM utilisateurs WHERE pseudo = ?";
-	private final static String SELECT_FOR_CONNEXION = "SELECT * FROM utilisateurs WHERE mot_de_passe = ? AND (pseudo = ? OR email = ?) ";	
-	private final static String SELECT_BY_LOGIN = "SELECT * FROM utilisateurs WHERE pseudo = ? OR email = ?";	
+	private final static String SELECT_ALL = "SELECT * FROM UTILISATEURS";
+	private final static String SELECT_BY_ID = "SELECT * FROM UTILISATEURS WHERE no_utilisateur = ?";
+	private final static String SELECT_BY_PSEUDO = "SELECT * FROM UTILISATEURS WHERE pseudo = ?";
+	private final static String SELECT_BY_CONNEXION = "SELECT * FROM UTILISATEURS WHERE mot_de_passe = ? AND (pseudo = ? OR email = ?) ";	
+	private final static String SELECT_BY_LOGIN = "SELECT * FROM UTILISATEURS WHERE pseudo = ? OR email = ?";	
 	
-	private final static String UPDATE = """
-				UPDATE utilisateurs 
-				SET pseudo = ?, nom = ?,prenom = ?, email = ?, telephone = ?,rue = ?,code_postal = ?,ville = ?,mot_de_passe = ?
-				WHERE no_utilisateur = ?;
-			""";
+	private final static String UPDATE = "UPDATE utilisateurs SET pseudo = ?, nom = ?, prenom = ?, email = ?, telephone = ?, rue = ?, code_postal = ?, ville = ?, mot_de_passe = ? WHERE no_utilisateur = ?;";
 	
 	private final static String DELETE = "DELETE FROM utilisateurs WHERE no_utilisateur = ?";
 	
@@ -125,9 +121,9 @@ public class UtilisateurDaoImpl implements UtilisateurDao {
 	}
 
 	@Override
-	public Utilisateur selectForConnexion(String identifiant, String motDePasse) {
+	public Utilisateur selectByConnexion(String identifiant, String motDePasse) {
 		try (Connection connection = ConnectionProvider.getConnection()) {
-			PreparedStatement pStmt = connection.prepareStatement(SELECT_FOR_CONNEXION);
+			PreparedStatement pStmt = connection.prepareStatement(SELECT_BY_CONNEXION);
 			pStmt.setString(1, motDePasse);
 			pStmt.setString(2, identifiant);
 			pStmt.setString(3, identifiant);
@@ -179,9 +175,8 @@ public class UtilisateurDaoImpl implements UtilisateurDao {
 	
 	@Override
 	public void insert(Utilisateur utilisateur) {
-			System.out.println("avant le try");
+
 		try (Connection connection = ConnectionProvider.getConnection()) {
-			System.out.println("dans le try");
 			PreparedStatement pStmt = connection.prepareStatement(INSERT_USER, PreparedStatement.RETURN_GENERATED_KEYS);
 			pStmt.setString(1, utilisateur.getPseudo());
 			pStmt.setString(2, utilisateur.getNom());
@@ -217,7 +212,9 @@ public class UtilisateurDaoImpl implements UtilisateurDao {
 			stmt.setString(6, utilisateur.getRue());	
 			stmt.setString(7, utilisateur.getCodePostal());	
 			stmt.setString(8, utilisateur.getVille());	
-			stmt.setString(9, utilisateur.getMotDePasse());		
+			stmt.setString(9, utilisateur.getMotDePasse());
+			stmt.setInt(10, utilisateur.getNoUtilisateur());
+			
 			stmt.executeUpdate();
 
 			} catch (SQLException e) {
@@ -238,7 +235,7 @@ public class UtilisateurDaoImpl implements UtilisateurDao {
 		}
 	}
 
-	
+
 
 	
 

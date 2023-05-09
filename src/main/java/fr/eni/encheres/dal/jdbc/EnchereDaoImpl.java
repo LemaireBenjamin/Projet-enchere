@@ -8,6 +8,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -18,16 +19,28 @@ import fr.eni.encheres.bo.ArticleVendu;
 import fr.eni.encheres.bo.Utilisateur;
 import fr.eni.encheres.dal.EnchereDao;
 
+
+
+
 public class EnchereDaoImpl implements EnchereDao {
 	
 	private final static String SELECT_ENCHERES_EC = """
-			 SELECT UTILISATEURS.no_utilisateur, pseudo, ARTICLES_VENDUS.no_article, nom_article, date_fin_encheres, MAX(montant_enchere) AS montant_max FROM ARTICLES_VENDUS
-			 INNER JOIN ENCHERES ON ARTICLES_VENDUS.no_utilisateur = ENCHERES.no_utilisateur
-			 INNER JOIN UTILISATEURS ON ARTICLES_VENDUS.no_utilisateur = UTILISATEURS.no_utilisateur 
-			 WHERE etat_vente = ? 
-			 GROUP BY UTILISATEURS.no_utilisateur, pseudo, ARTICLES_VENDUS.no_article, nom_article, date_fin_encheres;
-		""";	
+		SELECT UTILISATEURS.no_utilisateur, pseudo, ARTICLES_VENDUS.no_article, nom_article, date_fin_encheres, MAX(montant_enchere) AS montant_max FROM ARTICLES_VENDUS
+		INNER JOIN ENCHERES ON ARTICLES_VENDUS.no_utilisateur = ENCHERES.no_utilisateur
+		INNER JOIN UTILISATEURS ON ARTICLES_VENDUS.no_utilisateur = UTILISATEURS.no_utilisateur 
+		WHERE etat_vente = ? 
+		GROUP BY UTILISATEURS.no_utilisateur, pseudo, ARTICLES_VENDUS.no_article, nom_article, date_fin_encheres;
+
+			""";
 	
+	private static final String SELECT_ENCHERES_EN_COURS_BY_UTILISATEUR =  "SELECT * "+
+            "FROM ARTICLES_VENDUS av "+
+            "INNER JOIN ENCHERES e ON av.no_article = e.no_article "+
+            "INNER JOIN UTILISATEUR u ON av.no_utilisateur = u.no_utilisateur "+
+            "WHERE e.no_utilisateur = ? AND av.date_fin_encheres > GETDATE()";
+	
+	
+		
 	@Override
 	public List<Enchere> selectEncheresEC(String etatEnchere) {
 		
@@ -49,9 +62,33 @@ public class EnchereDaoImpl implements EnchereDao {
 			e.printStackTrace();
 		}
 	return null;
-}
-	
+	}
 
+	
+	@Override
+	public List<Enchere> selectEncheresEnCoursByUtilisateur(Utilisateur utilisateur) {
+	
+		List<Enchere> encheres = new ArrayList<>();	
+		try (Connection connection = ConnectionProvider.getConnection()) {
+			PreparedStatement pStmt = connection.prepareStatement(SELECT_ENCHERES_EN_COURS_BY_UTILISATEUR);
+			pStmt.setInt(1, utilisateur.getNoUtilisateur());
+			ResultSet rs = pStmt.executeQuery();
+			
+			while(rs.next()) {
+				encheres.add(new Enchere (rs.getDate("date_fin_encheres").toLocalDate(),	
+						new ArticleVendu (rs.getInt("no_article"), rs.getString("nom_article"), rs.getInt("montant_max")),
+						new Utilisateur (rs.getInt("no_utilisateur"), rs.getString("pseudo"))));
+						
+			}
+			return encheres;
+		}catch (SQLException e) {
+			e.printStackTrace();
+		}
+	return null;
+	}
+	
+	
+	
 
 	@Override
 	public List<Enchere> selectAll() {
@@ -81,6 +118,45 @@ public class EnchereDaoImpl implements EnchereDao {
 	public void deleteEnchere(int id) {
 		// TODO Auto-generated method stub
 		
+	}
+
+
+
+
+
+
+	
+
+
+
+	@Override
+	public List<Enchere> selectEncheresGagneByUtilisateur(Utilisateur utilisateur) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+
+
+	@Override
+	public Enchere selectEnchereGagneeByArticle(int noArticle) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+
+
+	@Override
+	public boolean isMeilleurEncherisseur(int noArticle, int noUtilisateur) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+
+
+	@Override
+	public Utilisateur selectMeilleurEncherisseur(Enchere enchere) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 	

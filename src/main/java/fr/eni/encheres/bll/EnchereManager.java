@@ -3,6 +3,7 @@ package fr.eni.encheres.bll;
 import java.util.List;
 
 import fr.eni.encheres.bo.Enchere;
+import fr.eni.encheres.bo.Utilisateur;
 import fr.eni.encheres.dal.DaoFactory;
 
 public class EnchereManager {
@@ -26,4 +27,11 @@ public class EnchereManager {
 			public List<Enchere> gettAllEncheresEC(String etatEnchere) {
 				return DaoFactory.getEnchereDao().selectEncheresEC(etatEnchere);
 			}
+			
+			public List<Enchere> gettAllEncheresEnCoursByUser(Utilisateur utilisateur) {
+				return DaoFactory.getEnchereDao().selectEncheresEnCoursByUtilisateur(utilisateur);
+			}
+			
+			
+			
 }

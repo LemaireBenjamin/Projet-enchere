@@ -33,7 +33,7 @@ public class Utilisateur {
 	 * Constructeurs
 	 */
 
-	private Utilisateur() {}
+	public Utilisateur() {}
 	
 	
 
@@ -77,7 +77,7 @@ public class Utilisateur {
 	
 	
 	public Utilisateur(String pseudo, String nom, String prenom, String email, String telephone, String rue,
-			String codePostal, String ville) {
+			String codePostal, String ville,String motDePasse) {
 		this.pseudo = pseudo;
 		this.nom = nom;
 		this.prenom = prenom;
@@ -86,12 +86,13 @@ public class Utilisateur {
 		this.rue = rue;
 		this.codePostal = codePostal;
 		this.ville = ville;
+		this.motDePasse = motDePasse;
 	}
 	/**
 	 * Getter et Setter
 	 */
 
-	public Integer getNoUtilisateur() {
+	public  Integer getNoUtilisateur() {
 		return noUtilisateur;
 	}
 

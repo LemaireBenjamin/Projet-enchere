@@ -33,6 +33,7 @@ String [] categories = application.getInitParameter("CATEGORIES").split(";");
 			<div class="row text-center">
 				<h1 class="mt-5 mb-5">Liste des enchères</h1>
 			</div>
+	
 			<form action="" method="POST">
 				<h3>Filtres :</h3>
 				<div class="form-group col-10 d-flex flex-row">	
@@ -92,7 +93,7 @@ String [] categories = application.getInitParameter("CATEGORIES").split(";");
       						</div>
 						</div>
 					</div>
-					<div class="d-flex flex-column col-5  justify-content-center align-items-center">
+					<div class="d-flex flex-column col-3  justify-content-center align-items-center">
 						<button class="btn btn-lg btn-success col-10" type="submit">Rechercher</button>	
 					</div>		
 				</div>

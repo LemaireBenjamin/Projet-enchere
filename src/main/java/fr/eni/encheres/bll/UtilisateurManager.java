@@ -35,13 +35,22 @@ public class UtilisateurManager {
 			DaoFactory.getUtilisateurDao().insert(utilisateur);
 		}
 		
-		public Utilisateur getUtilisateur(int noUtilisateur) {
+		public Utilisateur getUtilisateurById(int noUtilisateur) {
 			return DaoFactory.getUtilisateurDao().selectById(noUtilisateur);
+		}
+		
+		public Utilisateur getUtilisateurByConnexion(String nomUtilisateur, String motDePasse) {
+			return DaoFactory.getUtilisateurDao().selectByConnexion(nomUtilisateur, motDePasse);
+
 		}
 		
 		public void updateUtilisateur(Utilisateur utilisateur) throws BllException{
 			checkUtilisateur(utilisateur);
 			DaoFactory.getUtilisateurDao().update(utilisateur);
+		}
+		
+		public void deleteUtilisateur(int noUtilisateur) {
+			DaoFactory.getUtilisateurDao().delete(noUtilisateur);	
 		}
 		
 		public void checkUtilisateur(Utilisateur utilisateur) throws BllException {
@@ -66,10 +75,9 @@ public class UtilisateurManager {
 			}
 			
 		}
+
 		public Utilisateur getUtilisateurForConnexion(String utilisateurNom, String motDePasse) {
-			return DaoFactory.getUtilisateurDao().selectForConnexion(utilisateurNom, motDePasse);
+			return DaoFactory.getUtilisateurDao().selectByConnexion(utilisateurNom, motDePasse);
 			
 		}
-		
-
 }
