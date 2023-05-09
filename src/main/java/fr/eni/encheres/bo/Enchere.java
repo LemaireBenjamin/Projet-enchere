@@ -1,6 +1,7 @@
 package fr.eni.encheres.bo;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 /**
  * 
@@ -45,6 +46,11 @@ public class Enchere {
 		this.montantEnchere = montantEnchere;
 		this.articleVendu = articleVendu;
 		this.utilisateur = utilisateur;
+	}
+
+	public Enchere(LocalDate dateEnchere, int montantEnchere) {
+		this.dateEnchere = dateEnchere;
+		this.montantEnchere = montantEnchere;
 	}
 
 	/**

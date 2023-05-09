@@ -30,11 +30,11 @@ public class UtilisateurDaoImpl implements UtilisateurDao {
 											+ "administrateur)"
 											+ "VALUES (?,?,?,?,?,?,?,?,?,?,?)";
 	
-	private final static String SELECT_ALL = "SELECT * FROM utilisateurs";
-	private final static String SELECT_BY_ID = "SELECT * FROM utilisateurs WHERE no_utilisateur = ?";
-	private final static String SELECT_BY_PSEUDO = "SELECT * FROM utilisateurs WHERE pseudo = ?";
-	private final static String SELECT_FOR_CONNEXION = "SELECT * FROM utilisateurs WHERE mot_de_passe = ? AND (pseudo = ? OR email = ?) ";	
-	private final static String SELECT_BY_LOGIN = "SELECT * FROM utilisateurs WHERE pseudo = ? OR email = ?";	
+	private final static String SELECT_ALL = "SELECT * FROM UTILISATEURS";
+	private final static String SELECT_BY_ID = "SELECT * FROM UTILISATEURS WHERE no_utilisateur = ?";
+	private final static String SELECT_BY_PSEUDO = "SELECT * FROM UTILISATEURS WHERE pseudo = ?";
+	private final static String SELECT_BY_CONNEXION = "SELECT * FROM UTILISATEURS WHERE mot_de_passe = ? AND (pseudo = ? OR email = ?) ";	
+	private final static String SELECT_BY_LOGIN = "SELECT * FROM UTILISATEURS WHERE pseudo = ? OR email = ?";	
 	
 	private final static String UPDATE = "UPDATE utilisateurs SET pseudo = ?, nom = ?, prenom = ?, email = ?, telephone = ?, rue = ?, code_postal = ?, ville = ?, mot_de_passe = ? WHERE no_utilisateur = ?;";
 	
@@ -121,9 +121,9 @@ public class UtilisateurDaoImpl implements UtilisateurDao {
 	}
 
 	@Override
-	public Utilisateur selectForConnexion(String identifiant, String motDePasse) {
+	public Utilisateur selectByConnexion(String identifiant, String motDePasse) {
 		try (Connection connection = ConnectionProvider.getConnection()) {
-			PreparedStatement pStmt = connection.prepareStatement(SELECT_FOR_CONNEXION);
+			PreparedStatement pStmt = connection.prepareStatement(SELECT_BY_CONNEXION);
 			pStmt.setString(1, motDePasse);
 			pStmt.setString(2, identifiant);
 			pStmt.setString(3, identifiant);
@@ -235,7 +235,7 @@ public class UtilisateurDaoImpl implements UtilisateurDao {
 		}
 	}
 
-	
+
 
 	
 
