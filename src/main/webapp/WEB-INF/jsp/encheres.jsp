@@ -9,10 +9,11 @@
 <%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-	
+
 <%
 List<Enchere> encheres = (List<Enchere>) request.getAttribute("encheres");
 String [] categories = application.getInitParameter("CATEGORIES").split(";");
+HttpSession session1 = request.getSession(false);
 %>	
 	
 	
@@ -24,9 +25,22 @@ String [] categories = application.getInitParameter("CATEGORIES").split(";");
 </head>
 <body>
 	<div class="container-fluid">
-		<header class="row mb-5">
-			<%@ include file="/WEB-INF/parts/header-accueil.jsp"%>
-		</header>
+<header>
+<%
+if (session1 != null && session1.getAttribute("utilisateur") != null) {
+   // L'utilisateur est connecté, afficher le header correspondant
+%>
+  	<jsp:include page="/WEB-INF/parts/header-nav.jsp"/>
+<%
+ 	} else {
+   // L'utilisateur n'est pas connecté, afficher le header correspondant
+%>
+   	<jsp:include page="/WEB-INF/parts/header-accueil.jsp" />
+<%
+  }
+%>
+</header>	
+
 
 		<main>
 			<div class="col-10 offset-1">
@@ -52,8 +66,13 @@ String [] categories = application.getInitParameter("CATEGORIES").split(";");
 							</select>
 						</div>
 					</div>
+							<%
+							if (session1 != null && session1.getAttribute("utilisateur") != null) {
+					 		// L'utilisateur est connecté, afficher le header correspondant
+							%>
 						<div class="d-flex flex-row mt-3">
 							<div class="form-check flex-column col-6">
+						
        							<input class="form-check-input" type="radio" name="optionsRadios" id="optionsRadios1" value="option1" checked="">
         							<label class="form-check-label" for="optionsRadios1">
          								Achat
@@ -92,11 +111,16 @@ String [] categories = application.getInitParameter("CATEGORIES").split(";");
 									</label>
       						</div>
 						</div>
+						<%
+						}
+						%>
 					</div>
+					
 					<div class="d-flex flex-column col-3  justify-content-center align-items-center">
 						<button class="btn btn-lg btn-success col-10" type="submit">Rechercher</button>	
 					</div>		
 				</div>
+				
 			</form>
 					<div class="row mt-5">
 					<%

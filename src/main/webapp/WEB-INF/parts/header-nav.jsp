@@ -6,7 +6,7 @@
 	    </button>
 		<ul class="navbar-nav">
 			<li class="nav-item">
-				<a class="nav-link header active" href="#">Enchères</a>
+				<a class="nav-link" href="<%= request.getContextPath() %>">Enchères</a>
 			</li>
 			<li class="nav-item">
 				<a class="nav-link" href="#">Vendre un article</a>

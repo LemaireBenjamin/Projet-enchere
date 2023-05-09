@@ -24,11 +24,11 @@ public class EnchereManager {
 			}
 			/**END SINGLETON **/
 			
-			public List<Enchere> gettAllEncheresEC(String etatEnchere) {
+			public List<Enchere> getAllEncheresEC(String etatEnchere) {
 				return DaoFactory.getEnchereDao().selectEncheresEC(etatEnchere);
 			}
 			
-			public List<Enchere> gettAllEncheresEnCoursByUser(Utilisateur utilisateur) {
+			public List<Enchere> getAllEncheresEnCoursByUser(Utilisateur utilisateur) {
 				return DaoFactory.getEnchereDao().selectEncheresEnCoursByUtilisateur(utilisateur);
 			}
 			
