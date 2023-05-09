@@ -26,7 +26,8 @@ public class EnchereDaoImpl implements EnchereDao {
 			 INNER JOIN UTILISATEURS ON ARTICLES_VENDUS.no_utilisateur = UTILISATEURS.no_utilisateur 
 			 WHERE etat_vente = ? 
 			 GROUP BY UTILISATEURS.no_utilisateur, pseudo, ARTICLES_VENDUS.no_article, nom_article, date_fin_encheres;
-		""";	
+		""";
+
 	
 	@Override
 	public List<Enchere> selectEncheresEC(String etatEnchere) {
@@ -51,7 +52,15 @@ public class EnchereDaoImpl implements EnchereDao {
 	return null;
 }
 	
-
+	@Override
+	public List<Enchere> selectEncheresByCategorie(String categorie) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+	
+	
+	
+	
 
 	@Override
 	public List<Enchere> selectAll() {
@@ -81,6 +90,49 @@ public class EnchereDaoImpl implements EnchereDao {
 	public void deleteEnchere(int id) {
 		// TODO Auto-generated method stub
 		
+	}
+
+
+
+
+
+
+	@Override
+	public List<Enchere> selectEncheresEnCoursByUtilisateurs(Utilisateur utilisateur) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+
+
+	@Override
+	public List<Enchere> selectEncheresGagneByUtilisateur(Utilisateur utilisateur) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+
+
+	@Override
+	public Enchere selectEnchereGagneeByArticle(int noArticle) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+
+
+	@Override
+	public boolean isMeilleurEncherisseur(int noArticle, int noUtilisateur) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+
+
+	@Override
+	public Utilisateur selectMeilleurEncherisseur(Enchere enchere) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 	

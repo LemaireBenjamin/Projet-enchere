@@ -92,7 +92,7 @@ String [] categories = application.getInitParameter("CATEGORIES").split(";");
       						</div>
 						</div>
 					</div>
-					<div class="d-flex flex-column col-5  justify-content-center align-items-center">
+					<div class="d-flex flex-column col-3  justify-content-center align-items-center">
 						<button class="btn btn-lg btn-success col-10" type="submit">Rechercher</button>	
 					</div>		
 				</div>
