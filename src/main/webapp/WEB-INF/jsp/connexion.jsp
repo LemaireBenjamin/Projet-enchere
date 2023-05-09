@@ -7,12 +7,13 @@
 <title>Connection</title>
 </head>
 <body>
-
 	<div class="container-fluid">
-		<header class="row">
+		<header class="row mb-5">
 			<%@ include file="/WEB-INF/parts/header-connexion.jsp"%>
 		</header>
-	</div>
+
+		<main>
+			
 
 	<div class="row mt-5">
 
@@ -52,9 +53,13 @@
 							type="button" class="btn btn-success">Creer un compte</button></a>
 				</form>
 			</div>
-
+			</div>
+</div>
+</main>
 			<footer>
 				<%@ include file="/WEB-INF/parts/footer.jsp"%>
 			</footer>
+			
+		</div>
 </body>
 </html>

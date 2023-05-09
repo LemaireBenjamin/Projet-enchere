@@ -7,14 +7,12 @@
 </head>
 <body>
 	<div class="container-fluid">
-		<header>
-			<%@ include file="/WEB-INF/parts/header-connexion.jsp"%>
+		<header class="row mb-5">
+			<%@ include file="/WEB-INF/parts/header-nav.jsp"%>
 		</header>
 		
-		<main class="mt-5">
-			<div class="row text-center">
-				<h1>Mon profil de fou</h1>
-			</div>
+		<main>
+
 			<form action="" method="post">
 				<div class="row offset-3 mt-5">
 					<div class="col-4">
