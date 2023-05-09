@@ -21,9 +21,7 @@ String erreurCnx = (String) request.getAttribute("erreur");
 			<%@ include file="/WEB-INF/parts/header-connexion.jsp"%>
 		</header>
 		<main>
-			<h1>Veuillez vous identifier</h1>
-
-			<div class="row mt-5">
+				<div class="row mt-5">
 
 				<div class="row text-center">
 					<div class="container">
