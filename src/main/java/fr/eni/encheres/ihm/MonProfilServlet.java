@@ -10,7 +10,7 @@ import java.io.IOException;
 import fr.eni.encheres.bo.Utilisateur;
 import fr.eni.encheres.bll.UtilisateurManager;
 
-@WebServlet("/profil")
+@WebServlet("/profil/*")
 public class MonProfilServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
@@ -20,6 +20,7 @@ public class MonProfilServlet extends HttpServlet {
 		int noUtilisateur = Integer.parseInt(params[1]);
 //		int noUtilisateur = 10;
 		Utilisateur utilisateur = UtilisateurManager.getInstance().getUtilisateurById(noUtilisateur);
+		
 		if(utilisateur == null) {
 			response.sendError(HttpServletResponse.SC_NOT_FOUND);
 			return;
