@@ -2,7 +2,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
     
-<% Utilisateur utilisateur = (Utilisateur) request.getAttribute("utilisateur"); %>
+<% 
+HttpSession session1 = request.getSession(false);
+Utilisateur utilisateur = (Utilisateur) request.getAttribute("utilisateur"); 
+Utilisateur sessionUtilisateur = (Utilisateur) session1.getAttribute("utilisateur");
+%>
 
 <!DOCTYPE html>
 <html>
@@ -65,7 +69,7 @@
 						<label>${utilisateur.ville}</label>
 					</div>
 			
-			
+			<% if (utilisateur.getNoUtilisateur() == sessionUtilisateur.getNoUtilisateur) {%>
 				<div class="row offset-5 mt-4">
 					<div class="col-2">
 						<a href="<%= request.getContextPath() %>/modifier-profil/${utilisateur.noUtilisateur}">
@@ -73,6 +77,7 @@
 					</div>
 					
 				</div> 
+			<% } %>
 		</form>
 		</div>
 		</main>
