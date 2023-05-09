@@ -33,7 +33,7 @@ public class Utilisateur {
 	 * Constructeurs
 	 */
 
-	private Utilisateur() {}
+	public Utilisateur() {}
 	
 	
 
@@ -92,7 +92,7 @@ public class Utilisateur {
 	 * Getter et Setter
 	 */
 
-	public Integer getNoUtilisateur() {
+	public  Integer getNoUtilisateur() {
 		return noUtilisateur;
 	}
 

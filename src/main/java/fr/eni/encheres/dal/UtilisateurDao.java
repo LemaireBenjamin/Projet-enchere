@@ -15,7 +15,7 @@ public interface UtilisateurDao {
 
 	public Utilisateur selectByPseudo(String nomUtilisateur);
 	
-	public Utilisateur selectForConnexion(String identifiant, String motDePasse);
+	public Utilisateur selectByConnexion(String identifiant, String motDePasse);
 	
 	public Utilisateur selectByLogin(String login);
 
@@ -25,5 +25,6 @@ public interface UtilisateurDao {
 	public void update(Utilisateur utilisateur);
 
 	public void delete(int id);
+
 	
 }
