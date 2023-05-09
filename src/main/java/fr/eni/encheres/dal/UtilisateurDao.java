@@ -26,5 +26,7 @@ public interface UtilisateurDao {
 
 	public void delete(int id);
 
+	Utilisateur selectEnchereEnCour(int noUtilisateur);
+
 	
 }

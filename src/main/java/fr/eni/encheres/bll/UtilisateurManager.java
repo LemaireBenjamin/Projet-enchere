@@ -49,8 +49,14 @@ public class UtilisateurManager {
 			DaoFactory.getUtilisateurDao().update(utilisateur);
 		}
 		
-		public void deleteUtilisateur(int noUtilisateur) {
-			DaoFactory.getUtilisateurDao().delete(noUtilisateur);	
+		public void deleteUtilisateur(int noUtilisateur) throws BllException {
+			if( DaoFactory.getUtilisateurDao().selectEnchereEnCour(noUtilisateur) != null){
+				BllException bll = new BllException();
+				bll.ajouterErreur("Vous avez des enchères en cours. Vous ne pouvez pas supprimer votre compte");
+				throw bll;
+			}else {
+				DaoFactory.getUtilisateurDao().delete(noUtilisateur);
+			}
 		}
 		
 		public void checkUtilisateur(Utilisateur utilisateur) throws BllException {

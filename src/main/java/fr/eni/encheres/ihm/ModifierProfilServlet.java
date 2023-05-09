@@ -20,7 +20,7 @@ public class ModifierProfilServlet extends HttpServlet {
 		String[] params = request.getPathInfo().split("/");
 		int noUtilisateur = Integer.parseInt(params[1]);
 
-		Utilisateur utilisateur = UtilisateurManager.getInstance().getUtilisateur(noUtilisateur);
+		Utilisateur utilisateur = UtilisateurManager.getInstance().getUtilisateurById(noUtilisateur);
 		if(utilisateur == null) {
 			response.sendError(HttpServletResponse.SC_NOT_FOUND);
 			return;

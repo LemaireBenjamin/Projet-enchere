@@ -9,7 +9,6 @@ import java.io.IOException;
 
 import fr.eni.encheres.bo.Utilisateur;
 import fr.eni.encheres.bll.UtilisateurManager;
-import fr.eni.encheres.bll.exception.BllException;
 
 @WebServlet("/profil")
 public class MonProfilServlet extends HttpServlet {
@@ -17,10 +16,10 @@ public class MonProfilServlet extends HttpServlet {
        
   
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-//		String[] params = request.getPathInfo().split("/");
-//		int noUtilisateur = Integer.parseInt(params[1]);
-		int noUtilisateur = 1;
-		Utilisateur utilisateur = UtilisateurManager.getInstance().getUtilisateur(noUtilisateur);
+		String[] params = request.getPathInfo().split("/");
+		int noUtilisateur = Integer.parseInt(params[1]);
+//		int noUtilisateur = 10;
+		Utilisateur utilisateur = UtilisateurManager.getInstance().getUtilisateurById(noUtilisateur);
 		if(utilisateur == null) {
 			response.sendError(HttpServletResponse.SC_NOT_FOUND);
 			return;

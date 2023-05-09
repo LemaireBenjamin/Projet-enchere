@@ -8,6 +8,7 @@ import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 import fr.eni.encheres.bll.UtilisateurManager;
+import fr.eni.encheres.bll.exception.BllException;
 
 @WebServlet("/supprimer-profil/*")
 public class SupprimerUtilisateurServlet extends HttpServlet {
@@ -15,10 +16,18 @@ public class SupprimerUtilisateurServlet extends HttpServlet {
        
    
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String params = request.getPathInfo();
-		int noUtilisateur = Integer.parseInt(params.substring(1));
 		
-		UtilisateurManager.getInstance().deleteUtilisateur(noUtilisateur);
+		
+		try {
+			String params = request.getPathInfo();
+			int noUtilisateur = Integer.parseInt(params.substring(1));
+			
+			UtilisateurManager.getInstance().deleteUtilisateur(noUtilisateur);
+			
+		} catch (BllException e) {
+			
+			e.printStackTrace();
+		}
 		response.sendRedirect(request.getContextPath());
 	}
 
