@@ -34,7 +34,7 @@ public class EncheresServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
  
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		List<Enchere> encheres = EnchereManager.getInstance().gettAllEncheresEC("EC");
+		List<Enchere> encheres = EnchereManager.getInstance().getAllEncheresEC("EC");
 		request.setAttribute("encheres", encheres);
 		request.getRequestDispatcher("/WEB-INF/jsp/encheres.jsp").forward(request, response);
 	
@@ -45,7 +45,6 @@ public class EncheresServlet extends HttpServlet {
 			
 			HttpSession session = request.getSession();
 			Utilisateur utilisateur = (Utilisateur) session.getAttribute("utilisateur");
-			System.out.println(utilisateur);
 			String optionsRadio = request.getParameter("optionsRadios");
 			String achatCheckBox = request.getParameter("achat-checkbox");
 			String venteCheckBox = request.getParameter("vente-checkbox");
@@ -53,25 +52,24 @@ public class EncheresServlet extends HttpServlet {
 
 			if(optionsRadio.equalsIgnoreCase("option1")) {
 				
+				
 	              if(achatCheckBox.equals("encheres-ouvertes")) { 
-	            	  List<Enchere> encheres = EnchereManager.getInstance().gettAllEncheresEC("EC");
+	            	  List<Enchere> encheres = EnchereManager.getInstance().getAllEncheresEC("EC");
 	            	  request.setAttribute("encheres", encheres);
 	            	  request.getRequestDispatcher("/WEB-INF/jsp/encheres.jsp").forward(request, response);
 	            	  return;
 	              }
-	            	  
-	            	  
+	            	  	  
             	  if(achatCheckBox.equals("mes-encheres-en-cours")) { 
             		  System.out.println("dans mes encheres en cours");
-	            	  List<Enchere> encheresEnCoursByUser = EnchereManager.getInstance().gettAllEncheresEnCoursByUser(utilisateur);
-	            	  request.setAttribute("encheres", encheresEnCoursByUser);
-	            	  response.getWriter().append("Bonjour : " + utilisateur.getPrenom() + " " + utilisateur.getNom());
+            		  System.out.println(utilisateur);
+	            	  List<Enchere> encheres = EnchereManager.getInstance().getAllEncheresEnCoursByUser(utilisateur);
+	            	  request.setAttribute("encheres", encheres);
 	            	  request.getRequestDispatcher("/WEB-INF/jsp/encheres.jsp").forward(request, response);
 	            	  return;
 	             
 	              }
-            	  
-            	  
+            	   
 			}
 	       
 	            	  

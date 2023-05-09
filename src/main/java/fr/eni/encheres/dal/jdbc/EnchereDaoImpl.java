@@ -35,9 +35,9 @@ public class EnchereDaoImpl implements EnchereDao {
 	
 	private static final String SELECT_ENCHERES_EN_COURS_BY_UTILISATEUR =  "SELECT * "+
             "FROM ARTICLES_VENDUS av "+
-            "INNER JOIN ENCHERES e ON av.no_article = e.no_article "+
-            "INNER JOIN UTILISATEUR u ON av.no_utilisateur = u.no_utilisateur "+
-            "WHERE e.no_utilisateur = ? AND av.date_fin_encheres > GETDATE()";
+            "INNER JOIN ENCHERES e ON av.no_utilisateur = e.no_utilisateur "+
+            "INNER JOIN UTILISATEURS u ON av.no_utilisateur = u.no_utilisateur "+
+            "WHERE e.no_utilisateur = ? ";
 	
 	
 		
@@ -81,6 +81,7 @@ public class EnchereDaoImpl implements EnchereDao {
 						
 			}
 			return encheres;
+			
 		}catch (SQLException e) {
 			e.printStackTrace();
 		}
