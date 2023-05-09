@@ -7,74 +7,80 @@
 </head>
 <body>
 	<div class="container-fluid">
-		<header>
-			<%@ include file="/WEB-INF/parts/header-connexion.jsp"%>
+		<header class="row mb-5">
+			<%@ include file="/WEB-INF/parts/header-nav.jsp"%>
 		</header>
 		
-		<main class="mt-5">
-			<div class="row text-center">
-				<h1>Mon profil de fou</h1>
+		<main>
+			<div class="col-10 offset-1">
+				<div class="row text-center">
+					<h1 class="mt-5 mb-5">Mon profil</h1>
+				</div>
+				<form action="" method="post">
+					<div class="container">
+						<div class="row offset-2 mb-4">
+							<div class="col-sm-5">
+								<label>Pseudo :</label>
+								<input class="form-control" autofocus="autofocus" name="pseudo" type="text">
+							</div>
+							<div class="col-sm-5">
+								<label>Nom :</label>
+								<input class="form-control" name="lastname" type="text">
+							</div>
+						</div>
+						<div class="row offset-2 mb-4">
+							<div class="col-sm-5">
+								<label>Prénom :</label>
+								<input class="form-control" name="firstname" type="text">
+							</div>
+							<div class="col-sm-5">
+								<label>Email :</label>
+								<input class="form-control" name="email" type="email">
+							</div>
+						</div>
+						<div class="row offset-2 mb-4">
+							<div class="col-sm-5">
+								<label>Téléphone :</label>
+								<input class="form-control" name="tel" type="tel">
+							</div>
+							<div class="col-sm-5">
+								<label>Rue :</label>
+								<input class="form-control" name="rue" type="text">
+							</div>
+						</div>
+						<div class="row offset-2 mb-4">
+							<div class="col-sm-5">
+								<label>Code postal :</label>
+								<input class="form-control" name="postalCode" type="text">
+							</div>
+							<div class="col-sm-5">
+								<label>Ville :</label>
+								<input class="form-control" name="city" type="text">
+							</div>
+						</div>
+						<div class="row offset-2 mb-4">
+							<div class="col-sm-5">
+								<label>Mot de passe :</label>
+								<input class="form-control" name="password" type="password">
+							</div>
+							<div class="col-sm-5">
+								<label>Confirmation :</label>
+								<input class="form-control" name="confirmPassword" type="password">
+							</div>
+						</div>
+						<div class="row offset-2 mb-4">
+							<div class="d-flex col-sm-5 text-end">
+								<button type="submit" method="post" class="btn btn-success ">Créer</button>
+							</div>
+							<div class="d-flex col-sm-5 text-left">
+								<a href=""><button class="btn btn-danger">Annuler</button></a>
+							</div>
+						</div>
+						
+					</div>				
+
+				</form>
 			</div>
-			<form action="" method="post">
-				<div class="row offset-3 mt-5">
-					<div class="col-4">
-						<label for="pseudo" >Pseudo :</label>
-						<input autofocus="autofocus" name="pseudo" type="text">
-					</div>
-						<div class="col-4">
-						<label for="lastname" >Nom :</label>
-						<input name="lastname" type="text">
-					</div>
-				</div>
-				<div class="row offset-3 mt-4">
-					<div class="col-4">
-						<label for="firstName" >Prénom :</label>
-						<input name="firstName" type="text">
-					</div>
-					<div class="col-4">
-						<label for="email" >Email :</label>
-						<input name="email" type="email">
-					</div>
-				</div>
-				<div class="row offset-3 mt-4">
-					<div class="col-4">
-						<label for="tel" >Téléphone :</label>
-						<input name="tel" type="tel">
-					</div>
-					<div class="col-4">
-						<label for="road" >Rue :</label>
-						<input name="road" type="text">
-					</div>
-				</div>
-				<div class="row offset-3 mt-4">
-					<div class="col-4">
-						<label for="postalCode" >Code postal :</label>
-						<input name="postalCode" type="text">
-					</div>
-					<div class="col-4">
-						<label for="city" >Ville :</label>
-						<input name="city" type="text">
-					</div>
-				</div>
-				<div class="row offset-3 mt-4">
-					<div class="col-4">
-						<label for="password" >Mot de passe :</label>
-						<input name="password" type="password">
-					</div>
-					<div class="col-4">
-						<label for="confirmPassword" >Confirmation :</label>
-						<input name="confirmPassword" type="password">
-					</div>
-				</div>
-				<div class="row offset-5 mt-4">
-					<div class="col-2">
-						<button type="submit" class="btn btn-success">Confirmer</button>
-					</div>
-					<div class="col-2">
-						<a href="<%= request.getContextPath() %>"><button type="button" class="btn btn-danger px-10">Annuler</button></a>
-					</div>
-				</div>
-		</form>
 		</main>
 	
 		<footer>

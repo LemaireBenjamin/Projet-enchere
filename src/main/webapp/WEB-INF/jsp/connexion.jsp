@@ -7,45 +7,53 @@
 <title>Connection</title>
 </head>
 <body>
-
 	<div class="container-fluid">
-		<header class="row">
+		<header class="row mb-5">
 			<%@ include file="/WEB-INF/parts/header-connexion.jsp"%>
 		</header>
+
+		<main>
+			<div class="col-10 offset-1">
+				<div class="row text-center">
+					<h1 class="mt-5 mb-5">Se connecter</h1>
+				</div>
+
+
+				<form class="login-form" method="post">
+					<div>
+						<label for="login">Identifiant </label> 
+						<input id="login" type="text" placeholder=" identifiant" name="login" required />
+					</div>
+					<br>
+
+
+
+					<div>
+						<label for="password">Mot de passe </label> <input id="password"
+							type="password" placeholder="password" name="password" required />
+					</div>
+					<p>
+						<a href="#"> Mot de passe oublié </a>
+					</p>
+
+					<!-- Renvoyer à la page d'acceuil: modifier le header pour afficher vente ou enchere -->
+					<button type="submit" class="btn btn-warning">Se connecter</button>
+					
+					<div>
+						<input type="checkbox" id="chk1" name="chk1"
+							value="enrgMotDePasse"> <label for="chk1"> Se souvenir de moi</label><br>
+
+
+					</div>
+					<a href="<%=request.getContextPath()%>/inscription"><button
+							type="button" class="btn btn-success">Creer un compte</button></a>
+				</form>
+			</div>
+
+			<footer>
+				<%@ include file="/WEB-INF/parts/footer.jsp"%>
+			</footer>
+		</main>
 	</div>
-
-<div class= "row text-center"> 
-	<div class="container">
-		<h2 class="login-title">Se Connecter</h2>
-
-		<form class="login-form">
-			<div>
-				<label for="name">Identifiant </label> <input id="name" type="text"
-					placeholder="Eren Buruk" name="name" required />
-			</div>
-
-			<div>
-				<label for="password">Mot de passe </label> <input id="password"
-					type="password" placeholder="password" name="password" required />
-			</div>
-
-			<button type="button" class="btn btn-Warning">
-				Se connecter</button>
-			<div>
-				<input type="checkbox" id="chk1" name="chk1" value="enrgMotDePasse">
-				<label for="chk1"> Se souvenir de moi</label><br>
-
-				<p>
-					<a href="#"> Mot de passe oublié </a>
-				</p>
-			</div>
-			<a href="<%= request.getContextPath() %>/inscription"><button type="button" class="btn btn-success">Creer un compte</button></a>
-		</form>
-	</div>
-</div>
-
-	<footer>
-		<%@ include file="/WEB-INF/parts/footer.jsp"%>
-	</footer>
 </body>
 </html>
