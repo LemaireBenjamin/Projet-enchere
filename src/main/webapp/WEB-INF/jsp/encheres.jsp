@@ -33,6 +33,7 @@ String [] categories = application.getInitParameter("CATEGORIES").split(";");
 			<div class="row text-center">
 				<h1 class="mt-5 mb-5">Liste des enchères</h1>
 			</div>
+	
 			<form action="" method="POST">
 				<h3>Filtres :</h3>
 				<div class="form-group col-10 d-flex flex-row">	

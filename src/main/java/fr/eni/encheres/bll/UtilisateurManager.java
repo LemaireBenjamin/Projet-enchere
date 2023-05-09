@@ -77,7 +77,7 @@ public class UtilisateurManager {
 		}
 
 		public Utilisateur getUtilisateurForConnexion(String utilisateurNom, String motDePasse) {
-			return DaoFactory.getUtilisateurDao().selectForConnexion(utilisateurNom, motDePasse);
+			return DaoFactory.getUtilisateurDao().selectByConnexion(utilisateurNom, motDePasse);
 			
 		}
 }

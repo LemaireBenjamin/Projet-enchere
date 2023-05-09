@@ -54,7 +54,7 @@ public class ConnexionServlet extends HttpServlet {
 			String utilisateurNom = request.getParameter("login");
 			String motDePasse = request.getParameter("password");
 			//ouvrir une session si utilisateur existe
-			Utilisateur utilisateur = UtilisateurManager.getInstance().getUtilisateurForConnexion(utilisateurNom, motDePasse);
+			Utilisateur utilisateur = UtilisateurManager.getInstance().getUtilisateurByConnexion(utilisateurNom, motDePasse);
 			if(utilisateur == null) {
 				response.sendError(HttpServletResponse.SC_NOT_FOUND);
 				return;
