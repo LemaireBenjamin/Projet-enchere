@@ -14,9 +14,10 @@ public interface EnchereDao {
 	
 	public List<Enchere> selectEncheresEC(String etatEnchere);
 
-	List<Enchere> selectEncheresEnCoursByUtilisateur(Utilisateur utilisateur);
+	public List<Enchere> selectEncheresEnCoursByUtilisateur(Utilisateur utilisateur, String etatEnchere);
 	
-	List<Enchere> selectEncheresGagneByUtilisateur(Utilisateur utilisateur);
+	public List<Enchere> selectEncheresGagneByUtilisateur(Utilisateur utilisateur, String etatEnchere);
+	
 	 
 	public Enchere selectEnchereGagneeByArticle(int noArticle);
 

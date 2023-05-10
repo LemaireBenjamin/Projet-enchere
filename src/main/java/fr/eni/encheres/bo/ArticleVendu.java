@@ -1,5 +1,6 @@
 package fr.eni.encheres.bo;
 
+import java.sql.Date;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
@@ -49,7 +50,7 @@ public class ArticleVendu {
 
 
 	public ArticleVendu(String nomArticle, String description, LocalDate dateDebutEncheres, LocalDate dateFinEncheres,
-			Integer prixInitial, Integer prixVente, Integer noUtilisateur, Integer noCategorie) {
+			Integer prixInitial, Integer prixVente, Utilisateur utilisateur, Categorie categorie) {
 		this.nomArticle = nomArticle;
 		this.description = description;
 		this.dateDebutEncheres = dateDebutEncheres;
@@ -86,6 +87,24 @@ public class ArticleVendu {
 		this.utilisateur = utilisateur;
 		this.lieuRetrait = lieuRetrait;
 		this.listEncheres = listEncheres;
+	}
+
+	
+	
+	
+
+
+	public ArticleVendu(Integer noArticle, String nomArticle, String description, Date dateDebutEncheres, Date dateFinEncheres, Integer prixInitial, Integer prixVente,
+			String etatVente) {
+		this.noArticle = noArticle;
+		this.nomArticle = nomArticle;
+		this.description = description;
+		this.dateDebutEncheres = this.dateDebutEncheres;
+		this.dateFinEncheres = this.dateFinEncheres;
+		this.prixInitial = prixInitial;
+		this.prixVente = prixVente;
+		this.etatVente = etatVente;
+
 	}
 
 	/**
