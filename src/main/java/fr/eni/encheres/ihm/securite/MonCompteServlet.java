@@ -16,6 +16,8 @@ import fr.eni.encheres.bll.LoginManager;
 import fr.eni.encheres.bo.Utilisateur;
 import fr.eni.encheres.dal.DaoFactory;
 
+//a supprimer peut etre? une redite de connexion?
+
 @WebServlet("/mon-compte")
 public class MonCompteServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
