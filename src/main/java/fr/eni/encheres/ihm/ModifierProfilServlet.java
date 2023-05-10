@@ -56,6 +56,7 @@ public class ModifierProfilServlet extends HttpServlet {
 //			request.setAttribute("erreurs", e.getErreurs());
 //			doGet(request, response);
 			e.printStackTrace();
+			response.sendRedirect(request.getContextPath());
 		}
 	}
 }
