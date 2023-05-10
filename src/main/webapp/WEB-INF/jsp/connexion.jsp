@@ -21,11 +21,12 @@ String erreurCnx = (String) request.getAttribute("erreur");
 			<%@ include file="/WEB-INF/parts/header-connexion.jsp"%>
 		</header>
 		<main>
-				<div class="row mt-5">
+			<div class="col-sm-5 offset-4">
 
-				<div class="row text-center">
+				<div class="row">
 					<div class="container">
 						<h2 class="login-title">Se Connecter</h2>
+						<br>
 						<!--  -->
 						<%
 						if (erreurCnx != null) {
@@ -47,51 +48,55 @@ String erreurCnx = (String) request.getAttribute("erreur");
 						<%
 						}
 						%>
-						<!--  -->
+
+						<!-- Début Formulaire -->
+
 						<form class="login-form" method="post">
-							<div>
-								<label for="login">Identifiant </label> <input id="login"
-									type="text" placeholder=" pseudo ou email" name="login"
-									required />
+							<div class="form-group row">
+								<label for="login" class="col-sm-2 col-form-label">Identifiant</label>
+								<div class="col-sm-6">
+									<input type="text" class="form-control" id="login"
+										placeholder=" pseudo ou email" required />
+								</div>
 							</div>
 							<br>
-							<div>
-								<label for="password">Mot de passe </label> <input id="password"
-									type="password" placeholder="password" name="password" required />
-							</div>
-
-
-							<!-- Renvoyer à la page d'acceuil: modifier le header pour afficher vente ou enchere -->
-
-							<div class="d-flex justify-content-center bg-secondary mb-3">
-								<div class="p-2">
-								
-									<button type="submit" class="btn btn-warning">
-										Connexion</button>
-								</div>
-								<div class="p-2 ">
-									<input type="checkbox" id="chk1" name="chk1"
-										value="enrgMotDePasse"> <label for="chk1"> Se
-										souvenir de moi</label><br>
-									<p>
-										<a href="#"> Mot de passe oublié </a>
-									</p>
+							<div class="form-group row">
+								<label for="password" class="col-sm-2 col-form-label">Mot
+									de passe</label>
+								<div class="col-sm-6">
+									<input type="password" class="form-control" type="password"
+										placeholder="password" name="password" required />
 								</div>
 							</div>
+						</form>
 					</div>
-
-					<a href="<%=request.getContextPath()%>/inscription"><button
-							type="button" class="btn btn-success">Creer un compte</button></a>
-					</form>
 				</div>
+
+				<br>
+				<!-- button -->
+				<div class="d-flex bg-secondary mb-3">
+					<div class="p-2">
+						<button type="submit" class="btn btn-warning">Connexion</button>
+					</div>
+					<div class="p-2 ">
+						<input type="checkbox" id="chk1" name="chk1"
+							value="enrgMotDePasse"> <label for="chk1"> Se
+							souvenir de moi</label><br>
+						<p>
+							<a href="#"> Mot de passe oublié </a>
+						</p>
+					</div>
+				</div>
+				<!-- Fin button -->
+				<a href="<%=request.getContextPath()%>/inscription"><button
+						type="button" class="btn btn-success">Creer un compte</button></a>
+			</div>
 		</main>
 	</div>
-	
 
 	<footer>
 		<%@ include file="/WEB-INF/parts/footer.jsp"%>
 	</footer>
 
-	</div>
 </body>
 </html>
