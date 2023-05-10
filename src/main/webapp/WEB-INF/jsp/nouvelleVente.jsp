@@ -1,3 +1,4 @@
+<%@page import="fr.eni.encheres.bo.Utilisateur"%>
 <%@page import="java.time.format.DateTimeFormatter"%>
 <%@page import="java.sql.Timestamp"%>
 <%@page import="javax.sound.sampled.TargetDataLine"%>
@@ -13,6 +14,8 @@
 <%
 List<Enchere> encheres = (List<Enchere>) request.getAttribute("encheres");
 String[] categories = application.getInitParameter("CATEGORIES").split(";");
+HttpSession session1 = request.getSession(false);
+Utilisateur sessionUtilisateur = (Utilisateur) session1.getAttribute("utilisateur");
 %>
 
 
@@ -25,13 +28,14 @@ String[] categories = application.getInitParameter("CATEGORIES").split(";");
 <body>
 	<div class="container-fluid">
 		<header class="row mb-5">
-			<%@ include file="/WEB-INF/parts/header-accueil.jsp"%>
+			<%@ include file="/WEB-INF/parts/header-nav.jsp"%>
 		</header>
 
 		<main>
 			<section>
 				<div class="logo">
-					<img src="../assets/img/logo.jpg" alt="" width="100" height="150">
+					<img src="<%=request.getContextPath()%>/assets/img/logo.jpg"
+						alt="logo" width="100" height="150">
 				</div>
 
 				<div class="col-sm-6 offset-3">
@@ -42,26 +46,26 @@ String[] categories = application.getInitParameter("CATEGORIES").split(";");
 					<form action="" method="POST">
 
 						<div class="form-group row">
-							<label for="inputEmail3" class="col-sm-2 col-form-label">Article</label>
+							<label for="nom-article" class="col-sm-2 col-form-label">Article</label>
 							<div class="col-sm-10">
-								<input type="email" class="form-control" id="inputEmail3"
-									placeholder="Fauteuil">
+								<input type="text" class="form-control" id="nom-article"
+									name="nom-article" placeholder="Fauteuil">
 							</div>
 						</div>
 						<br>
 						<div class="form-group row">
-							<label for="inputPassword3" class="col-sm-2 col-form-label">Description</label>
+							<label for="text" class="col-sm-2 col-form-label">Description</label>
 							<div class="col-sm-10">
-								<textarea id="w3review" name="w3review" rows="4" cols="50">Fauteuil en cuir</textarea>
+								<textarea id="description" name="description" rows="4" cols="50">Fauteuil en cuir</textarea>
 								<br>
 							</div>
 						</div>
-					</form>
+			
 
 					<div class="form-group">
-						<label for="search" class="form-label col-5 mt-3"><h4>Catégories
-								:</h4></label> <select class="form-select" id="search">
-							<option value="">Maison</option>
+						<label for="categorie" class="form-label col-5 mt-3"><h4>Catégories:</h4></label>
+						<select class="form-select" id="categorie" name="categorie">
+
 							<%
 							for (String categorie : categories) {
 							%>
@@ -73,137 +77,98 @@ String[] categories = application.getInitParameter("CATEGORIES").split(";");
 					</div>
 					<br>
 					<div class="form-group row">
-						<label for="photoarticle" class="col-sm-2 col-form-label">Photo
+						<label for="photo-article" class="col-sm-2 col-form-label">Photo
 							de l'article</label>
 						<div class="col-sm-10">
-							<input type="text" class="form-control" id="photoarticle"
-								placeholder="Uploader">
+							<input type="file" class="form-control" id="photo-article"
+								name="photo-article" placeholder="Uploader">
 						</div>
 					</div>
 
 					<br>
 					<div class="form-group row">
-						<label for="photoarticle" class="col-sm-2 col-form-label">Mise
+						<label for="mise-a-prix" class="col-sm-2 col-form-label">Mise
 							à prix </label>
 						<div class="col-sm-10">
-							<input type="text" class="form-control" id="photoarticle"
-								placeholder="310">
+							<input type="text" class="form-control" id="mise-a-prix"
+								name="mise-a-prix" placeholder="310">
 						</div>
 					</div>
 					<br>
 					<div class="form-group row">
-						<label for="debutenchere" class="col-sm-2 col-form-label">Début
+						<label for="debut-enchere" class="col-sm-2 col-form-label">Début
 							de l'enchère </label>
 						<div class="col-sm-10">
-							<input type="text" class="form-control" id="debutenchere"
-								placeholder="10/08/20218">
+							<input type="date" class="form-control" id="debut-enchere"
+								name="debut-enchere" placeholder="10/08/2018">
 						</div>
 					</div>
 					<br>
 					<div class="form-group row">
-						<label for="finenchere" class="col-sm-2 col-form-label">Fin
+						<label for="fin-enchere" class="col-sm-2 col-form-label">Fin
 							de l'enchère </label>
 						<div class="col-sm-10">
-							<input type="text" class="form-control" id="finenchere"
-								placeholder="01/09/2018">
+							<input type="date" class="form-control" id="fin-enchere"
+								name="fin-enchere" placeholder="01/09/2018">
 						</div>
 					</div>
 					<br>
 
-					<form>
 						<fieldset>
 							<legend>Retrait</legend>
 							<div class="form-group row">
-								<label for="Rue" class="col-sm-2 col-form-label">Rue</label>
+								<label for="road" class="col-sm-2 col-form-label">Rue</label>
 								<div class="col-sm-10">
-									<input type="text" class="form-control" id="Rue"
-										placeholder=" Rue des Mouettes">
+									<input type="text" class="form-control" id="road" name="road"
+										placeholder="Rue des Mouettes" value="<%= sessionUtilisateur.getRue() %>">
 								</div>
 							</div>
 							<br>
 							<div class="form-group row">
-								<label for="code postal" class="col-sm-2 col-form-label">Description</label>
+								<label for="postalCode" class="col-sm-2 col-form-label">Code
+									postal</label>
 								<div class="col-sm-10">
-									<input type="text" class="form-control" id="codepostal"
-										placeholder=" 44800">
+									<input type="text" class="form-control" id="postalCode"
+										name="postalCode" placeholder="44800" value="<%= sessionUtilisateur.getCodePostal() %>">
 								</div>
 							</div>
 							<br>
 							<div class="form-group row">
-								<label for="ville" class="col-sm-2 col-form-label">Ville</label>
+								<label for="city" class="col-sm-2 col-form-label">Ville</label>
 								<div class="col-sm-10">
-									<input type="text" class="form-control" id="ville"
-										placeholder=" Saint Herblain">
+									<input type="text" class="form-control" id="city" name="city"
+										placeholder="Saint Herblain" value="<%= sessionUtilisateur.getVille() %>">
 								</div>
 							</div>
 						</fieldset>
+						<section>
+							<br> <br>
+								<section>
+									<div class="col-sm-6 offset-3 text-center">
+										<div class="d-flex justify-content-around bg-secondary mb-3">
+											<div class="p-2 bg-info">
+												<button type="submit" class="btn ">Enregistrer</button>
+											</div>
+											<div class="p-2 bg-warning">
+												<button type="reset" class="btn">Annuler</button>
+											</div>
+											<div class="p-2 bg-primary">
+												<button type="submit" class="btn">Annuler la vente</button>
+											</div>
+										</div>
+									</div>
+								</section>
+						</section>
 					</form>
 				</div>
 			</section>
-			<div></div>
-			<section>
-				<br> <br>
-				<section>
-					<div class="col-sm-6 offset-3 text-center">
-						<div class="d-flex justify-content-around bg-secondary mb-3">
-							<div class="p-2 bg-info">
-								<button type="submit" class="btn ">Enregistrer</button>
-							</div>
-							<div class="p-2 bg-warning">
-								<button type="submit" class="btn">Annuler</button>
-							</div>
-							<div class="p-2 bg-primary">
-								<button type="submit" class="btn">Annuler la vente</button>
-							</div>
-						</div>
-					</div>
-				</section>
-			</section>
+
+
 		</main>
 	</div>
 	<br>
 	<footer>
 		<%@ include file="/WEB-INF/parts/footer.jsp"%>
 	</footer>
-
-	<!-- Script java Script -->
-
-	<script type="text/javascript">
-		// Récupérer les éléments HTML des boutons radio et des cases à cocher pour la vente
-		const achatRadio = document.getElementById('optionsRadios1');
-		const venteRadio = document.getElementById('optionsRadios2');
-		const venteCheckboxes = document.querySelectorAll('input[name="vente-checkbox"]');
-		const achatCheckboxes = document.querySelectorAll('input[name="achat-checkbox"]');
-	
-		//Configuration par default
-		venteCheckboxes.forEach((checkbox) => {
-			checkbox.disabled = true;
-			checkbox.checked = false;
-		});
-		// Ajouter un gestionnaire d'événements pour le changement d'état du bouton radio
-		achatRadio.addEventListener('change', () => {
-		  // Désactiver et griser les cases à cocher pour la vente
-			venteCheckboxes.forEach((checkbox) => {
-			    checkbox.disabled = true;
-			    checkbox.checked = false;
-			});
-			achatCheckboxes.forEach((checkbox) => {
-				    checkbox.disabled = false;
-				    checkbox.checked = false;
-			});
-		});
-		// Ajouter un gestionnaire d'événements pour le changement d'état du bouton radio
-		venteRadio.addEventListener('change', () => {
-		// Activer et dégriser les cases à cocher pour la vente
-			venteCheckboxes.forEach((checkbox) => {
-			    checkbox.disabled = false;
-			    checkbox.checked = false;
-			});
-			achatCheckboxes.forEach((checkbox) => {
-				checkbox.disabled = true;
-				checkbox.checked = false;
-			});
-		});
-	</script>
 </body>
 </html>

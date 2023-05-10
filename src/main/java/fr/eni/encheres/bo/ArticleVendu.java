@@ -59,6 +59,17 @@ public class ArticleVendu {
 		this.prixVente = prixVente;
 
 	}
+	
+	public ArticleVendu(String nomArticle, String description, LocalDate dateDebutEncheres, LocalDate dateFinEncheres,
+			Integer prixInitial, Integer prixVente, Utilisateur utilisateur, Categorie categorie, String etatVente) {
+		this.nomArticle = nomArticle;
+		this.description = description;
+		this.dateDebutEncheres = dateDebutEncheres;
+		this.dateFinEncheres = dateFinEncheres;
+		this.prixInitial = prixInitial;
+		this.prixVente = prixVente;
+
+	}
 
 	public ArticleVendu(Integer noArticle, String nomArticle, String description, LocalDate dateDebutEncheres,
 			LocalDate dateFinEncheres, Integer prixInitial, Integer prixVente, Integer noUtilisateur,
@@ -90,10 +101,6 @@ public class ArticleVendu {
 	}
 
 	
-	
-	
-
-
 	public ArticleVendu(Integer noArticle, String nomArticle, String description, Date dateDebutEncheres, Date dateFinEncheres, Integer prixInitial, Integer prixVente,
 			String etatVente) {
 		this.noArticle = noArticle;
