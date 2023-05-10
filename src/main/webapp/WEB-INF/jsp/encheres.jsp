@@ -7,7 +7,7 @@
 <%@page import="java.text.DateFormat"%>
 <%@page import="fr.eni.encheres.bo.Enchere"%>
 <%@page import="java.util.List"%>
-<%@ page language="java" contentType="text/html; charset=UTF-8"
+<%@ page language="java" contentType="text/html;charset=UTF-8"
 	pageEncoding="UTF-8"%>
 
 <%
@@ -25,21 +25,24 @@ HttpSession session1 = request.getSession(false);
 </head>
 <body>
 	<div class="container-fluid">
-<header>
-<%
-if (session1 != null && session1.getAttribute("utilisateur") != null) {
-   // L'utilisateur est connecté, afficher le header correspondant
-%>
-  	<jsp:include page="/WEB-INF/parts/header-nav.jsp"/>
-<%
- 	} else {
-   // L'utilisateur n'est pas connecté, afficher le header correspondant
-%>
-   	<jsp:include page="/WEB-INF/parts/header-accueil.jsp" />
-<%
-  }
-%>
-</header>	
+	
+	
+	
+	<header class="row">
+	<%
+	if (session1 != null && session1.getAttribute("utilisateur") != null) {
+	   // L'utilisateur est connecté, afficher le header correspondant
+	%>
+	  	<jsp:include page="/WEB-INF/parts/header-nav.jsp"/>
+	<%
+	 	} else {
+	   // L'utilisateur n'est pas connecté, afficher le header correspondant
+	%>
+	   	<jsp:include page="/WEB-INF/parts/header-accueil.jsp" />
+	<%
+	  }
+	%>
+	</header>	
 
 
 		<main>
@@ -143,7 +146,9 @@ if (session1 != null && session1.getAttribute("utilisateur") != null) {
 		    					<text x="50%" y="50%" fill="#dee2e6" dy=".3em">Image Article Vendu</text>
 	  						</svg>
 							<div class="card-body">
-								<h5 class="card-text">Vendeur : <%= enchere.getUtilisateur().getPseudo() %></h5>
+							
+							<a class="navbar-brand" href="<%=request.getContextPath()%>">ENI - Enchères</a>
+								<h5 class="card-text">Vendeur :<a href="<%=request.getContextPath()%>/profil/<%=enchere.getUtilisateur().getNoUtilisateur() %>" class="card-link"><%= enchere.getUtilisateur().getPseudo() %></a></h5>
 							</div>
 						</div>
 						

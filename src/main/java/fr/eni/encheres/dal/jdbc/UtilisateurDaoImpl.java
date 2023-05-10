@@ -36,9 +36,12 @@ public class UtilisateurDaoImpl implements UtilisateurDao {
 	private final static String SELECT_BY_CONNEXION = "SELECT * FROM UTILISATEURS WHERE mot_de_passe = ? AND (pseudo = ? OR email = ?) ";	
 	private final static String SELECT_BY_LOGIN = "SELECT * FROM UTILISATEURS WHERE pseudo = ? OR email = ?";	
 	
+	
 	private final static String SELECT_ENCHERE_EN_COUR = "SELECT * FROM UTILISATEURS u INNER JOIN ENCHERES en ON u.no_utilisateur=en.no_utilisateur"
 			+ "	INNER JOIN ARTICLES_VENDUS art ON en.no_article=art.no_article"
-			+ "	WHERE u.no_utilisateur = ? AND art.etat_vente == 'EC'";
+			+ "	WHERE u.no_utilisateur = ? AND art.etat_vente = 'EC'";
+	
+	
 	
 	private final static String UPDATE = "UPDATE utilisateurs SET pseudo = ?, nom = ?, prenom = ?, email = ?, telephone = ?, rue = ?, code_postal = ?, ville = ?, mot_de_passe = ? WHERE no_utilisateur = ?;";
 	

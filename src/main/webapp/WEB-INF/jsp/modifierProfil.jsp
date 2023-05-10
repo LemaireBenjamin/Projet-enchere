@@ -100,7 +100,7 @@
 					</div>
 					<div class="col-2">
 					<a onclick="return confirm('Voulez-vous vraiment supprimer votre compte ?');" 
-					href="<%= request.getContextPath() %>/supprimer-profil/${utilisateur.noUtilisateur }%>" class="btn btn-danger">Supprimer mon compte</a>
+					href="<%= request.getContextPath() %>/supprimer-profil/${utilisateur.noUtilisateur }" class="btn btn-danger">Supprimer mon compte</a>
 					</div>
 				</div> 
 		</form>
