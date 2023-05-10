@@ -63,7 +63,17 @@ public class EncheresServlet extends HttpServlet {
             	  if(achatCheckBox.equals("mes-encheres-en-cours")) { 
             		  System.out.println("dans mes encheres en cours");
             		  System.out.println(utilisateur);
-	            	  List<Enchere> encheres = EnchereManager.getInstance().getAllEncheresEnCoursByUser(utilisateur);
+	            	  List<Enchere> encheres = EnchereManager.getInstance().getAllEncheresEnCoursByUser(utilisateur, "EC");
+	            	  request.setAttribute("encheres", encheres);
+	            	  request.getRequestDispatcher("/WEB-INF/jsp/encheres.jsp").forward(request, response);
+	            	  return;
+	             
+	              }
+            	  
+            	  if(achatCheckBox.equals("mes-encheres-remportees")) { 
+            		  System.out.println("dans mes encheres remportées");
+            		  System.out.println(utilisateur);
+	            	  List<Enchere> encheres = EnchereManager.getInstance().getAllEncheresGagneesByUser(utilisateur, "ET");
 	            	  request.setAttribute("encheres", encheres);
 	            	  request.getRequestDispatcher("/WEB-INF/jsp/encheres.jsp").forward(request, response);
 	            	  return;

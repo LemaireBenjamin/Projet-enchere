@@ -25,21 +25,28 @@ import fr.eni.encheres.dal.EnchereDao;
 public class EnchereDaoImpl implements EnchereDao {
 	
 	private final static String SELECT_ENCHERES_EC = """
-		SELECT UTILISATEURS.no_utilisateur, pseudo, ARTICLES_VENDUS.no_article, nom_article, date_fin_encheres, MAX(montant_enchere) AS montant_max FROM ARTICLES_VENDUS
-		INNER JOIN ENCHERES ON ARTICLES_VENDUS.no_utilisateur = ENCHERES.no_utilisateur
-		INNER JOIN UTILISATEURS ON ARTICLES_VENDUS.no_utilisateur = UTILISATEURS.no_utilisateur 
-		WHERE etat_vente = ? 
-		GROUP BY UTILISATEURS.no_utilisateur, pseudo, ARTICLES_VENDUS.no_article, nom_article, date_fin_encheres;
-
+			SELECT u.no_utilisateur, pseudo, av.no_article, nom_article, date_fin_encheres, MAX(montant_enchere) AS montant_max FROM ARTICLES_VENDUS av
+			INNER JOIN ENCHERES e ON av.no_article = e.no_article
+			INNER JOIN UTILISATEURS u ON av.no_utilisateur = u.no_utilisateur
+			WHERE etat_vente = ?
+			GROUP BY u.no_utilisateur, pseudo, av.no_article, nom_article, date_fin_encheres;
 			""";
 	
-	private static final String SELECT_ENCHERES_EN_COURS_BY_UTILISATEUR =  "SELECT * "+
-            "FROM ARTICLES_VENDUS av "+
-            "INNER JOIN ENCHERES e ON av.no_utilisateur = e.no_utilisateur "+
-            "INNER JOIN UTILISATEURS u ON av.no_utilisateur = u.no_utilisateur "+
-            "WHERE e.no_utilisateur = ? ";
+	private static final String SELECT_ENCHERES_EN_COURS_BY_UTILISATEUR =  """
+			SELECT u.no_utilisateur, pseudo, av.no_article, nom_article, date_fin_encheres, MAX(montant_enchere) AS montant_max FROM ARTICLES_VENDUS av
+			INNER JOIN ENCHERES e ON av.no_article = e.no_article
+			INNER JOIN UTILISATEURS u ON av.no_utilisateur = u.no_utilisateur
+			WHERE u.no_utilisateur = ? AND etat_vente = ?
+			GROUP BY u.no_utilisateur, pseudo, av.no_article, nom_article, date_fin_encheres;
+			""";
 	
-	
+	private static final String SELECT_ENCHERES_GAGNEES_BY_UTILISATEUR =  """
+			SELECT u.no_utilisateur, pseudo, av.no_article, nom_article, date_fin_encheres, MAX(montant_enchere) AS montant_max FROM ARTICLES_VENDUS av
+			INNER JOIN ENCHERES e ON av.no_article = e.no_article
+			INNER JOIN UTILISATEURS u ON av.no_utilisateur = u.no_utilisateur
+			WHERE u.no_utilisateur = ? AND etat_vente = ?
+			GROUP BY u.no_utilisateur, pseudo, av.no_article, nom_article, date_fin_encheres;	
+			""";
 		
 	@Override
 	public List<Enchere> selectEncheresEC(String etatEnchere) {
@@ -66,19 +73,19 @@ public class EnchereDaoImpl implements EnchereDao {
 
 	
 	@Override
-	public List<Enchere> selectEncheresEnCoursByUtilisateur(Utilisateur utilisateur) {
+	public List<Enchere> selectEncheresEnCoursByUtilisateur(Utilisateur utilisateur, String etatEnchere) {
 	
 		List<Enchere> encheres = new ArrayList<>();	
 		try (Connection connection = ConnectionProvider.getConnection()) {
 			PreparedStatement pStmt = connection.prepareStatement(SELECT_ENCHERES_EN_COURS_BY_UTILISATEUR);
 			pStmt.setInt(1, utilisateur.getNoUtilisateur());
+			pStmt.setString(2, etatEnchere);
 			ResultSet rs = pStmt.executeQuery();
 			
 			while(rs.next()) {
 				encheres.add(new Enchere (rs.getDate("date_fin_encheres").toLocalDate(),	
-						new ArticleVendu (rs.getInt("no_article"), rs.getString("nom_article"), rs.getInt("montant_max")),
-						new Utilisateur (rs.getInt("no_utilisateur"), rs.getString("pseudo"))));
-						
+						new ArticleVendu(rs.getInt("no_article"), rs.getString("nom_article"), rs.getInt("montant_max")),
+						new Utilisateur (rs.getInt("no_utilisateur"), rs.getString("pseudo"))));			
 			}
 			return encheres;
 			
@@ -87,6 +94,32 @@ public class EnchereDaoImpl implements EnchereDao {
 		}
 	return null;
 	}
+	
+	@Override
+	public List<Enchere> selectEncheresGagneByUtilisateur(Utilisateur utilisateur, String etatEnchere) {
+	
+		List<Enchere> encheres = new ArrayList<>();	
+		try (Connection connection = ConnectionProvider.getConnection()) {
+			PreparedStatement pStmt = connection.prepareStatement(SELECT_ENCHERES_EN_COURS_BY_UTILISATEUR);
+			pStmt.setInt(1, utilisateur.getNoUtilisateur());
+			pStmt.setString(2, etatEnchere);
+			ResultSet rs = pStmt.executeQuery();
+			
+			while(rs.next()) {
+				encheres.add(new Enchere (rs.getDate("date_fin_encheres").toLocalDate(),	
+						new ArticleVendu(rs.getInt("no_article"), rs.getString("nom_article"), rs.getInt("montant_max")),
+						new Utilisateur (rs.getInt("no_utilisateur"), rs.getString("pseudo"))));			
+			}
+			return encheres;
+			
+		}catch (SQLException e) {
+			e.printStackTrace();
+		}
+	return null;
+	}
+	
+	
+	
 	
 	
 	
@@ -130,11 +163,7 @@ public class EnchereDaoImpl implements EnchereDao {
 
 
 
-	@Override
-	public List<Enchere> selectEncheresGagneByUtilisateur(Utilisateur utilisateur) {
-		// TODO Auto-generated method stub
-		return null;
-	}
+	
 
 
 

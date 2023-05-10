@@ -28,8 +28,12 @@ public class EnchereManager {
 				return DaoFactory.getEnchereDao().selectEncheresEC(etatEnchere);
 			}
 			
-			public List<Enchere> getAllEncheresEnCoursByUser(Utilisateur utilisateur) {
-				return DaoFactory.getEnchereDao().selectEncheresEnCoursByUtilisateur(utilisateur);
+			public List<Enchere> getAllEncheresEnCoursByUser(Utilisateur utilisateur, String etatEnchere) {
+				return DaoFactory.getEnchereDao().selectEncheresEnCoursByUtilisateur(utilisateur, "EC");
+			}
+			
+			public List<Enchere> getAllEncheresGagneesByUser(Utilisateur utilisateur, String etatEnchere) {
+				return DaoFactory.getEnchereDao().selectEncheresGagneByUtilisateur(utilisateur, "ET");
 			}
 			
 			
