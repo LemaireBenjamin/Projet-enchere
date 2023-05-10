@@ -37,10 +37,8 @@ public class EncheresServlet extends HttpServlet {
 		List<Enchere> encheres = EnchereManager.getInstance().getAllEncheresEC("EC");
 		request.setAttribute("encheres", encheres);
 		request.getRequestDispatcher("/WEB-INF/jsp/encheres.jsp").forward(request, response);
-	
 	}
 	
-
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 			
 			HttpSession session = request.getSession();

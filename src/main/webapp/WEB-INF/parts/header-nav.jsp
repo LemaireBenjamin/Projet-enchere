@@ -9,7 +9,7 @@
 				<a class="nav-link" href="<%= request.getContextPath() %>">Enchères</a>
 			</li>
 			<li class="nav-item">
-				<a class="nav-link" href="#">Vendre un article</a>
+				<a class="nav-link" href="<%= request.getContextPath()%>/nouvelle-vente">Vendre un article</a>
 			</li>
 			<li class="nav-item">
 				<a class="nav-link" href="<%=request.getContextPath()%>/profil/${utilisateur.noUtilisateur}">Mon profil</a>

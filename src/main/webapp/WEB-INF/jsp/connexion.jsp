@@ -47,7 +47,8 @@ String erreurCnx = (String) request.getAttribute("erreur");
 							<div class="form-group row">
 								<label for="login" class="col-sm-2 col-form-label">Identifiant</label>
 								<div class="col-sm-6">
-									<input type="text" class="form-control" id="login" name="login"
+						<input type="text" name="login" class="form-control" id="login"
+
 										placeholder=" pseudo ou email" required />
 								</div>
 							</div>
@@ -60,6 +61,7 @@ String erreurCnx = (String) request.getAttribute("erreur");
 										placeholder="password" name="password" required />
 								</div>
 							</div>
+
 						<!-- button -->
 								<div class="d-flex bg-secondary mb-3">
 									<div class="p-2">
@@ -84,6 +86,30 @@ String erreurCnx = (String) request.getAttribute("erreur");
 
 				
 				
+=======
+							<br>
+							<!-- button -->
+							<div class="d-flex bg-secondary mb-3">
+								<div class="p-2">
+									<button type="submit" class="btn btn-warning">Connexion</button>
+								</div>
+								<div class="p-2 ">
+									<input type="checkbox" id="chk1" name="chk1"
+										value="enrgMotDePasse"> <label for="chk1"> Se
+										souvenir de moi</label><br>
+									<p>
+										<a href="#"> Mot de passe oublié </a>
+									</p>
+								</div>
+							</div>
+							<!-- Fin button -->
+							<a href="<%=request.getContextPath()%>/inscription"><button
+									type="button" class="btn btn-success">Creer un compte</button></a>
+
+						</form>
+					</div>
+				</div>
+>>>>>>> devbertrand
 			</div>
 		</main>
 	</div>

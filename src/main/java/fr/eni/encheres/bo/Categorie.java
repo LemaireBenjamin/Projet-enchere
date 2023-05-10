@@ -25,6 +25,9 @@ public class Categorie {
 	public Categorie() {
 	}
 	
+	public Categorie(String libelle) {
+		this.libelle = libelle;
+	}
 	
 	public Categorie(Integer noCategorie, String libelle) {
 		this.noCategorie = noCategorie;

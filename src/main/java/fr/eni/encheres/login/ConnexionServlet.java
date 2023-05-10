@@ -25,8 +25,7 @@ public class ConnexionServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private final static int WEEK = 60 * 60 * 24 * 7;
 
-	protected void doGet(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		/**
 		 * Creation du cookie
@@ -42,13 +41,11 @@ public class ConnexionServlet extends HttpServlet {
 		 * Lecture du cookie il retourne un tableau de cookie
 		 */
 		Cookie[] cookies = request.getCookies();
-		
-		
 		request.getRequestDispatcher("/WEB-INF/jsp/connexion.jsp").forward(request, response);
 	}
+	
 		
-	protected void doPost(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
 		try {
 			String utilisateurNom = request.getParameter("login");
@@ -68,7 +65,5 @@ public class ConnexionServlet extends HttpServlet {
 		} catch (Exception e) { // Ici BLLEXCEPTion? Mais creee une erreur et je ne peux pas propager)
 			e.printStackTrace();
 		}
-		
-
 	}
 }

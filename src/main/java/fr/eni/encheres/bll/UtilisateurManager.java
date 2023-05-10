@@ -29,7 +29,6 @@ public class UtilisateurManager {
 		/**END SINGLETON **/
 
 		
-		
 		public void addUtilisateur(Utilisateur utilisateur) throws BllException {
 			checkUtilisateur(utilisateur);
 			DaoFactory.getUtilisateurDao().insert(utilisateur);

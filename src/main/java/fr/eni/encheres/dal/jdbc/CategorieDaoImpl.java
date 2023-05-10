@@ -23,8 +23,8 @@ public class CategorieDaoImpl implements CategorieDao {
 	 */
 	// questions: on met la liste d'article?
 	private final static String SELECT_ALL = "SELECT * FROM  categories";
-	private final static String SELECT_ONE_CATEGORIE = "SELECT * FROM categories WHERE no_categorie= ?";
-	private final static String SELECT_LIBELLE = "SELECT libelle from categories where libelle = ?;";
+	private final static String SELECT_ONE_CATEGORIE = "SELECT * FROM categories WHERE no_categorie = ?";
+	private final static String SELECT_LIBELLE = "SELECT * from CATEGORIES where libelle = ?;";
 
 	/**
 	 * Les methodes
@@ -75,10 +75,10 @@ public class CategorieDaoImpl implements CategorieDao {
 	public Categorie selectLibelle(String libelle) {
 
 		try (Connection cnx = ConnectionProvider.getConnection()) {
+			
 			PreparedStatement pstm = cnx.prepareStatement(SELECT_LIBELLE);
-			ResultSet rs = pstm.executeQuery();
 			pstm.setString(1, libelle);
-
+			ResultSet rs = pstm.executeQuery();
 			if (rs.next()) {
 				return new Categorie(rs.getInt("no_categorie"), rs.getString("libelle"));
 			}
