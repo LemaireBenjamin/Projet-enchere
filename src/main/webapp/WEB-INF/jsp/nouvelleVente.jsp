@@ -29,16 +29,16 @@ String[] categories = application.getInitParameter("CATEGORIES").split(";");
 		</header>
 
 		<main>
-			<div class="logo">
-				<img src="../assets/img/logo.jpg" alt="" width="100" height="150">
-			</div>
 			<section>
-				<div class="col-8 offset-2">
+				<div class="logo">
+					<img src="../assets/img/logo.jpg" alt="" width="100" height="150">
+				</div>
+
+				<div class="col-sm-6 offset-3">
 					<div class="row text-center">
 						<h1 class="mt-5 mb-5">Nouvelle vente</h1>
 					</div>
-
-
+					<!-- Formulaire -->
 					<form action="" method="POST">
 
 						<div class="form-group row">
@@ -80,6 +80,7 @@ String[] categories = application.getInitParameter("CATEGORIES").split(";");
 								placeholder="Uploader">
 						</div>
 					</div>
+
 					<br>
 					<div class="form-group row">
 						<label for="photoarticle" class="col-sm-2 col-form-label">Mise
@@ -108,7 +109,7 @@ String[] categories = application.getInitParameter("CATEGORIES").split(";");
 						</div>
 					</div>
 					<br>
-					
+
 					<form>
 						<fieldset>
 							<legend>Retrait</legend>
@@ -141,9 +142,9 @@ String[] categories = application.getInitParameter("CATEGORIES").split(";");
 			</section>
 			<div></div>
 			<section>
-				<br>
+				<br> <br>
 				<section>
-					<div class="py-5 text-center">
+					<div class="col-sm-6 offset-3 text-center">
 						<div class="d-flex justify-content-around bg-secondary mb-3">
 							<div class="p-2 bg-info">
 								<button type="submit" class="btn ">Enregistrer</button>
@@ -160,13 +161,12 @@ String[] categories = application.getInitParameter("CATEGORIES").split(";");
 			</section>
 		</main>
 	</div>
-
-
-
+	<br>
 	<footer>
 		<%@ include file="/WEB-INF/parts/footer.jsp"%>
 	</footer>
 
+	<!-- Script java Script -->
 
 	<script type="text/javascript">
 		// Récupérer les éléments HTML des boutons radio et des cases à cocher pour la vente
