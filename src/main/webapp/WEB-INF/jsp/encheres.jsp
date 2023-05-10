@@ -165,6 +165,8 @@ HttpSession session1 = request.getSession(false);
 			<%@ include file="/WEB-INF/parts/footer.jsp"%>
 		</footer>
 	</div>
+	
+	
 	<script type="text/javascript">
 		// Récupérer les éléments HTML des boutons radio et des cases à cocher pour la vente
 		const achatRadio = document.getElementById('optionsRadios1');

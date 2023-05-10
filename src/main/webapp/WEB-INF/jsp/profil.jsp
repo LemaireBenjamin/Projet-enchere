@@ -69,7 +69,7 @@ Utilisateur sessionUtilisateur = (Utilisateur) session1.getAttribute("utilisateu
 						<label>${utilisateur.ville}</label>
 					</div>
 			
-			<% if (utilisateur.getNoUtilisateur() == sessionUtilisateur.getNoUtilisateur()) {%>
+			<% if ( sessionUtilisateur != null && utilisateur.getNoUtilisateur() == sessionUtilisateur.getNoUtilisateur()) {%>
 				<div class="row offset-5 mt-4">
 					<div class="col-2">
 						<a href="<%= request.getContextPath() %>/modifier-profil/${utilisateur.noUtilisateur}">

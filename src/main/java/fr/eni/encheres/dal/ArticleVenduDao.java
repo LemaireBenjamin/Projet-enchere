@@ -18,4 +18,6 @@ public interface ArticleVenduDao {
 	public void update(ArticleVendu articlevendu);
 
 	public void deleteArticleVendu(int id);
+
+	public void deleteByUserId(int noUtilisateur);
 }

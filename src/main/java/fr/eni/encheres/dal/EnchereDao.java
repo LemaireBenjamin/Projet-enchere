@@ -32,10 +32,8 @@ public interface EnchereDao {
 	public void update(Enchere enchere);
 
 	public void deleteEnchere(int id);
+
+	public void deleteByUserId(int noUtilisateur);
 	
 
-	
-	
-	
-	
 }

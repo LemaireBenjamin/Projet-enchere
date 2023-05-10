@@ -47,7 +47,10 @@ public class EnchereDaoImpl implements EnchereDao {
 			WHERE u.no_utilisateur = ? AND etat_vente = ?
 			GROUP BY u.no_utilisateur, pseudo, av.no_article, nom_article, date_fin_encheres;	
 			""";
-		
+	
+	
+	
+	
 	@Override
 	public List<Enchere> selectEncheresEC(String etatEnchere) {
 		
@@ -155,18 +158,6 @@ public class EnchereDaoImpl implements EnchereDao {
 	}
 
 
-
-
-
-
-	
-
-
-
-	
-
-
-
 	@Override
 	public Enchere selectEnchereGagneeByArticle(int noArticle) {
 		// TODO Auto-generated method stub
@@ -189,9 +180,13 @@ public class EnchereDaoImpl implements EnchereDao {
 		return null;
 	}
 
-	
-	
-	
+
+	@Override
+	public void deleteByUserId(int noUtilisateur) {
+		// TODO Auto-generated method stub
+		
+	}
+
 	
 	
 }

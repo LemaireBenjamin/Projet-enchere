@@ -65,6 +65,7 @@ public class UtilisateurManager {
 				throw bll;
 			
 			}else {
+				DaoFactory.getArticleVenduDao().deleteByUserId(noUtilisateur);
 				DaoFactory.getUtilisateurDao().delete(noUtilisateur);
 			}
 		}
@@ -85,19 +86,6 @@ public class UtilisateurManager {
 			
 		}
 
-		private void checkField(String field, String name, BllException bll){
-			if(field.isBlank()) {
-				bll.ajouterErreur("Le champ %s ne peut pas être vide".formatted(name));
-			}
-			
-		}
-		
-		private void checkUnicite(String field, String name, BllException bll){
-			if(DaoFactory.getUtilisateurDao().selectByPseudo(field) != null) {
-				bll.ajouterErreur("Le %s %s est déjà pris par un autre utilisateur".formatted(name,field));
-			}
-			
-		}
 		
 		// Pour la modification des champs de l'utilisateur. Pour éviter l'erreur lors de la modification du pseudo
 		public void checkModificationUser(Utilisateur utilisateur) throws BllException {
@@ -112,6 +100,21 @@ public class UtilisateurManager {
 			checkField(utilisateur.getMotDePasse(), "Mot de passe", bll);
 			if(bll.getErreurs().size()>0) {
 				throw bll;
+			}
+			
+		}
+		
+		
+		private void checkField(String field, String name, BllException bll){
+			if(field.isBlank()) {
+				bll.ajouterErreur("Le champ %s ne peut pas être vide".formatted(name));
+			}
+			
+		}
+		
+		private void checkUnicite(String field, String name, BllException bll){
+			if(DaoFactory.getUtilisateurDao().selectByPseudo(field) != null) {
+				bll.ajouterErreur("Le %s %s est déjà pris par un autre utilisateur".formatted(name,field));
 			}
 			
 		}
