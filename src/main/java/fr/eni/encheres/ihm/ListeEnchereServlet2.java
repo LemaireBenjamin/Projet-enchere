@@ -7,6 +7,8 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
+//A supprimer
+
 @WebServlet("/enchere2")
 public class ListeEnchereServlet2 extends HttpServlet {
 	private static final long serialVersionUID = 1L;
