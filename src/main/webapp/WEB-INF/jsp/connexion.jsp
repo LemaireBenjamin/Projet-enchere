@@ -21,7 +21,7 @@ String erreurCnx = (String) request.getAttribute("erreur");
 			<%@ include file="/WEB-INF/parts/header-connexion.jsp"%>
 		</header>
 		<main>
-				<div class="row mt-5">
+			<div class="row mt-5">
 
 				<div class="row text-center">
 					<div class="container">
@@ -60,12 +60,9 @@ String erreurCnx = (String) request.getAttribute("erreur");
 									type="password" placeholder="password" name="password" required />
 							</div>
 
-
-							<!-- Renvoyer à la page d'acceuil: modifier le header pour afficher vente ou enchere -->
-
 							<div class="d-flex justify-content-center bg-secondary mb-3">
 								<div class="p-2">
-								
+
 									<button type="submit" class="btn btn-warning">
 										Connexion</button>
 								</div>
@@ -86,7 +83,7 @@ String erreurCnx = (String) request.getAttribute("erreur");
 				</div>
 		</main>
 	</div>
-	
+
 
 	<footer>
 		<%@ include file="/WEB-INF/parts/footer.jsp"%>
