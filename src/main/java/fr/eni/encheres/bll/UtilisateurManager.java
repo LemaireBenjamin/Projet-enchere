@@ -39,21 +39,31 @@ public class UtilisateurManager {
 			return DaoFactory.getUtilisateurDao().selectById(noUtilisateur);
 		}
 		
-		public Utilisateur getUtilisateurByConnexion(String nomUtilisateur, String motDePasse) {
-			return DaoFactory.getUtilisateurDao().selectByConnexion(nomUtilisateur, motDePasse);
+		// Retourne un utilisateur si le login (pseudo ou email) et le mot de passe sont correctes
+		public Utilisateur getUtilisateurByConnexion(String login, String motDePasse) {
+			return DaoFactory.getUtilisateurDao().selectByConnexion(login, motDePasse);
 
 		}
 		
 		public void updateUtilisateur(Utilisateur utilisateur) throws BllException{
-			checkUtilisateur(utilisateur);
+			checkModificationUser(utilisateur);
 			DaoFactory.getUtilisateurDao().update(utilisateur);
 		}
 		
+		public Utilisateur getUtilisateurForConnexion(String utilisateurNom, String motDePasse) {
+			return DaoFactory.getUtilisateurDao().selectByConnexion(utilisateurNom, motDePasse);
+			
+		}
+		
 		public void deleteUtilisateur(int noUtilisateur) throws BllException {
+		
+			// Vérifie que l'utilisateur a des enchères en cours
 			if( DaoFactory.getUtilisateurDao().selectEnchereEnCour(noUtilisateur) != null){
+				
 				BllException bll = new BllException();
 				bll.ajouterErreur("Vous avez des enchères en cours. Vous ne pouvez pas supprimer votre compte");
 				throw bll;
+			
 			}else {
 				DaoFactory.getUtilisateurDao().delete(noUtilisateur);
 			}
@@ -61,7 +71,7 @@ public class UtilisateurManager {
 		
 		public void checkUtilisateur(Utilisateur utilisateur) throws BllException {
 			BllException bll = new BllException();
-			checkField(utilisateur.getPseudo(), "Pseudo", bll);
+			checkUnicite(utilisateur.getPseudo(), "Pseudo", bll);
 			checkField(utilisateur.getNom(), "Nom", bll);
 			checkField(utilisateur.getPrenom(), "Prenom", bll);
 			checkField(utilisateur.getEmail(), "Email", bll);
@@ -81,9 +91,28 @@ public class UtilisateurManager {
 			}
 			
 		}
-
-		public Utilisateur getUtilisateurForConnexion(String utilisateurNom, String motDePasse) {
-			return DaoFactory.getUtilisateurDao().selectByConnexion(utilisateurNom, motDePasse);
+		
+		private void checkUnicite(String field, String name, BllException bll){
+			if(DaoFactory.getUtilisateurDao().selectByPseudo(field) != null) {
+				bll.ajouterErreur("Le %s %s est déjà pris par un autre utilisateur".formatted(name,field));
+			}
+			
+		}
+		
+		// Pour la modification des champs de l'utilisateur. Pour éviter l'erreur lors de la modification du pseudo
+		public void checkModificationUser(Utilisateur utilisateur) throws BllException {
+			BllException bll = new BllException();
+			checkField(utilisateur.getPseudo(), "Pseudo", bll);
+			checkField(utilisateur.getNom(), "Nom", bll);
+			checkField(utilisateur.getPrenom(), "Prenom", bll);
+			checkField(utilisateur.getEmail(), "Email", bll);
+			checkField(utilisateur.getRue(), "Rue", bll);
+			checkField(utilisateur.getCodePostal(), "Code postal", bll);
+			checkField(utilisateur.getVille(), "Ville", bll);
+			checkField(utilisateur.getMotDePasse(), "Mot de passe", bll);
+			if(bll.getErreurs().size()>0) {
+				throw bll;
+			}
 			
 		}
 }

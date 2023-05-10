@@ -1,7 +1,5 @@
 package fr.eni.encheres.login;
 
-import fr.eni.encheres.bll.LoginManager;
-import fr.eni.encheres.bll.SecurityService;
 import fr.eni.encheres.bll.UtilisateurManager;
 import fr.eni.encheres.bll.exception.BllException;
 
@@ -14,7 +12,6 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.time.LocalDate;
 
 
 
@@ -39,18 +36,19 @@ public class InscriptionServlet extends HttpServlet {
 			String codePostal = request.getParameter("postalCode");
 			String ville = request.getParameter("city");
 			String motDePasse = request.getParameter("password");
-			String confirmeMotDePasse = request.getParameter("confirmPassword");
+			//String confirmeMotDePasse = request.getParameter("confirmPassword");
 			
 			Utilisateur utilisateur = new Utilisateur(pseudo, nom, prenom, email, telephone, rue, codePostal, ville, motDePasse, 0,  false);
-			System.out.println(utilisateur);
 			UtilisateurManager.getInstance().addUtilisateur(utilisateur);
-
-			Flash.send("SUCCESS", "Votre compte à bien été crée", request.getSession());
-			response.sendRedirect(request.getContextPath()+"/connexion");
-		
+			
+			if(utilisateur.getNoUtilisateur()>0) {
+				Flash.send("SUCCESS", "Votre compte à bien été crée", request.getSession());
+				response.sendRedirect(request.getContextPath()+"/connexion");
+			}
+			
 		} catch (BllException e) {
-			// TODO Auto-generated catch block
-			System.err.println(e.getMessage());
+			request.setAttribute("erreurs", e.getErreurs());
+			doGet(request, response);
 			e.printStackTrace();
 		}
 		

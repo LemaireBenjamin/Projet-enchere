@@ -53,7 +53,8 @@ public class ModifierProfilServlet extends HttpServlet {
 			response.sendRedirect(request.getContextPath());
 			
 		} catch (BllException e) {
-			System.out.println(e.getMessage());
+//			request.setAttribute("erreurs", e.getErreurs());
+//			doGet(request, response);
 			e.printStackTrace();
 		}
 	}

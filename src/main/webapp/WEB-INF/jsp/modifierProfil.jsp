@@ -1,9 +1,12 @@
+<%@page import="fr.eni.encheres.helpers.Flash"%>
+<%@page import="java.util.List"%>
 <%@page import="fr.eni.encheres.bo.Utilisateur"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
     
 <% Utilisateur utilisateur = (Utilisateur) request.getAttribute("utilisateur"); %>
-
+<% List<String> erreurs = (List<String>) request.getAttribute("erreurs"); %>
+<% String messageErreur = Flash.getMessage("error", request.getSession()); %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -19,11 +22,33 @@
 		
 		<main class="mt-5 ">
 			
+				<%
+					if(erreurs != null)
+					for(String erreur : erreurs){	
+				%>
+				
+				<div class="alert alert-danger">
+					<%= erreur %>
+				</div>
+				
+				<%} %>
+				
+				
+				<%
+					if(messageErreur != null){	
+				%>
+				
+				<div class="alert alert-danger">
+					<%= messageErreur %>
+				</div>
+				
+				<%} %>				
 			<form action="" method="post">
 				<div class="row offset-3 mt-5">
 					<div class="col-4">
 						<label for="pseudo" >Pseudo :</label>
 						<input autofocus="autofocus" name="pseudo" type="text"
+						pattern="[A-Za-z0-9]+"
 						value="${utilisateur.pseudo}">
 					</div>
 					<div class="col-4">
@@ -95,12 +120,14 @@
 				
 				
 				<div class="row offset-5 mt-4">
+					
 					<div class="col-2">
 						<button type="submit" class="btn btn-success">Enregistrer</button>	
 					</div>
+					
 					<div class="col-2">
-					<a onclick="return confirm('Voulez-vous vraiment supprimer votre compte ?');" 
-					href="<%= request.getContextPath() %>/supprimer-profil/${utilisateur.noUtilisateur }" class="btn btn-danger">Supprimer mon compte</a>
+						<a onclick="return confirm('Voulez-vous vraiment supprimer votre compte ?');" 
+						href="<%= request.getContextPath() %>/supprimer-profil/${utilisateur.noUtilisateur }" class="btn btn-danger">Supprimer mon compte</a>
 					</div>
 				</div> 
 		</form>

@@ -1,4 +1,8 @@
+<%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+
+<% List<String> erreurs = (List<String>) request.getAttribute("erreurs"); %>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -8,16 +12,29 @@
 <body>
 	<div class="container-fluid">
 		<header class="row mb-5">
-			<%@ include file="/WEB-INF/parts/header-nav.jsp"%>
+			<%@ include file="/WEB-INF/parts/header-connexion.jsp"%>
 		</header>
 		
 		<main>
-
+	
+				<%
+					if(erreurs != null)
+					for(String erreur : erreurs){	
+				%>
+				
+				<div class="alert alert-danger">
+					<%= erreur %>
+				</div>
+				
+				<%} %>
+				
 			<form action="" method="post">
 				<div class="row offset-3 mt-5">
 					<div class="col-4">
 						<label for="pseudo" >Pseudo :</label>
-						<input autofocus="autofocus" name="pseudo" type="text">
+						<input autofocus="autofocus" pattern="[A-Za-z0-9]+"
+						title="Veuillez entrer uniquement des caractères alphanumériques." 
+						name="pseudo" type="text">
 					</div>
 						<div class="col-4">
 						<label for="lastname" >Nom :</label>
