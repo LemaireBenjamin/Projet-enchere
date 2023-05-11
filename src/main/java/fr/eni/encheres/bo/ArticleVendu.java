@@ -70,7 +70,30 @@ public class ArticleVendu {
 		this.prixVente = prixVente;
 
 	}
-
+	
+	public ArticleVendu(Integer noArticle,
+			String nomArticle,
+			String description, 
+			LocalDate dateDebutEncheres, 
+			LocalDate dateFinEncheres,
+			Integer prixInitial, 
+			Integer prixVente, 
+			Categorie categorie, 
+			String etatVente,
+			Retrait retrait) {
+		this.noArticle = noArticle;
+		this.nomArticle = nomArticle;
+		this.description = description;
+		this.dateDebutEncheres = dateDebutEncheres;
+		this.dateFinEncheres = dateFinEncheres;
+		this.prixInitial = prixInitial;
+		this.prixVente = prixVente;
+		this.categorieArticle = categorie;
+		this.etatVente = etatVente;
+		this.lieuRetrait = retrait;
+	}
+	
+	
 	public ArticleVendu(Integer noArticle, String nomArticle, String description, LocalDate dateDebutEncheres,
 			LocalDate dateFinEncheres, Integer prixInitial, Integer prixVente, Integer noUtilisateur,
 			Integer noCategorie) {
@@ -101,13 +124,13 @@ public class ArticleVendu {
 	}
 
 	
-	public ArticleVendu(Integer noArticle, String nomArticle, String description, Date dateDebutEncheres, Date dateFinEncheres, Integer prixInitial, Integer prixVente,
+	public ArticleVendu(Integer noArticle, String nomArticle, String description, LocalDate dateDebutEncheres, LocalDate dateFinEncheres, Integer prixInitial, Integer prixVente,
 			String etatVente) {
 		this.noArticle = noArticle;
 		this.nomArticle = nomArticle;
 		this.description = description;
-		this.dateDebutEncheres = this.dateDebutEncheres;
-		this.dateFinEncheres = this.dateFinEncheres;
+		this.dateDebutEncheres = dateDebutEncheres;
+		this.dateFinEncheres = dateFinEncheres;
 		this.prixInitial = prixInitial;
 		this.prixVente = prixVente;
 		this.etatVente = etatVente;

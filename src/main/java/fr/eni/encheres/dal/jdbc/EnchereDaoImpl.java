@@ -15,7 +15,9 @@ import java.util.List;
 
 import config.ConnectionProvider;
 import fr.eni.encheres.bo.Enchere;
+import fr.eni.encheres.bo.Retrait;
 import fr.eni.encheres.bo.ArticleVendu;
+import fr.eni.encheres.bo.Categorie;
 import fr.eni.encheres.bo.Utilisateur;
 import fr.eni.encheres.dal.EnchereDao;
 
@@ -48,7 +50,23 @@ public class EnchereDaoImpl implements EnchereDao {
 			GROUP BY u.no_utilisateur, pseudo, av.no_article, nom_article, date_fin_encheres;	
 			""";
 	
-	
+	private static final String SELECT_BY_ID_ARTICLE = """	
+			SELECT e.no_utilisateur,e.no_article,e.date_enchere,
+				em.montant_max,
+				ca.libelle, re.rue,re.code_postal,re.ville,
+				ut.pseudo,ut.credit, 
+				av.nom_article,av.etat_vente, av.description,av.date_debut_encheres,
+				av.date_fin_encheres, av.prix_initial, av.prix_vente,av.no_categorie
+			FROM encheres e INNER JOIN (
+			  SELECT MAX(montant_enchere) AS montant_max FROM encheres WHERE no_article = ?
+			) em 
+			ON e.montant_enchere = em.montant_max
+			INNER JOIN ARTICLES_VENDUS av ON e.no_article = av.no_article 
+			INNER JOIN RETRAITS re ON av.no_article=re.no_article 
+			INNER JOIN CATEGORIES ca ON av.no_categorie = ca.no_categorie
+			INNER JOIN UTILISATEURS ut ON e.no_utilisateur=ut.no_utilisateur
+			WHERE e.no_article = ?;
+			""";
 	
 	
 	@Override
@@ -122,7 +140,33 @@ public class EnchereDaoImpl implements EnchereDao {
 	}
 	
 	
-	
+	@Override
+	public Enchere selectOneByIdArticle(int noArticle) {
+		try (Connection connection = ConnectionProvider.getConnection()) {
+			PreparedStatement pStmt = connection.prepareStatement(SELECT_BY_ID_ARTICLE);
+			pStmt.setInt(1, noArticle);
+			pStmt.setInt(2, noArticle);
+			ResultSet rs = pStmt.executeQuery();
+			
+			if(rs.next()) 
+				return new Enchere (rs.getDate("date_fin_encheres").toLocalDate(),rs.getInt("montant_max"),	
+						new ArticleVendu((Integer) rs.getInt("no_article"), 
+								rs.getString("nom_article"),
+								rs.getString("description"),
+								rs.getDate("date_debut_encheres").toLocalDate(),
+								rs.getDate("date_fin_encheres").toLocalDate(),
+								(Integer) rs.getInt("prix_initial"),
+								(Integer) rs.getInt("prix_vente"),
+								(Categorie) (new Categorie(rs.getInt("no_categorie"),rs.getString("libelle"))),
+								rs.getString("etat_vente"),
+								(Retrait) new Retrait(rs.getString("rue"),rs.getString("code_postal"),rs.getString("ville"))),
+						new Utilisateur (rs.getInt("no_utilisateur"), rs.getString("pseudo"),rs.getInt("credit")));			
+						
+		}catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return null;
+	}
 	
 	
 	
@@ -186,6 +230,9 @@ public class EnchereDaoImpl implements EnchereDao {
 		// TODO Auto-generated method stub
 		
 	}
+
+
+	
 
 	
 	

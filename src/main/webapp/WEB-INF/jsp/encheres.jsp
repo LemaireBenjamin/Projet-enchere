@@ -131,7 +131,13 @@ HttpSession session1 = request.getSession(false);
 					%>
 					<div class="col-4">
 						<div class="card mb-4">
-							<a href=""><h3 class="no-underline d-flex card-header justify-content-center align-items-center"><%= enchere.getArticleVendu().getNomArticle() %></h3></a>
+							
+							
+							<a href="<%= request.getContextPath() %>/detail-vente/<%= enchere.getArticleVendu().getNoArticle() %>">
+							<h3 class="no-underline d-flex card-header justify-content-center align-items-center"><%= enchere.getArticleVendu().getNomArticle() %>
+							</h3></a>
+							
+							
 							<div class="card-body" >
 								<h5 class="card-title ">Prix : <%= enchere.getArticleVendu().getPrixVente() %> points</h5>
 								<%

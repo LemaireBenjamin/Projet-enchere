@@ -1,3 +1,4 @@
+<%@page import="fr.eni.encheres.helpers.Flash"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@page import="java.util.List"%>
@@ -7,7 +8,7 @@ List<String> erreurs = (List<String>) request.getAttribute("erreurs");
 <%
 String erreurCnx = (String) request.getAttribute("erreur");
 %>
-
+<% String messageErreur = Flash.getMessage("error", request.getSession()); %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -22,7 +23,17 @@ String erreurCnx = (String) request.getAttribute("erreur");
 		</header>
 		<main>
 			<div class="col-sm-5 offset-4">
-
+	
+	<%
+					if(messageErreur != null){	
+				%>
+				
+				<div class="alert alert-danger">
+					<%= messageErreur %>
+				</div>
+				
+				<%} %>			
+				
 				<div class="row">
 					<div class="container">
 						<h2 class="login-title">Se Connecter</h2>
@@ -85,31 +96,7 @@ String erreurCnx = (String) request.getAttribute("erreur");
 					</div>
 
 				
-				
-=======
-							<br>
-							<!-- button -->
-							<div class="d-flex bg-secondary mb-3">
-								<div class="p-2">
-									<button type="submit" class="btn btn-warning">Connexion</button>
-								</div>
-								<div class="p-2 ">
-									<input type="checkbox" id="chk1" name="chk1"
-										value="enrgMotDePasse"> <label for="chk1"> Se
-										souvenir de moi</label><br>
-									<p>
-										<a href="#"> Mot de passe oublié </a>
-									</p>
-								</div>
-							</div>
-							<!-- Fin button -->
-							<a href="<%=request.getContextPath()%>/inscription"><button
-									type="button" class="btn btn-success">Creer un compte</button></a>
 
-						</form>
-					</div>
-				</div>
->>>>>>> devbertrand
 			</div>
 		</main>
 	</div>

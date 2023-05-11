@@ -35,6 +35,9 @@ public class EnchereManager {
 			public List<Enchere> getAllEncheresGagneesByUser(Utilisateur utilisateur, String etatEnchere) {
 				return DaoFactory.getEnchereDao().selectEncheresGagneByUtilisateur(utilisateur, "ET");
 			}
+			public Enchere getArticleByNoArticle(int noArticle) {
+				return DaoFactory.getEnchereDao().selectOneByIdArticle(noArticle);
+			}
 			
 			
 			

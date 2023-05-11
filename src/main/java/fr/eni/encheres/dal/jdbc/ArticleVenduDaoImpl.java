@@ -4,16 +4,13 @@
 package fr.eni.encheres.dal.jdbc;
 
 import java.sql.Connection;
-<<<<<<< HEAD
-import java.sql.PreparedStatement;
-import java.sql.SQLException;
-=======
+
 import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.time.LocalDate;
->>>>>>> devbertrand
+
 import java.util.List;
 
 import config.ConnectionProvider;
@@ -22,9 +19,8 @@ import fr.eni.encheres.dal.ArticleVenduDao;
 
 public class ArticleVenduDaoImpl implements ArticleVenduDao {
 	
-<<<<<<< HEAD
+
 	private static final String DELETE_ARTICLE_BY_USER_ID = "DELETE FROM ARTICLES_VENDUS WHERE no_utilisateur = ?;";
-=======
 	private final static String INSERT_ARTICLE = "INSERT INTO ARTICLES_VENDUS (nom_article, description, date_debut_encheres, date_fin_encheres, prix_initial, prix_vente, etat_vente, no_utilisateur, no_categorie) VALUES (?,?,?,?,?,?,?,?,?)";
 		
 	@Override
@@ -55,8 +51,7 @@ public class ArticleVenduDaoImpl implements ArticleVenduDao {
 		
 	}
 	
-	
->>>>>>> devbertrand
+
 	
 	@Override
 	public List<ArticleVendu> selectAll() {

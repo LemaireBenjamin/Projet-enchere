@@ -18,6 +18,7 @@ import fr.eni.encheres.bll.LoginManager;
 import fr.eni.encheres.bll.UtilisateurManager;
 import fr.eni.encheres.bll.exception.BllException;
 import fr.eni.encheres.bo.Utilisateur;
+import fr.eni.encheres.helpers.Flash;
 
 @WebServlet("/connexion")
 public class ConnexionServlet extends HttpServlet {
@@ -31,11 +32,12 @@ public class ConnexionServlet extends HttpServlet {
 		 * Creation du cookie
 		 */
 		Cookie cookie = new Cookie("prenom", "cookieProjetEnchere");
+		
 		// duree de vie en seconde
 		cookie.setMaxAge(WEEK);
+		
 		response.addCookie(cookie);
-		//pour afficher
-		//response.getWriter().write("test cookie");
+		
 		
 		/**
 		 * Lecture du cookie il retourne un tableau de cookie
@@ -54,15 +56,20 @@ public class ConnexionServlet extends HttpServlet {
 			Utilisateur utilisateur = UtilisateurManager.getInstance().getUtilisateurByConnexion(utilisateurNom, motDePasse);
 
 			if(utilisateur == null) {
-				response.sendError(HttpServletResponse.SC_NOT_FOUND);
+				Flash.send("error", "Le compte n'existe pas", request.getSession());
+				response.sendRedirect(request.getContextPath()+"/connexion");
 				return;
+			
 			}
 		
 			// Creation session
 			HttpSession session = request.getSession();
 			session.setAttribute("utilisateur", utilisateur);
 			response.sendRedirect(request.getContextPath());
-		} catch (Exception e) { // Ici BLLEXCEPTion? Mais creee une erreur et je ne peux pas propager)
+		
+		} catch (Exception e) {
+			request.setAttribute("erreurs", e.getMessage());
+			doGet(request, response);
 			e.printStackTrace();
 		}
 	}

@@ -42,7 +42,13 @@ public class Utilisateur {
 		this.noUtilisateur = noUtilisateur;
 		this.pseudo = pseudo;
 	}
-
+	
+	public Utilisateur(Integer noUtilisateur, String pseudo, Integer credit) {
+		this();
+		this.noUtilisateur = noUtilisateur;
+		this.pseudo = pseudo;
+		this.credit = credit;
+	}
 
 
 	public Utilisateur(String pseudo, String email) {

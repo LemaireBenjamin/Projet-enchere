@@ -24,7 +24,7 @@ Utilisateur sessionUtilisateur = (Utilisateur) session1.getAttribute("utilisateu
 		
 		<main class="mt-5 offset-5 col-2 text-center">
 			<div class="grid gap-3">
-			<form action="" method="post">
+		
 					
 					<div class="p-2 g-col-6">
 						<label>Pseudo :</label>
@@ -78,7 +78,7 @@ Utilisateur sessionUtilisateur = (Utilisateur) session1.getAttribute("utilisateu
 					
 				</div> 
 			<% } %>
-		</form>
+		
 		</div>
 		</main>
 	

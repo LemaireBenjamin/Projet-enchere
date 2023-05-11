@@ -34,6 +34,8 @@ public interface EnchereDao {
 	public void deleteEnchere(int id);
 
 	public void deleteByUserId(int noUtilisateur);
+
+	public Enchere selectOneByIdArticle(int noArticle);
 	
 
 }
