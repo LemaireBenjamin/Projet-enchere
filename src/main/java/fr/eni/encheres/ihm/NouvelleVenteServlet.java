@@ -48,16 +48,15 @@ public class NouvelleVenteServlet extends HttpServlet {
 			
 			Categorie categorie = CategorieManager.getInstance().getOneCategorie(cat);
 			Utilisateur utilisateur = (Utilisateur) session.getAttribute("utilisateur");
-			
+			System.out.println(utilisateur);
+			System.out.println(categorie);
 			System.out.println("Avant ARTICLE VENDU");
 			
 			ArticleVendu articlevendu = new ArticleVendu(nomArticle, description, debutEnchere, finEnchere, miseAPrix, miseAPrix, utilisateur, categorie, etatVente);
-			ArticleManager.getInstance().addArticle(articlevendu);
-			
-			
-			
 			System.out.println(articlevendu);
 			
+			ArticleManager.getInstance().addArticle(articlevendu);
+				
 			if(articlevendu.getNoArticle()>0) {
 				Flash.send("SUCCESS", "Votre article à bien été crée", request.getSession());
 				response.sendRedirect(request.getContextPath());

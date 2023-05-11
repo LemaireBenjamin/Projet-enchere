@@ -51,17 +51,17 @@ HttpSession session1 = request.getSession(false);
 				<h1 class="mt-5 mb-5">Liste des enchères</h1>
 			</div>
 	
-			<form action="" method="POST">
+			<form action="" method="POST" >
 				<h3>Filtres :</h3>
 				<div class="form-group col-10 d-flex flex-row">	
 					<div class="d-flew flex-column col-5"> 
 						<div> 
 						<div class="form-group">
-							<input type="text" class="form-control" placeholder="Le nom de l'article contient" id="inputDefault">	
+							<input type="text" class="form-control" placeholder="Le nom de l'article contient" id="search" name="search">	
 						</div>
 						<div class="form-group">
-							<label for="search" class="form-label col-5 mt-3"><h4>Catégories :</h4></label>
-							<select class="form-select" id="search">
+							<label for="libelle" class="form-label col-5 mt-3"><h4>Catégories :</h4></label>
+							<select class="form-select" id="libelle" name="libelle">
 								<option value="">-- Choisir une catégorie --</option>
 								<% for( String categorie : categories ){ %>
 									<option><%= categorie %></option>
@@ -105,12 +105,12 @@ HttpSession session1 = request.getSession(false);
  											mes ventes en cours
 									</label>
 									<label>
-										<input type="checkbox" name="vente-checkbox" value="mes-encheres-en-cours">
- 											mes enchères en cours
+										<input type="checkbox" name="vente-checkbox" value="vente-non-debutees">
+ 											vente non debutees
 									</label>
 									<label>
-										<input type="checkbox" name="vente-checkbox" value="mes-encheres-remportees">
- 											mes enchères remportées
+										<input type="checkbox" name="vente-checkbox" value="ventes-terminees">
+ 											ventes terminees
 									</label>
       						</div>
 						</div>

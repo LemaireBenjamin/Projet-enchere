@@ -45,7 +45,12 @@ public class ArticleVendu {
 		this.nomArticle = nomArticle;
 		this.prixVente = prixVente;
 	}
-
+	
+	public ArticleVendu(Integer noArticle, String nomArticle) {
+		super();
+		this.noArticle = noArticle;
+		this.nomArticle = nomArticle;
+	}
 
 
 
@@ -68,6 +73,9 @@ public class ArticleVendu {
 		this.dateFinEncheres = dateFinEncheres;
 		this.prixInitial = prixInitial;
 		this.prixVente = prixVente;
+		this.utilisateur = utilisateur;
+		this.categorieArticle = categorie;
+		this.etatVente = etatVente;
 
 	}
 

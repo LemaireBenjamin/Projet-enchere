@@ -16,9 +16,16 @@ public interface EnchereDao {
 
 	public List<Enchere> selectEncheresEnCoursByUtilisateur(Utilisateur utilisateur, String etatEnchere);
 	
+	public List<Enchere> selectEncheresCommenceesByUtilisateur(Utilisateur utilisateur, String etatEnchere);
+	
+	public List<Enchere> selectEncheresEnCoursAchatByUtilisateur(Utilisateur utilisateur, String etatEnchere); 
+	
 	public List<Enchere> selectEncheresGagneByUtilisateur(Utilisateur utilisateur, String etatEnchere);
 	
-	 
+	public List<Enchere> selectEncheresByLibelle(String libelle, String etatEnchere);
+	
+	
+	
 	public Enchere selectEnchereGagneeByArticle(int noArticle);
 
 	public boolean isMeilleurEncherisseur(int noArticle, int noUtilisateur);
@@ -32,6 +39,12 @@ public interface EnchereDao {
 	public void update(Enchere enchere);
 
 	public void deleteEnchere(int id);
+
+	
+
+	
+
+	
 	
 
 	

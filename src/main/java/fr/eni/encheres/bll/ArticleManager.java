@@ -51,7 +51,7 @@ public class ArticleManager {
 			}
 			
 			private void checkField(LocalDate field, String name, BllException bll){
-				if(field.isEqual(null)) {
+				if(field == null) {
 					bll.ajouterErreur("Le champ %s ne peut pas être vide".formatted(name));
 				}
 				
