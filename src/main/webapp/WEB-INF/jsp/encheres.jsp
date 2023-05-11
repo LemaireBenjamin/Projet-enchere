@@ -120,7 +120,7 @@ HttpSession session1 = request.getSession(false);
 					</div>
 					
 					<div class="d-flex flex-column col-3  justify-content-center align-items-center">
-						<button class="btn btn-lg btn-success col-10" type="submit">Rechercher</button>	
+						<button class="btn btn-lg btn-success col-6" type="submit">Rechercher</button>	
 					</div>		
 				</div>
 				
