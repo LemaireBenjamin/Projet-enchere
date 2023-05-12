@@ -26,12 +26,10 @@ public class ArticleVenduDaoImpl implements ArticleVenduDao {
 		
 	@Override
 	public void insert(ArticleVendu articlevendu) {
-			System.out.println(articlevendu);
 		try (Connection connection = ConnectionProvider.getConnection()){
-			
-			
-			
+
 			PreparedStatement pStmt = connection.prepareStatement(INSERT_ARTICLE, PreparedStatement.RETURN_GENERATED_KEYS);
+			
 			pStmt.setString(1, articlevendu.getNomArticle());
 			pStmt.setString(2, articlevendu.getDescription());
 			pStmt.setDate(3, Date.valueOf(articlevendu.getDateDebutEncheres()));
@@ -43,18 +41,28 @@ public class ArticleVenduDaoImpl implements ArticleVenduDao {
 			pStmt.setInt(9, articlevendu.getCategorieArticle().getNoCategorie());
 			
 			pStmt.executeUpdate();
+			
 			ResultSet rs = pStmt.getGeneratedKeys();
 			if(rs.next()) {
 				articlevendu.setNoArticle(rs.getInt(1)); // pour la redirection
 			}
-			
-			
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-		
 	}
 	
+	@Override
+	public void deleteByUserId(int noUtilisateur) {
+		try (Connection connection = ConnectionProvider.getConnection();){
+			
+			PreparedStatement stmt = connection.prepareStatement(DELETE_ARTICLE_BY_USER_ID);
+			stmt.setInt(1, noUtilisateur);
+			stmt.executeUpdate();
+				
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}		
+	}
 
 	
 	@Override
@@ -82,18 +90,4 @@ public class ArticleVenduDaoImpl implements ArticleVenduDao {
 		// TODO Auto-generated method stub
 		
 	}
-
-	@Override
-	public void deleteByUserId(int noUtilisateur) {
-		try (Connection connection = ConnectionProvider.getConnection();){
-			
-			PreparedStatement stmt = connection.prepareStatement(DELETE_ARTICLE_BY_USER_ID);
-			stmt.setInt(1, noUtilisateur);
-			stmt.executeUpdate();
-				
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}		
-	}
-
 }

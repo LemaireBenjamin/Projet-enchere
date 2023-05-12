@@ -5,6 +5,18 @@ import fr.eni.encheres.dal.DaoFactory;
 import fr.eni.encheres.bll.exception.BllException;
 import at.favre.lib.crypto.bcrypt.BCrypt;
 
+/**
+ * Cette classe n'est pas utilisé dans le projet  
+ * Elle permetra de "hash" le mot de passe de l'utilisateur
+ */
+
+
+
+/**
+ * 
+ * @author marie-audrey
+ *
+ */
 
 
 public class SecurityService {
@@ -36,13 +48,4 @@ public class SecurityService {
 	
 		return  utilisateur;
 	}
-	
-	
-	//String password = "Pa$$w0rd";
-	// String passwordHashed = BCrypt.withDefaults().hashToString(12, password.toCharArray());
-	// BCrypt.Result result = BCrypt.verifyer().verify("321654987".toCharArray(), passwordHashed);
-	// System.out.println(result.verified);
-	// request.setAttribute("passwordHashed", passwordHashed);
-	
-
 }

@@ -58,7 +58,8 @@ public class EnchereDaoImpl implements EnchereDao {
 			GROUP BY u.no_utilisateur, pseudo, av.no_article, nom_article, date_fin_encheres;	
 			""";
 	
-
+	
+	// Requête sql, pour récupérer les informations quand l'on clique sur le nom de l'article lors d'une enchère
 	private static final String SELECT_BY_ID_ARTICLE = """	
 			SELECT e.no_utilisateur,e.no_article,e.date_enchere,
 				em.montant_max,
@@ -163,7 +164,7 @@ public class EnchereDaoImpl implements EnchereDao {
 	
 
 	@Override
-	public Enchere selectOneByIdArticle(int noArticle) {
+	public Enchere selectOneEnchereByIdArticle(int noArticle) {
 		try (Connection connection = ConnectionProvider.getConnection()) {
 			PreparedStatement pStmt = connection.prepareStatement(SELECT_BY_ID_ARTICLE);
 			pStmt.setInt(1, noArticle);

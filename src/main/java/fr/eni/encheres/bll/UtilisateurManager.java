@@ -54,9 +54,10 @@ public class UtilisateurManager {
 			
 		}
 		
-		public void deleteUtilisateur(int noUtilisateur) throws BllException {
 		
-			// Vérifie que l'utilisateur a des enchères en cours
+		
+		// Vérifie que l'utilisateur a des enchères en cours, si oui ne le supprime pas
+		public void deleteUtilisateur(int noUtilisateur) throws BllException {
 			if( DaoFactory.getUtilisateurDao().selectEnchereEnCour(noUtilisateur) != null){
 				
 				BllException bll = new BllException();
@@ -69,12 +70,14 @@ public class UtilisateurManager {
 			}
 		}
 		
+		
+		
 		public void checkUtilisateur(Utilisateur utilisateur) throws BllException {
 			BllException bll = new BllException();
-			checkUnicite(utilisateur.getPseudo(), "Pseudo", bll);
-			checkField(utilisateur.getNom(), "Nom", bll);
-			checkField(utilisateur.getPrenom(), "Prenom", bll);
-			checkField(utilisateur.getEmail(), "Email", bll);
+			checkUnicite(utilisateur.getPseudo(), "pseudo", bll);
+			checkField(utilisateur.getNom(), "nom", bll);
+			checkField(utilisateur.getPrenom(), "prenom", bll);
+			checkUnicite(utilisateur.getEmail(), "Email", bll);
 			checkField(utilisateur.getRue(), "Rue", bll);
 			checkField(utilisateur.getCodePostal(), "Code postal", bll);
 			checkField(utilisateur.getVille(), "Ville", bll);
@@ -111,6 +114,7 @@ public class UtilisateurManager {
 			
 		}
 		
+		// Vérifie que le pseudo et l'email est unique dans la BDD
 		private void checkUnicite(String field, String name, BllException bll){
 			if(DaoFactory.getUtilisateurDao().selectByPseudo(field) != null) {
 				bll.ajouterErreur("Le %s %s est déjà pris par un autre utilisateur".formatted(name,field));

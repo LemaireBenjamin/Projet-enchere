@@ -23,9 +23,6 @@ public class Retrait {
 	public Retrait() {
 	}
 
-	
-	
-	
 	public Retrait(String rue, String codePostal, String ville) {
 		this.rue = rue;
 		this.codePostal = codePostal;
@@ -38,12 +35,6 @@ public class Retrait {
 		this.ville = ville;
 		this.articleVendu = articleVendu;
 	}
-
-	/**
-	 * Getter and setter
-	 * 
-	 * @return
-	 */
 
 	public String getRue() {
 		return rue;
@@ -77,9 +68,6 @@ public class Retrait {
 		this.articleVendu = articleVendu;
 	}
 
-	/**
-	 * ToString
-	 */
 
 	@Override
 	public String toString() {

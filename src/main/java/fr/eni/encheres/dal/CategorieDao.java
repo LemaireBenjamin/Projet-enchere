@@ -1,13 +1,11 @@
-/**
- * @Bertrand
- * @author msonzia2023
- */
 package fr.eni.encheres.dal;
-
 import java.util.List;
-
 import fr.eni.encheres.bo.Categorie;
 
+
+/**
+ * @author bertrand et marie-audrey
+ */
 public interface CategorieDao {
 	//CRUD
 	public List <Categorie> selectAll();

@@ -21,7 +21,7 @@ public class DetailVenteServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String[] params = request.getPathInfo().split("/");
 		int noArticle = Integer.parseInt(params[1]);
-//		int noUtilisateur = 10;
+
 		Enchere enchere = EnchereManager.getInstance().getArticleByNoArticle(noArticle);
 		
 		if(enchere == null) {
@@ -34,9 +34,4 @@ public class DetailVenteServlet extends HttpServlet {
 	}
 
 	
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		doGet(request, response);
-	}
-
 }

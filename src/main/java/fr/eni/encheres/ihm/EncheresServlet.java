@@ -21,7 +21,7 @@ import jakarta.servlet.http.HttpSession;
  * Ajouter une enchère => /encheres/ajouter Modifier une enchère =>
  * /encheres/modifier Supprimer une enchère => /encheres/supprimer
  * 
- * @author bmeunier2023
+ * @author bertrand
  */
 
 @WebServlet("")
@@ -60,8 +60,8 @@ public class EncheresServlet extends HttpServlet {
 				}
 
 				if (achatCheckBox.equals("mes-encheres-en-cours")) {
-					System.out.println("dans mes encheres en cours");
-					System.out.println(utilisateur);
+//					System.out.println("dans mes encheres en cours");
+//					System.out.println(utilisateur);
 					List<Enchere> encheres = EnchereManager.getInstance().getAllEncheresAchatEnCoursByUser(utilisateur, "EC");
 					request.setAttribute("encheres", encheres);
 					request.getRequestDispatcher("/WEB-INF/jsp/encheres.jsp").forward(request, response);
@@ -82,8 +82,8 @@ public class EncheresServlet extends HttpServlet {
 			} else if (optionsRadio.equalsIgnoreCase("option2") && venteCheckBox != null)  {
 
 					if (venteCheckBox.equals("mes-ventes-en-cours")) {
-						System.out.println("dans vente-non-debutees");
-						System.out.println(utilisateur);
+//						System.out.println("dans vente-non-debutees");
+//						System.out.println(utilisateur);
 						List<Enchere> encheres = EnchereManager.getInstance().getAllEncheresEnCoursByUser(utilisateur, "EC");
 						request.setAttribute("encheres", encheres);
 						request.getRequestDispatcher("/WEB-INF/jsp/encheres.jsp").forward(request, response);
@@ -91,8 +91,8 @@ public class EncheresServlet extends HttpServlet {
 					}
 
 					if (venteCheckBox.equals("vente-non-debutees")) {
-						System.out.println("dans vente-non-debutees");
-						System.out.println(utilisateur);
+//						System.out.println("dans vente-non-debutees");
+//						System.out.println(utilisateur);
 						List<Enchere> encheres = EnchereManager.getInstance().getAllEncheresCommenceesByUser(utilisateur, "CR");
 						request.setAttribute("encheres", encheres);
 						request.getRequestDispatcher("/WEB-INF/jsp/encheres.jsp").forward(request, response);
@@ -101,8 +101,8 @@ public class EncheresServlet extends HttpServlet {
 					}
 
 					if (venteCheckBox.equals("ventes-terminees")) {
-						System.out.println("dans mes ventes-terminees");
-						System.out.println(utilisateur);
+//						System.out.println("dans mes ventes-terminees");
+//						System.out.println(utilisateur);
 						List<Enchere> encheres = EnchereManager.getInstance().getAllEncheresGagneesByUser(utilisateur, "ET");
 						request.setAttribute("encheres", encheres);
 						request.getRequestDispatcher("/WEB-INF/jsp/encheres.jsp").forward(request, response);
@@ -114,8 +114,8 @@ public class EncheresServlet extends HttpServlet {
 			} else if((!libelle.equalsIgnoreCase(null))){
 			
 				 {
-					System.out.println("dans mes encheres par libellé");
-					System.out.println(libelle);
+//					System.out.println("dans mes encheres par libellé");
+//					System.out.println(libelle);
 					List<Enchere> encheres = EnchereManager.getInstance().getAllEncheresByLibelle(libelle);
 					request.setAttribute("encheres", encheres);
 					request.getRequestDispatcher("/WEB-INF/jsp/encheres.jsp").forward(request, response);
@@ -124,9 +124,4 @@ public class EncheresServlet extends HttpServlet {
 			}
 		}
 }
-
-	
-
-			
-			
 			

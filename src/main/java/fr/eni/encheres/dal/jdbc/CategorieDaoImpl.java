@@ -1,6 +1,3 @@
-/**
- * Bertrand
- */
 package fr.eni.encheres.dal.jdbc;
 
 import java.sql.Connection;
@@ -16,29 +13,28 @@ import fr.eni.encheres.bll.exception.BllException;
 import fr.eni.encheres.bo.Categorie;
 import fr.eni.encheres.dal.CategorieDao;
 
+/**
+ * 
+ * @author betrand
+ *
+ */
 public class CategorieDaoImpl implements CategorieDao {
 
-	/**
-	 * Les requetes sql
-	 */
-	// questions: on met la liste d'article?
+	
 	private final static String SELECT_ALL = "SELECT * FROM  categories";
 	private final static String SELECT_ONE_CATEGORIE = "SELECT * FROM categories WHERE no_categorie = ?";
 	private final static String SELECT_LIBELLE = "SELECT * from CATEGORIES where libelle = ?;";
 
-	/**
-	 * Les methodes
-	 */
+	
 
 	@Override
 	public List<Categorie> selectAll() {
 
 		try (Connection cnx = ConnectionProvider.getConnection()) {
 			List<Categorie> categories = new ArrayList<>();
-			//
+
 			Statement stm = cnx.createStatement();
 			ResultSet rs = stm.executeQuery(SELECT_ALL);
-			//
 			while (rs.next()) {
 				categories.add(new Categorie(
 
@@ -46,7 +42,7 @@ public class CategorieDaoImpl implements CategorieDao {
 			}
 			return categories;
 		} catch (SQLException e) {
-			// throw new BllException(); on propage ici ?
+
 			e.printStackTrace();
 		}
 		return null;
@@ -65,7 +61,6 @@ public class CategorieDaoImpl implements CategorieDao {
 			}
 
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		return null;
@@ -84,7 +79,6 @@ public class CategorieDaoImpl implements CategorieDao {
 			}
 
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 
@@ -97,17 +91,15 @@ public class CategorieDaoImpl implements CategorieDao {
 		try (Connection cnx = ConnectionProvider.getConnection()) {
 			PreparedStatement pstm = cnx.prepareStatement("INSERT INTO categories (libelle) VALUES ? ;",
 					PreparedStatement.RETURN_GENERATED_KEYS);
-			//
 			pstm.setString(1, categorie.getLibelle());
 			pstm.executeUpdate();
-			//
+			
 			ResultSet rs = pstm.getGeneratedKeys();
 			if (rs.next()) {
 				categorie.setNoCategorie(rs.getInt(1));
 			}
 
 		} catch (SQLException e) {
-			// throw new BllException(); on propage ici ?
 			e.printStackTrace();
 
 		}

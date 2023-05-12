@@ -30,28 +30,21 @@ import java.io.IOException;
 import fr.eni.encheres.bo.Utilisateur;
 
 
-
-/**
-
-*
-
-* @author msonzia2023
-
-*
-
-*/
-
 /**
  * 
  * @author msonzia2023
- *
+ * @version 1.0
  */
 @WebFilter(dispatcherTypes = { DispatcherType.REQUEST }, 
 urlPatterns = { 
-		"/encheres/ajouter", 
-		"/encheres/modifier",
-		"/encheres/supprimer", 
-		"/mon-compte" })
+		"/detail-vente/*", 
+		"/nouvelle-vente",
+		"/supprimer-profil/*",
+		"/modifier-profil/*",
+		"/profil/*",
+		"/mon-compte",
+		"/deconnexion"
+		})
 
 public class GuardAutFilter extends HttpServlet implements Filter {
 	private static final long serialVersionUID = 1L;
@@ -66,35 +59,33 @@ public class GuardAutFilter extends HttpServlet implements Filter {
 
 		// place your code here
 
-		HttpServletRequest req=(HttpServletRequest) request;
+		HttpServletRequest req =(HttpServletRequest) request;
 
-		HttpSession session=req.getSession();
+		HttpSession session = req.getSession();
 
-		Utilisateur user=(Utilisateur)session.getAttribute("user");
+		Utilisateur user = (Utilisateur)session.getAttribute("utilisateur");
 
 		//Guard
-
-		if (user==null) {
-
+		
+		
+		// Si on essaie d'accéder au page protéger en passant par l'URL, redirection vers la page de connexion
+		if (user == null) {
 			HttpServletResponse res= (HttpServletResponse) response;
-
 			res.sendRedirect(req.getContextPath()+"/connexion");
-
 			return;
 
 		}
 
 		// pass the request along the filter chain
-		
 		chain.doFilter(request, response);
 		
 	}
 
 
-public void init(FilterConfig fConfig) throws ServletException {
-
-System.out.println("****Stating Filtre Guard");
-
-}
+	public void init(FilterConfig fConfig) throws ServletException {
+	
+		System.out.println("****Stating Filtre Guard");
+	
+	}
 
 }

@@ -5,11 +5,17 @@ import java.util.List;
 import fr.eni.encheres.bo.Categorie;
 import fr.eni.encheres.dal.DaoFactory;
 
+/**
+ * 
+ * @author bertrand
+ * @version 1.0
+ */
 public class CategorieManager {
 	/**
 	 * Debut singleton
 	 */
 	private static CategorieManager instance;
+	
 	private CategorieManager () {}
 	
 	public static CategorieManager getInstance() {

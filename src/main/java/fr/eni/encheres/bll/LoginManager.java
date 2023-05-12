@@ -5,6 +5,14 @@ import fr.eni.encheres.bo.Utilisateur;
 import fr.eni.encheres.dal.DaoFactory;
 
 /**
+ * Cette classe n'est pas utilisé dans le projet  
+ * Elle permetra à un utilisateur de se connecter en utilisant le mot de passe "hasher"
+ */
+
+
+
+
+/**
  * 
  * @author msonzia2023
  *
@@ -26,21 +34,18 @@ public class LoginManager {
 	
 	// ajout de l'utilisateur
 	public void addUtilisateur(Utilisateur utilisateur) {
-		
-	
-	// check fields
+
+			// check fields
 			utilisateur.setMotDePasse( 
 					BCrypt.withDefaults().hashToString(12, utilisateur.getMotDePasse().toCharArray())
 					);
 			DaoFactory.getUtilisateurDao().insert(utilisateur);
 			
-		}
+	}
 
-		public void Login(String pseudo,String motDePasse) {
-			Utilisateur utilisateur = DaoFactory.getUtilisateurDao().selectByPseudo(pseudo);
+	public void Login(String pseudo,String motDePasse) {
+		Utilisateur utilisateur = DaoFactory.getUtilisateurDao().selectByPseudo(pseudo);
 			
-		}
+	}
 	
 }
-
-

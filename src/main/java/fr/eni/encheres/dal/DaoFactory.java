@@ -1,6 +1,3 @@
-/**
- * Bertrand
- */
 package fr.eni.encheres.dal;
 
 import fr.eni.encheres.dal.jdbc.ArticleVenduDaoImpl;
@@ -9,6 +6,11 @@ import fr.eni.encheres.dal.jdbc.EnchereDaoImpl;
 import fr.eni.encheres.dal.jdbc.RetraitDaoImpl;
 import fr.eni.encheres.dal.jdbc.UtilisateurDaoImpl;
 
+/**
+ * 
+ * @author bertrand
+ *
+ */
 public class DaoFactory {
 	
 	public static ArticleVenduDao getArticleVenduDao() {

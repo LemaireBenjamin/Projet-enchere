@@ -18,7 +18,7 @@ public class MonProfilServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String[] params = request.getPathInfo().split("/");
 		int noUtilisateur = Integer.parseInt(params[1]);
-//		int noUtilisateur = 10;
+
 		Utilisateur utilisateur = UtilisateurManager.getInstance().getUtilisateurById(noUtilisateur);
 		
 		if(utilisateur == null) {

@@ -20,15 +20,7 @@ public class Enchere {
 	private ArticleVendu articleVendu;
 	private Utilisateur utilisateur;
 
-	/**
-	 * Constructeurs
-	 * @param localDate 
-	 * @param string3 
-	 * @param string2 
-	 * @param string 
-	 * @param i 
-	 */
-	
+	public Enchere() {}
 
 	public Enchere(LocalDate dateEnchere) {
 		this.dateEnchere = dateEnchere;

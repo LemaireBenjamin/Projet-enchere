@@ -1,12 +1,14 @@
-/**
- * Bertrand
- */
 package fr.eni.encheres.dal;
 
 import java.util.List;
 
 import fr.eni.encheres.bo.Retrait;
 
+/**
+ * 
+ * @author bertrand
+ *
+ */
 public interface RetraitDao {
 	//CRUD
 	public List <Retrait> selectAll();

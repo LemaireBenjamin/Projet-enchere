@@ -8,7 +8,9 @@ List<String> erreurs = (List<String>) request.getAttribute("erreurs");
 <%
 String erreurCnx = (String) request.getAttribute("erreur");
 %>
-<% String messageErreur = Flash.getMessage("error", request.getSession()); %>
+<%
+String messageErreur = Flash.getMessage("error", request.getSession());
+%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -23,34 +25,43 @@ String erreurCnx = (String) request.getAttribute("erreur");
 		</header>
 		<main>
 			<div class="col-sm-5 offset-4">
-	
-	<%
-					if(messageErreur != null){	
+
+				<%
+				if (messageErreur != null) {
 				%>
-				
+
 				<div class="alert alert-danger">
-					<%= messageErreur %>
+					<%=messageErreur%>
 				</div>
-				
-				<%} %>			
-				
+
+				<%
+				}
+				%>
+
 				<div class="row">
 					<div class="container">
 						<h2 class="login-title">Se Connecter</h2>
 						<!--  -->
-						<% if (erreurCnx != null) { %>
-							<p color="red">
-								<%=erreurCnx%>
-							</p>
-						<%}%>
+						<%
+						if (erreurCnx != null) {
+						%>
+						<p color="red">
+							<%=erreurCnx%>
+						</p>
+						<%
+						}
+						%>
 
-						<% if (erreurs != null)
+						<%
+						if (erreurs != null)
 							for (String erreur : erreurs) {
 						%>
-							<p color="red">
-								<%=erreur%>
-							</p>
-						<%}%>
+						<p color="red">
+							<%=erreur%>
+						</p>
+						<%
+						}
+						%>
 
 						<!-- Début Formulaire -->
 
@@ -58,8 +69,7 @@ String erreurCnx = (String) request.getAttribute("erreur");
 							<div class="form-group row">
 								<label for="login" class="col-sm-2 col-form-label">Identifiant</label>
 								<div class="col-sm-6">
-						<input type="text" name="login" class="form-control" id="login"
-
+									<input type="text" name="login" class="form-control" id="login"
 										placeholder=" pseudo ou email" required />
 								</div>
 							</div>
@@ -72,30 +82,32 @@ String erreurCnx = (String) request.getAttribute("erreur");
 										placeholder="password" name="password" required />
 								</div>
 							</div>
-
-						<!-- button -->
-								<div class="d-flex bg-secondary mb-3">
-									<div class="p-2">
-										<button type="submit" class="btn btn-warning">Connexion</button>
-									</div>
-									<div class="p-2 ">
-										<input type="checkbox" id="chk1" name="chk1"
-											value="enrgMotDePasse"> <label for="chk1"> Se
-											souvenir de moi</label><br>
-										<p>
-											<a href="#"> Mot de passe oublié </a>
-										</p>
-									</div>
+							
+							<br>
+							
+							<!-- button -->
+							<div class="d-flex bg-secondary mb-3">
+								<div class="p-2">
+									<button type="submit" class="btn btn-warning">Connexion</button>
 								</div>
-								<!-- Fin button -->
-								<a href="<%=request.getContextPath()%>/inscription"><button
-										type="button" class="btn btn-success">Creer un compte</button></a>
-							</form>
-						
-						</div>
-					</div>
+								<div class="p-2 ">
+									<input type="checkbox" id="chk1" name="chk1"
+										value="enrgMotDePasse"> <label for="chk1"> Se
+										souvenir de moi</label><br>
+									<p>
+										<a href="#"> Mot de passe oublié </a>
+									</p>
+								</div>
+							</div>
+							<!-- Fin button -->
+							<a href="<%=request.getContextPath()%>/inscription"><button
+									type="button" class="btn btn-success">Creer un compte</button></a>
+						</form>
 
-				
+					</div>
+				</div>
+
+
 
 			</div>
 		</main>

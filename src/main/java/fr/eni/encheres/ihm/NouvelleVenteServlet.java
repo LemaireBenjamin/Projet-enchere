@@ -31,10 +31,10 @@ public class NouvelleVenteServlet extends HttpServlet {
 	}
 	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		System.out.println("Dans le POST");
+		
 		try {
 			HttpSession session = request.getSession();
-			System.out.println("Dans le TRY");
+		
 			String nomArticle = request.getParameter("nom-article");
 			String description = request.getParameter("description");
 			String cat = request.getParameter("categorie");
@@ -44,16 +44,13 @@ public class NouvelleVenteServlet extends HttpServlet {
 			LocalDate finEnchere = LocalDate.parse(request.getParameter("fin-enchere"));
 			String etatVente = "CR";
 			
-			System.out.println("Avant CATEGORIE");
+			
 			
 			Categorie categorie = CategorieManager.getInstance().getOneCategorie(cat);
 			Utilisateur utilisateur = (Utilisateur) session.getAttribute("utilisateur");
-			System.out.println(utilisateur);
-			System.out.println(categorie);
-			System.out.println("Avant ARTICLE VENDU");
+			
 			
 			ArticleVendu articlevendu = new ArticleVendu(nomArticle, description, debutEnchere, finEnchere, miseAPrix, miseAPrix, utilisateur, categorie, etatVente);
-			System.out.println(articlevendu);
 			
 			ArticleManager.getInstance().addArticle(articlevendu);
 				

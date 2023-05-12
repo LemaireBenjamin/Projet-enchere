@@ -6,6 +6,11 @@ import fr.eni.encheres.bll.exception.BllException;
 import fr.eni.encheres.bo.ArticleVendu;
 import fr.eni.encheres.dal.DaoFactory;
 
+/**
+ * 
+ * @author bertrand
+ * @version 1.2
+ */
 public class ArticleManager {
 			//Singleton
 			/**START SINGLETON **/
@@ -32,10 +37,10 @@ public class ArticleManager {
 			
 			public void checkArticle(ArticleVendu articlevendu) throws BllException {
 				BllException bll = new BllException();
-				checkField(articlevendu.getNomArticle(), "nom-article", bll);
+				checkField(articlevendu.getNomArticle(), "nom de l'article", bll);
 				checkField(articlevendu.getDescription(), "description", bll);
-				checkField(articlevendu.getDateDebutEncheres(), "debut-enchere", bll);
-				checkField(articlevendu.getDateFinEncheres(), "fin-enchere", bll);
+				checkField(articlevendu.getDateDebutEncheres(), "date debut enchère", bll);
+				checkField(articlevendu.getDateFinEncheres(), "date fin enchère", bll);
 
 				if(bll.getErreurs().size()>0) {
 					throw bll;
@@ -54,8 +59,5 @@ public class ArticleManager {
 				if(field == null) {
 					bll.ajouterErreur("Le champ %s ne peut pas être vide".formatted(name));
 				}
-				
-			}
-			
-			
+			}	
 }
