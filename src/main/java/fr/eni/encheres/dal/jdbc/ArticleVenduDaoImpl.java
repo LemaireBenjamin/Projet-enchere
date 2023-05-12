@@ -9,6 +9,7 @@ import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 
 import java.util.List;
@@ -25,7 +26,10 @@ public class ArticleVenduDaoImpl implements ArticleVenduDao {
 		
 	@Override
 	public void insert(ArticleVendu articlevendu) {
+			System.out.println(articlevendu);
 		try (Connection connection = ConnectionProvider.getConnection()){
+			
+			
 			
 			PreparedStatement pStmt = connection.prepareStatement(INSERT_ARTICLE, PreparedStatement.RETURN_GENERATED_KEYS);
 			pStmt.setString(1, articlevendu.getNomArticle());
@@ -37,12 +41,12 @@ public class ArticleVenduDaoImpl implements ArticleVenduDao {
 			pStmt.setString(7, articlevendu.getEtatVente());
 			pStmt.setInt(8, articlevendu.getUtilisateur().getNoUtilisateur());
 			pStmt.setInt(9, articlevendu.getCategorieArticle().getNoCategorie());
+			
+			pStmt.executeUpdate();
 			ResultSet rs = pStmt.getGeneratedKeys();
 			if(rs.next()) {
 				articlevendu.setNoArticle(rs.getInt(1)); // pour la redirection
 			}
-			pStmt.executeUpdate();
-	
 			
 			
 		} catch (SQLException e) {

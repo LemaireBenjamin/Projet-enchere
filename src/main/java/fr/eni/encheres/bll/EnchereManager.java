@@ -35,10 +35,20 @@ public class EnchereManager {
 			public List<Enchere> getAllEncheresGagneesByUser(Utilisateur utilisateur, String etatEnchere) {
 				return DaoFactory.getEnchereDao().selectEncheresGagneByUtilisateur(utilisateur, "ET");
 			}
+
 			public Enchere getArticleByNoArticle(int noArticle) {
 				return DaoFactory.getEnchereDao().selectOneByIdArticle(noArticle);
 			}
-			
-			
-			
+
+			public List<Enchere> getAllEncheresByLibelle(String libelle) {
+				return DaoFactory.getEnchereDao().selectEncheresByLibelle(libelle, "EC");
+			}
+			public List<Enchere> getAllEncheresAchatEnCoursByUser(Utilisateur utilisateur, String etatEnchere) {
+				return DaoFactory.getEnchereDao().selectEncheresEnCoursAchatByUtilisateur(utilisateur, "EC");
+			}
+			public List<Enchere> getAllEncheresCommenceesByUser(Utilisateur utilisateur, String string) {
+				return DaoFactory.getEnchereDao().selectEncheresCommenceesByUtilisateur(utilisateur, "CR");
+
+			}
+				
 }
